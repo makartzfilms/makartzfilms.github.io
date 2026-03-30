@@ -815,11 +815,19 @@ const featuredTeam = allTeam
     height: 6px;
     border-radius: 50%;
     background: var(--parchment3);
+    cursor: pointer;
+    transition: width 200ms ease, background-color 200ms ease, border-radius 200ms ease;
   }
-  .carousel-hint span:first-child {
+  .carousel-hint span.active {
     background: var(--sienna);
     width: 18px;
     border-radius: 3px;
+  }
+  .press-pagination span {
+    background: rgba(244, 234, 213, 0.25);
+  }
+  .press-pagination span.active {
+    background: var(--sienna);
   }
 }
 
@@ -929,8 +937,11 @@ const featuredTeam = allTeam
 @media (max-width: 600px) {
   .cta-buttons {
     flex-direction: column !important;
-    align-items: stretch;
+    align-items: center;
     width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .cta-buttons .btn {
     width: 100%;
@@ -969,11 +980,51 @@ const featuredTeam = allTeam
   .press-pagination {
     margin-top: var(--space-4);
   }
-  .press-pagination span {
-    background: rgba(244, 234, 213, 0.25);
-  }
-  .press-pagination span:first-child {
-    background: var(--sienna);
-  }
 }
 </style>
+
+<script>
+function initCarousel(grid: HTMLElement | null, dots: HTMLElement[]) {
+  if (!grid || dots.length === 0) return;
+
+  const cards = Array.from(grid.children) as HTMLElement[];
+
+  function setActive(index: number) {
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  }
+
+  setActive(0);
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      const card = cards[i];
+      if (!card) return;
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  });
+
+  grid.addEventListener('scroll', () => {
+    const center = grid.scrollLeft + grid.clientWidth / 2;
+    let activeIndex = 0;
+    let minDist = Infinity;
+    cards.forEach((card, i) => {
+      const dist = Math.abs((card.offsetLeft + card.offsetWidth / 2) - center);
+      if (dist < minDist) { minDist = dist; activeIndex = i; }
+    });
+    setActive(activeIndex);
+  }, { passive: true });
+}
+
+const filmsGrid = document.querySelector<HTMLElement>('.films-grid');
+const filmsDots = [...document.querySelectorAll<HTMLElement>('.films-section .carousel-hint span')];
+
+const teamGrid = document.querySelector<HTMLElement>('.team-grid');
+const teamDots = [...document.querySelectorAll<HTMLElement>('.team-section .carousel-hint span')];
+
+const pressGrid = document.querySelector<HTMLElement>('.press-grid');
+const pressDots = [...document.querySelectorAll<HTMLElement>('.press-pagination span')];
+
+initCarousel(filmsGrid, filmsDots);
+initCarousel(teamGrid, teamDots);
+initCarousel(pressGrid, pressDots);
+</script>
