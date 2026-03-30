@@ -82,3 +82,40 @@ img {
   z-index: 10000;
 }
 .skip-link:focus { top: var(--space-2); }
+
+/* Button system */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.85rem 2rem;
+  transition: background var(--duration-fast) var(--ease-cinematic),
+              color var(--duration-fast) var(--ease-cinematic),
+              border-color var(--duration-fast) var(--ease-cinematic);
+  cursor: none;
+}
+.btn--primary {
+  background: var(--red);
+  color: var(--cream);
+  border: 1px solid var(--red);
+}
+.btn--primary:hover {
+  background: transparent;
+  color: var(--cream);
+  border-color: var(--cream);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--border);
+}
+.btn--ghost:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
