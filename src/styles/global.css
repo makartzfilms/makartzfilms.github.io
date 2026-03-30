@@ -191,4 +191,16 @@ img {
   .section-pad {
     padding: 5rem 0;
   }
+
+  /* Section CTAs — full width, centered, consistent size across all pages */
+  .section-cta {
+    display: flex;
+    justify-content: center;
+  }
+  .section-cta .btn {
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+    padding: 1rem 2rem;
+  }
 }
