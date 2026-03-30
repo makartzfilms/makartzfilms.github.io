@@ -788,8 +788,6 @@ const featuredTeam = allTeam
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: var(--space-3);
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
     padding-bottom: var(--space-3);
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -803,19 +801,7 @@ const featuredTeam = allTeam
   }
 }
 @media (max-width: 600px) {
-  .films-grid {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
-    margin-left: calc(-1 * var(--space-6));
-    margin-right: calc(-1 * var(--space-6));
-    width: calc(100% + var(--space-12));
-  }
   .film-card { flex: 0 0 80vw; }
-  .films-section .section-header {
-    margin-bottom: var(--space-4);
-    padding: 0 var(--space-3);
-  }
-  .films-section .section-cta { padding: 0 var(--space-3); }
 }
 
 /* Carousel hint dots */
@@ -876,8 +862,6 @@ const featuredTeam = allTeam
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: var(--space-3);
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
     padding-bottom: var(--space-3);
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -891,19 +875,7 @@ const featuredTeam = allTeam
   }
 }
 @media (max-width: 600px) {
-  .team-grid {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
-    margin-left: calc(-1 * var(--space-6));
-    margin-right: calc(-1 * var(--space-6));
-    width: calc(100% + var(--space-12));
-  }
   .team-card { flex: 0 0 80vw; }
-  .team-section .section-header {
-    margin-bottom: var(--space-4);
-    padding: 0 var(--space-3);
-  }
-  .team-section .section-cta { padding: 0 var(--space-3); }
 }
 
 /* CHANGE 7 — Press carousel */
@@ -915,8 +887,6 @@ const featuredTeam = allTeam
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: var(--space-3);
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
     padding-bottom: var(--space-3);
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -925,21 +895,43 @@ const featuredTeam = allTeam
   .press-card {
     flex: 0 0 80vw;
     max-width: 340px;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     scroll-snap-stop: always;
   }
 }
 @media (max-width: 600px) {
-  .press-grid {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
-    margin-left: calc(-1 * var(--space-6));
-    margin-right: calc(-1 * var(--space-6));
-    width: calc(100% + var(--space-12));
-  }
   .press-card { flex: 0 0 85vw; }
   .press-section {
     padding: var(--space-8) var(--space-3);
+  }
+}
+
+/* Carousel section inset — padding lives on the section, not the grid */
+@media (max-width: 900px) {
+  .films-section,
+  .team-section,
+  .press-section {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .films-section .container,
+  .team-section .container,
+  .press-section .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* Section CTA buttons — full width centered on mobile to match hero */
+@media (max-width: 600px) {
+  .section-cta {
+    display: flex;
+    justify-content: center;
+  }
+  .section-cta .btn {
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
   }
 }
 
