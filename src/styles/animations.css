@@ -42,7 +42,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--red);
+  background: var(--sienna);
   transition: width var(--duration-base) var(--ease-cinematic);
 }
 .underline-reveal:hover::after { width: 100%; }
@@ -55,6 +55,6 @@
               padding-left var(--duration-base) var(--ease-cinematic);
 }
 .border-reveal:hover {
-  border-color: var(--red);
+  border-color: var(--sienna);
   padding-left: var(--space-3);
 }
