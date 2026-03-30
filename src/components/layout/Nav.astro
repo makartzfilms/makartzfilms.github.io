@@ -161,17 +161,19 @@ header {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--sienna);
+  color: var(--parchment);
   text-decoration: none;
-  border: 1px solid var(--sienna);
+  border: 1px solid rgba(244, 234, 213, 0.4);
   padding: 0.5rem 1.25rem;
   transition: background var(--duration-fast) var(--ease-cinematic),
-              color var(--duration-fast) var(--ease-cinematic);
+              color var(--duration-fast) var(--ease-cinematic),
+              border-color var(--duration-fast) var(--ease-cinematic);
   flex-shrink: 0;
 }
 
 .nav-cta:hover {
   background: var(--sienna);
+  border-color: var(--sienna);
   color: var(--parchment);
 }
 
