@@ -16,7 +16,7 @@ const featuredTeam = allTeam
 
 <BaseLayout
   title="Independent Film Agency"
-  description="MakArtz Films is an independent film agency based in Los Angeles and New York. We develop, produce, and champion uncompromising independent cinema."
+  description="MakArtz Films is an independent film agency based in Winter Springs, FL. We develop, produce, and champion uncompromising independent cinema."
   ogType="website"
   schema={organizationSchema}
 >
@@ -36,7 +36,7 @@ const featuredTeam = allTeam
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__rule" aria-hidden="true"></div>
     <div class="hero__content">
-      <p class="eyebrow">Los Angeles · New York · Est. 2014</p>
+      <p class="eyebrow">Winter Springs, FL · Est. 2014</p>
       <h1 class="display hero__headline">
         Cinema That<br />
         <em>Refuses</em><br />
@@ -144,7 +144,7 @@ const featuredTeam = allTeam
             without us."
           </p>
           <cite class="eyebrow mission-blockquote__cite">
-            — Elena Walsh, Founder
+            — Jacob Schwartz, Founder
           </cite>
         </blockquote>
       </div>
@@ -165,22 +165,22 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 5: STATS STRIP -->
-  <div class="stats-strip" aria-label="MakArtz Films by the numbers" style="background: var(--ink3); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark);">
+  <div class="stats-strip" aria-label="MakArtz Films by the numbers" style="background: var(--forest2); border-top: 1px solid rgba(42,61,53,0.6); border-bottom: 1px solid rgba(42,61,53,0.6);">
     <div class="container stats-grid">
       <div class="stat reveal">
-        <span class="display stat__number" style="color: var(--amber);">18</span>
+        <span class="display stat__number" style="color: var(--parchment);">18</span>
         <span class="eyebrow">Features Produced</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number" style="color: var(--amber);">47</span>
+        <span class="display stat__number" style="color: var(--parchment);">47</span>
         <span class="eyebrow">Festival Awards</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number" style="color: var(--amber);">23</span>
+        <span class="display stat__number" style="color: var(--parchment);">23</span>
         <span class="eyebrow">Countries</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number" style="color: var(--amber);">11</span>
+        <span class="display stat__number" style="color: var(--parchment);">11</span>
         <span class="eyebrow">Years</span>
       </div>
     </div>
@@ -223,6 +223,9 @@ const featuredTeam = allTeam
   <!-- SECTION 7: PRESS QUOTES -->
   <section class="press-section" style="background: var(--ink2); border-top: 1px solid var(--border-dark);">
     <div class="container">
+      <div class="film-strip-accent reveal" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
       <p class="eyebrow reveal press-eyebrow">Press &amp; Recognition</p>
       <div class="press-grid reveal-grid">
         <blockquote class="press-card">
@@ -246,20 +249,20 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 8: CONTACT CTA -->
-  <section class="cta-section" style="background: var(--ink); border-top: 1px solid var(--border-dark); padding: var(--space-16) 0; text-align: center;">
+  <section class="cta-section section--light" style="background: var(--parchment); border-top: 1px solid var(--border-light); padding: var(--space-16) 0; text-align: center;">
     <div class="container cta-inner">
       <div class="reveal">
-        <div class="quote-rule cta-rule" style="width:1px;height:48px;background:var(--amber);margin:0 auto var(--space-3);" aria-hidden="true"></div>
+        <div style="width: 48px; height: 2px; background: var(--sienna); margin: 0 auto var(--space-4);" aria-hidden="true"></div>
         <p class="eyebrow cta-eyebrow">Work With Us</p>
-        <h2 class="heading-1 cta-heading" style="color: var(--text-primary);">
+        <h2 class="heading-1 cta-heading" style="color: var(--text-dark);">
           Got a film that<br />needs a home?
         </h2>
-        <p class="body-large cta-body">
+        <p class="body-large cta-body" style="color: var(--text-dark-body);">
           We accept submissions year-round. If you have a project in development, production, or post — and you believe in what it is — we want to hear from you.
         </p>
         <div class="cta-buttons">
           <a href="/submit" class="btn btn--primary">Submit a Project</a>
-          <a href="/contact" class="btn btn--ghost">Get in Touch</a>
+          <a href="/contact" class="btn btn--ghost-dark">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -457,13 +460,14 @@ const featuredTeam = allTeam
 
 .film-card {
   background: #fff;
-  border: 1px solid var(--border-light);
-  transition: border-color var(--duration-base) var(--ease-cinematic),
-              box-shadow var(--duration-base) var(--ease-cinematic);
+  border: none;
+  box-shadow: 0 2px 12px rgba(24,18,16,0.08), 0 1px 3px rgba(24,18,16,0.06);
+  transition: box-shadow var(--duration-base) var(--ease-cinematic),
+              transform var(--duration-base) var(--ease-cinematic);
 }
 .film-card:hover {
-  border-color: var(--parchment3);
-  box-shadow: 0 8px 32px rgba(24, 18, 16, 0.12);
+  box-shadow: 0 12px 40px rgba(24,18,16,0.16), 0 4px 12px rgba(24,18,16,0.10);
+  transform: translateY(-3px);
 }
 .film-card__link { text-decoration: none; display: block; }
 
@@ -544,8 +548,9 @@ const featuredTeam = allTeam
 .mission-blockquote { color: var(--text-primary); }
 
 .mission-blockquote__text {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1.05;
+  font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
 }
 
 .mission-blockquote__cite {
@@ -736,5 +741,32 @@ const featuredTeam = allTeam
   gap: var(--space-2);
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Stats strip eyebrow override — parchment on forest green */
+.stats-strip .eyebrow {
+  color: var(--parchment2);
+  opacity: 0.75;
+}
+
+/* Film strip accent — press section decoration */
+.film-strip-accent {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+.film-strip-accent span {
+  display: block;
+  width: 18px;
+  height: 12px;
+  border: 1px solid var(--border-dark);
+  opacity: 0.4;
+}
+
+/* Section header heading color on light sections */
+.films-section .section-header .heading-1,
+.team-section .section-header .heading-1 {
+  color: var(--text-dark);
 }
 </style>

@@ -11,20 +11,20 @@ This file is the authoritative SEO reference for every page build in this projec
 
 #### Cluster 1: Independent Film Agency Identity
 
-**Primary keyword:** `independent film agency Los Angeles`
+**Primary keyword:** `independent film agency Winter Springs FL`
 **Search intent:** Navigational / Commercial Investigation
 **Volume estimate:** Low-Medium (300–1,000/mo)
-**Difficulty:** Medium-High (LA entertainment market is contested)
+**Difficulty:** Medium-High (FL entertainment market is contested)
 **Page:** Homepage (`/`) + About (`/about`)
 
 Secondary / long-tail keywords:
-- "indie film agency LA"
+- "indie film agency Florida"
 - "independent film agency New York"
 - "what does a film agency do"
 - "film agency vs production company"
 - "arthouse film agency United States"
 
-**Content gap flagged:** No LA-based indie film agency is publishing editorial content that defines what an "independent film agency" is vs. a studio, talent agency, or PR firm. The term itself is under-claimed in search. Owning this definitional content is a high-priority Journal opportunity.
+**Content gap flagged:** No FL-based indie film agency is publishing editorial content that defines what an "independent film agency" is vs. a studio, talent agency, or PR firm. The term itself is under-claimed in search. Owning this definitional content is a high-priority Journal opportunity.
 
 **Competitive landscape:** Yelp listings, ProductionHub directory, individual production companies with weak SEO dominate. A structured site with schema and E-E-A-T can outrank all of them.
 
@@ -60,11 +60,11 @@ Secondary / long-tail keywords:
 Secondary / long-tail keywords:
 - "indie film festival submission strategy"
 - "how to build a film festival calendar"
-- "film festival consulting Los Angeles"
+- "film festival consulting Florida"
 - "which film festivals are worth submitting to"
 - "Sundance strategy for indie filmmakers"
 
-**Content gap flagged:** No LA-based agency is explicitly positioning as a festival strategy consultant. This is a winnable niche with zero competition from established brands. Prioritize Journal content in the `Festivals` category.
+**Content gap flagged:** No FL-based agency is explicitly positioning as a festival strategy consultant. This is a winnable niche with zero competition from established brands. Prioritize Journal content in the `Festivals` category.
 
 ---
 
@@ -129,12 +129,12 @@ Secondary / long-tail keywords:
 
 | Page | Primary Keyword | Keyword Intent |
 |---|---|---|
-| `/` | independent film agency Los Angeles | Navigational / Commercial |
+| `/` | independent film agency Winter Springs FL | Navigational / Commercial |
 | `/films` | arthouse film catalog independent cinema | Navigational / Discovery |
 | `/about` | about MakArtz Films independent film agency | Navigational / Trust |
 | `/journal` | independent filmmaker resources blog | Informational |
 | `/submit` | submit film to distributor | Transactional |
-| `/contact` | contact independent film agency Los Angeles | Local / Transactional |
+| `/contact` | contact independent film agency Winter Springs FL | Local / Transactional |
 
 ---
 
@@ -149,7 +149,7 @@ MakArtz Films competes against editorial brands with DA 50–80+ (IndieFilmHustl
 These are the official category taxonomy used in `src/content/config.ts`.
 
 #### 1. `Festivals`
-**Rationale:** Film festival strategy is the single lowest-competition, highest-differentiation keyword cluster available to MakArtz. No LA-based agency is publishing authoritative festival strategy content. MakArtz's direct experience attending and programming festivals is the moat. Attracts filmmakers in the production and post-production phases — high-value audience.
+**Rationale:** Film festival strategy is the single lowest-competition, highest-differentiation keyword cluster available to MakArtz. No FL-based agency is publishing authoritative festival strategy content. MakArtz's direct experience attending and programming festivals is the moat. Attracts filmmakers in the production and post-production phases — high-value audience.
 
 **Target topics:** Submission strategies, festival tier analysis, how to build a festival calendar, international vs. domestic circuits, press strategy at festivals, case studies from films MakArtz has shepherded through the festival circuit.
 
@@ -180,11 +180,11 @@ These are the official category taxonomy used in `src/content/config.ts`.
 ### Homepage (`/`)
 
 **Type:** `Organization`
-**Decision:** Use `Organization`, NOT `LocalBusiness`. MakArtz Films is a creative agency with national (LA + New York) reach, not a storefront. `LocalBusiness` would unnecessarily constrain the entity to a single location.
+**Decision:** Use `Organization`, NOT `LocalBusiness`. MakArtz Films is a creative agency with national (Winter Springs, FL) reach, not a storefront. `LocalBusiness` would unnecessarily constrain the entity to a single location.
 
 **Note on `ProductionCompany`:** `productionCompany` in Schema.org is a **property**, not a type. It is used within `Movie`, `TVSeries`, and `VideoObject` schemas to point to an `Organization`. MakArtz Films' entity schema correctly uses `@type: Organization`. The `productionCompany` property is used in individual Film pages to back-link to this organization entity. This creates a semantic relationship that is explicit for both Google and AI systems.
 
-Fields implemented: `name`, `url`, `logo`, `description`, `address` (array — Los Angeles + New York), `contactPoint`, `sameAs` (Instagram, Vimeo, IMDb, LinkedIn).
+Fields implemented: `name`, `url`, `logo`, `description`, `address` (Winter Springs, FL), `contactPoint`, `sameAs` (Instagram, Vimeo, IMDb, LinkedIn).
 
 ---
 
@@ -414,7 +414,7 @@ As of early 2025, AI search engines (ChatGPT Search, Perplexity, Google AI Overv
 
 ## Competitive Landscape Summary
 
-No identified LA-based indie film agency competitor is:
+No identified FL-based indie film agency competitor is:
 - Publishing a journal with consistent topical depth
 - Using structured schema data correctly
 - Targeting long-tail keywords from a practitioner perspective

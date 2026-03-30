@@ -13,6 +13,9 @@
   /* ─── Accents ─── */
   --sienna:     #C4402B;
   --amber:      #C87E35;
+  --forest:     #2A3D35;   /* deep editorial green — vintage Criterion/Cahiers accent */
+  --forest2:    #1E2E28;   /* darker forest for backgrounds */
+  --forest3:    #3D5C51;   /* lifted forest for hover states */
 
   /* ─── Text on dark backgrounds ─── */
   --text-primary:    #F4EAD5;
