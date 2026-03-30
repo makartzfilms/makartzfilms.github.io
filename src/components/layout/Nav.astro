@@ -1,0 +1,321 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (path: string) =>
+  path === '/' ? pathname === '/' : pathname.startsWith(path);
+---
+
+<header>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <nav class="site-nav" aria-label="Primary navigation" role="navigation" id="site-nav">
+    <a
+      href="/"
+      class="nav-logo"
+      aria-label="MakArtz Films — Home"
+    >MakArtz Films</a>
+
+    <button
+      class="nav-hamburger"
+      id="nav-hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="nav-mobile-overlay"
+    >
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <ul class="nav-links" role="list">
+      <li>
+        <a
+          href="/films"
+          class:list={['nav-link', { active: isActive('/films') }]}
+          aria-current={isActive('/films') ? 'page' : undefined}
+        >Films</a>
+      </li>
+      <li>
+        <a
+          href="/notes"
+          class:list={['nav-link', { active: isActive('/notes') }]}
+          aria-current={isActive('/notes') ? 'page' : undefined}
+        >From the Cutting Room</a>
+      </li>
+      <li>
+        <a
+          href="/journal"
+          class:list={['nav-link', { active: isActive('/journal') }]}
+          aria-current={isActive('/journal') ? 'page' : undefined}
+        >Journal</a>
+      </li>
+      <li>
+        <a
+          href="/team"
+          class:list={['nav-link', { active: isActive('/team') }]}
+          aria-current={isActive('/team') ? 'page' : undefined}
+        >Team</a>
+      </li>
+      <li>
+        <a
+          href="/about"
+          class:list={['nav-link', { active: isActive('/about') }]}
+          aria-current={isActive('/about') ? 'page' : undefined}
+        >About</a>
+      </li>
+      <li>
+        <a
+          href="/contact"
+          class:list={['nav-link', { active: isActive('/contact') }]}
+          aria-current={isActive('/contact') ? 'page' : undefined}
+        >Contact</a>
+      </li>
+    </ul>
+
+    <a href="/submit" class="nav-cta">Submit a Project</a>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav-mobile-overlay" id="nav-mobile-overlay" aria-hidden="true">
+    <button
+      class="nav-mobile-close"
+      id="nav-mobile-close"
+      aria-label="Close navigation menu"
+    >✕</button>
+    <ul class="nav-mobile-links" role="list">
+      <li style="--i:0"><a href="/films">Films</a></li>
+      <li style="--i:1"><a href="/notes">From the Cutting Room</a></li>
+      <li style="--i:2"><a href="/journal">Journal</a></li>
+      <li style="--i:3"><a href="/team">Team</a></li>
+      <li style="--i:4"><a href="/about">About</a></li>
+      <li style="--i:5"><a href="/contact">Contact</a></li>
+      <li style="--i:6"><a href="/submit" class="mobile-cta">Submit a Project</a></li>
+    </ul>
+  </div>
+</header>
+
+<style>
+header {
+  position: relative;
+  z-index: 1000;
+}
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-6);
+  transition: background var(--duration-base) var(--ease-cinematic),
+              border-color var(--duration-base) var(--ease-cinematic),
+              backdrop-filter var(--duration-base) var(--ease-cinematic);
+  border-bottom: 1px solid transparent;
+}
+
+.site-nav.scrolled {
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--border);
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  list-style: none;
+  margin-left: auto;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-cinematic);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cream);
+}
+
+.nav-cta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  border: 1px solid var(--red);
+  padding: 0.5rem 1rem;
+  transition: background var(--duration-fast) var(--ease-cinematic),
+              color var(--duration-fast) var(--ease-cinematic);
+  flex-shrink: 0;
+}
+
+.nav-cta:hover {
+  background: var(--red);
+  color: var(--cream);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+  margin-left: auto;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--cream);
+  transition: transform var(--duration-base) var(--ease-cinematic),
+              opacity var(--duration-base) var(--ease-cinematic);
+}
+
+/* Mobile overlay */
+.nav-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-cinematic);
+}
+
+.nav-mobile-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-mobile-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color var(--duration-fast);
+}
+
+.nav-mobile-close:hover { color: var(--cream); }
+
+.nav-mobile-links {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.nav-mobile-links li {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-cinematic),
+              transform var(--duration-slow) var(--ease-cinematic);
+  transition-delay: calc(var(--i) * 60ms);
+}
+
+.nav-mobile-overlay.open .nav-mobile-links li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-mobile-links a {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 500;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+.nav-mobile-links a:hover { color: var(--red); }
+
+.mobile-cta {
+  font-family: var(--font-sans) !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--red);
+  padding: 0.75rem 1.5rem;
+  color: var(--cream) !important;
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .site-nav { padding: var(--space-3) var(--space-4); }
+}
+</style>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const hamburger = document.getElementById('nav-hamburger');
+  const overlay = document.getElementById('nav-mobile-overlay');
+  const closeBtn = document.getElementById('nav-mobile-close');
+
+  // Scroll state
+  window.addEventListener('scroll', () => {
+    if (nav) {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }
+  }, { passive: true });
+
+  // Mobile menu
+  function openMenu() {
+    overlay?.classList.add('open');
+    overlay?.removeAttribute('aria-hidden');
+    hamburger?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    overlay?.classList.remove('open');
+    overlay?.setAttribute('aria-hidden', 'true');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Close on nav link click
+  overlay?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

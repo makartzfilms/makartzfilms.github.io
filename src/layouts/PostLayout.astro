@@ -1,0 +1,133 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { blogPostingSchema, articleSchema } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  author: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  featuredImage?: string;
+  featuredImageAlt?: string;
+  category: string;
+  slug: string;
+  type?: 'journal' | 'notes';
+}
+
+const {
+  title,
+  description,
+  author,
+  pubDate,
+  updatedDate,
+  featuredImage,
+  featuredImageAlt,
+  category,
+  slug,
+  type = 'journal',
+} = Astro.props;
+
+const schema = type === 'notes'
+  ? articleSchema({ title, description, author, pubDate, updatedDate, featuredImage, slug, category })
+  : blogPostingSchema({ title, description, author, pubDate, updatedDate, featuredImage, slug, section: category });
+
+const ogType = 'article';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage={featuredImage}
+  ogType={ogType}
+  schema={schema}
+>
+  <article class="post-article">
+    <header class="post-header">
+      <div class="post-meta">
+        <span class="eyebrow">{category}</span>
+        <time datetime={pubDate.toISOString()} class="caption">
+          {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </div>
+      <h1 class="heading-1 post-title">{title}</h1>
+      <p class="body-large post-description">{description}</p>
+      {featuredImage && (
+        <div class="post-hero-image">
+          <img
+            src={featuredImage}
+            alt={featuredImageAlt ?? title}
+            width="1200"
+            height="630"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      )}
+    </header>
+
+    <div class="prose post-body">
+      <slot />
+    </div>
+
+    <footer class="post-footer">
+      <p class="caption">By {author}</p>
+      {updatedDate && (
+        <time datetime={updatedDate.toISOString()} class="caption">
+          Updated {updatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      )}
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+.post-article {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-16);
+}
+
+.post-header {
+  margin-bottom: var(--space-8);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.post-title {
+  margin-bottom: var(--space-3);
+}
+
+.post-description {
+  margin-bottom: var(--space-6);
+}
+
+.post-hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.post-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-body {
+  margin-bottom: var(--space-8);
+}
+
+.post-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+</style>
