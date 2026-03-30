@@ -6,7 +6,8 @@ import { organizationSchema } from '../lib/schema';
 const allFilms = await getCollection('films');
 const featuredFilms = allFilms
   .filter(f => f.data.featured)
-  .sort((a, b) => b.data.year - a.data.year);
+  .sort((a, b) => b.data.year - a.data.year)
+  .slice(0, 3);
 
 const allTeam = await getCollection('team');
 const featuredTeam = allTeam
