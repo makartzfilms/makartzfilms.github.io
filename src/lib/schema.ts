@@ -10,21 +10,13 @@ export const organizationSchema = {
     '@type': 'ImageObject',
     url: `${SITE_URL}/og-default.jpg`,
   },
-  description: 'An independent film agency based in Los Angeles and New York.',
-  address: [
-    {
-      '@type': 'PostalAddress',
-      addressLocality: 'Los Angeles',
-      addressRegion: 'CA',
-      addressCountry: 'US',
-    },
-    {
-      '@type': 'PostalAddress',
-      addressLocality: 'New York',
-      addressRegion: 'NY',
-      addressCountry: 'US',
-    },
-  ],
+  description: 'An independent film agency based in Winter Springs, FL.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Winter Springs',
+    addressRegion: 'FL',
+    addressCountry: 'US',
+  },
   contactPoint: {
     '@type': 'ContactPoint',
     email: 'hello@makartzfilms.com',

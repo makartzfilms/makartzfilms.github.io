@@ -12,7 +12,7 @@ crew:
   - role: "Director of Photography"
     name: "Andrés Vega"
   - role: "Producer"
-    name: "Elena Walsh"
+    name: "Jacob Schwartz"
 runtime: "1h 58m"
 featured: true
 ---
