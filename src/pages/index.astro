@@ -142,20 +142,20 @@ const featuredTeam = allTeam
           <p class="display mission-blockquote__text">
             "We exist for the films that couldn't exist without us."
           </p>
-          <cite class="eyebrow mission-blockquote__cite">
+          <cite class="eyebrow mission-blockquote__cite" style="color: var(--sienna);">
             — Jacob Schwartz, Founder
           </cite>
         </blockquote>
       </div>
       <div class="mission-body reveal">
         <p class="eyebrow mission-eyebrow">Our Mission</p>
-        <p class="body-large mission-lead">
+        <p class="body-large mission-lead" style="color: var(--text-body);">
           MakArtz Films was founded on a single conviction: that independent cinema — truly independent, uncompromising, filmmaker-driven cinema — requires advocates who understand both the art and the business, and who refuse to let one consume the other.
         </p>
-        <p class="body mission-copy">
+        <p class="body mission-copy" style="color: var(--text-body);">
           We work with directors at every stage — from the first draft of a script through the last screening in a festival run. We develop projects, structure financing, produce films, and shepherd them into the world through careful distribution strategy. We don't acquire finished films. We build them.
         </p>
-        <p class="body mission-copy">
+        <p class="body mission-copy" style="color: var(--text-body);">
           Our slate spans documentary and narrative, debut features and established voices, American stories and international co-productions. What our films share is a refusal to be anything other than exactly what they are.
         </p>
         <a href="/about" class="btn btn--ghost">About MakArtz Films</a>
@@ -164,7 +164,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 5: STATS STRIP -->
-  <div class="stats-strip" aria-label="MakArtz Films by the numbers" style="background: var(--ink2); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); padding: var(--space-12) 0;">
+  <div class="stats-strip" aria-label="MakArtz Films by the numbers" style="background: var(--ink2); border-top: 2px solid var(--sienna); border-bottom: 1px solid var(--border-dark); padding: var(--space-12) 0;">
     <div class="container stats-grid">
       <div class="stat reveal">
         <span class="display stat__number" style="font-size: clamp(3rem, 7vw, 5.5rem); color: var(--sienna); letter-spacing: -0.02em;">18</span>
@@ -186,7 +186,7 @@ const featuredTeam = allTeam
   </div>
 
   <!-- SECTION 6: TEAM TEASER -->
-  <section class="team-section section-pad section--light">
+  <section class="team-section section-pad section--light" style="background: var(--parchment2);">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">The People</p>
@@ -223,7 +223,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 7: PRESS QUOTES -->
-  <section class="press-section" style="background: var(--ink2); border-top: 1px solid var(--border-dark);">
+  <section class="press-section section--light" style="background: var(--parchment2); border-top: 1px solid var(--border-light);">
     <div class="container">
       <div class="film-strip-accent reveal" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -254,20 +254,20 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 8: CONTACT CTA -->
-  <section class="cta-section section--light" style="background: var(--parchment); border-top: 1px solid var(--border-light); padding: var(--space-12) 0; text-align: center;">
+  <section class="cta-section" style="background: var(--sienna); border-top: none; padding: var(--space-12) 0; text-align: center;">
     <div class="container cta-inner">
       <div class="reveal">
-        <div style="width: 48px; height: 2px; background: var(--sienna); margin: 0 auto var(--space-4);" aria-hidden="true"></div>
-        <p class="eyebrow cta-eyebrow">Work With Us</p>
-        <h2 class="heading-1 cta-heading" style="color: var(--text-dark);">
+        <div style="width: 48px; height: 2px; background: rgba(255,255,255,0.4); margin: 0 auto var(--space-4);" aria-hidden="true"></div>
+        <p class="eyebrow cta-eyebrow" style="color: rgba(255,255,255,0.7);">Work With Us</p>
+        <h2 class="heading-1 cta-heading" style="color: #ffffff; margin-bottom: var(--space-3);">
           Got a film that<br />needs a home?
         </h2>
-        <p class="body-large cta-body" style="color: var(--text-dark-body);">
+        <p class="body-large cta-body" style="margin-bottom: var(--space-6); color: rgba(255,255,255,0.8);">
           We accept submissions year-round. If you have a project in development, production, or post — and you believe in what it is — we want to hear from you.
         </p>
         <div class="cta-buttons">
-          <a href="/submit" class="btn btn--primary">Submit a Project</a>
-          <a href="/contact" class="btn btn--ghost-dark">Get in Touch</a>
+          <a href="/submit" class="btn btn--cta-white">Submit a Project</a>
+          <a href="/contact" class="btn btn--cta-outline">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -451,15 +451,16 @@ const featuredTeam = allTeam
 }
 
 .film-card {
-  background: #fff;
-  border: none;
-  box-shadow: 0 2px 12px rgba(24,18,16,0.08), 0 1px 3px rgba(24,18,16,0.06);
-  transition: box-shadow var(--duration-base) var(--ease-cinematic),
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  transition: border-color var(--duration-base) var(--ease-cinematic),
+              box-shadow var(--duration-base) var(--ease-cinematic),
               transform var(--duration-base) var(--ease-cinematic);
 }
 .film-card:hover {
-  box-shadow: 0 12px 40px rgba(24,18,16,0.16), 0 4px 12px rgba(24,18,16,0.10);
-  transform: translateY(-3px);
+  border-color: #cccccc;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
 }
 .film-card__link { text-decoration: none; display: block; }
 
@@ -652,23 +653,23 @@ const featuredTeam = allTeam
 
 .press-card {
   padding: var(--space-4);
-  border: 1px solid var(--border-dark);
-  background: rgba(244, 234, 213, 0.03);
+  background: #ffffff;
+  border: 1px solid var(--border-light);
   position: relative;
   transition: border-color var(--duration-base) var(--ease-cinematic),
-              background var(--duration-base) var(--ease-cinematic);
+              box-shadow var(--duration-base) var(--ease-cinematic);
 }
 
 .press-card:hover {
   border-color: var(--sienna);
-  background: rgba(244, 234, 213, 0.055);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .press-card__quote {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-style: italic;
-  color: var(--text-primary);
+  color: var(--text-dark);
   line-height: 1.65;
   margin-bottom: var(--space-3);
 }
@@ -823,12 +824,6 @@ const featuredTeam = allTeam
     background: var(--sienna);
     width: 18px;
     border-radius: 3px;
-  }
-  .press-pagination span {
-    background: rgba(244, 234, 213, 0.25);
-  }
-  .press-pagination span.active {
-    background: var(--sienna);
   }
 }
 
@@ -990,12 +985,19 @@ const featuredTeam = allTeam
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
 }
 
-/* CHANGE 14 — Stats eyebrow mobile */
-@media (max-width: 600px) {
-  .stats-strip .eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
-  }
+/* Stats eyebrow — white/muted on dark background */
+.stats-strip .eyebrow {
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.22em;
+  font-size: 0.65rem;
+}
+
+/* Press pagination — now on light background */
+.press-pagination span {
+  background: rgba(17,17,17,0.2) !important;
+}
+.press-pagination span.active {
+  background: var(--sienna) !important;
 }
 
 /* CHANGE 15 — Section header margin responsive */
