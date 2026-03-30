@@ -247,6 +247,9 @@ const featuredTeam = allTeam
           <cite class="press-card__source">— Film Comment</cite>
         </blockquote>
       </div>
+      <div class="carousel-hint press-pagination" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
     </div>
   </section>
 
@@ -971,5 +974,18 @@ const featuredTeam = allTeam
 /* CHANGE 12 — Film strip hide on mobile */
 @media (max-width: 600px) {
   .film-strip-accent { display: none; }
+}
+
+/* Press pagination — dark section variant */
+@media (max-width: 900px) {
+  .press-pagination {
+    margin-top: var(--space-4);
+  }
+  .press-pagination span {
+    background: rgba(244, 234, 213, 0.25);
+  }
+  .press-pagination span:first-child {
+    background: var(--sienna);
+  }
 }
 </style>
