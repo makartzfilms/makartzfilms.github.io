@@ -28,26 +28,35 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--sienna);
 }
 .body-large {
   font-family: var(--font-sans);
   font-size: 1.125rem;
   line-height: 1.75;
-  color: var(--muted);
+  color: var(--text-body);
 }
 .body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--text-body);
 }
 .caption {
   font-family: var(--font-sans);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
-  color: var(--muted-faint);
+  color: var(--text-muted);
 }
+
+/* Light section overrides — apply .section--light to parchment-background sections */
+.section--light .body-large  { color: var(--text-dark-body); }
+.section--light .body        { color: var(--text-dark-body); }
+.section--light .caption     { color: var(--text-dark-muted); }
+.section--light .heading-1,
+.section--light .heading-2,
+.section--light .heading-3   { color: var(--text-dark); }
+.section--light .display     { color: var(--text-dark); }
 
 /* Prose content (Markdown body) */
 .prose {
@@ -63,7 +72,7 @@
 .prose a { color: var(--cream); text-decoration: underline; text-decoration-color: var(--red); }
 .prose a:hover { color: var(--red); }
 .prose blockquote {
-  border-left: 2px solid var(--red);
+  border-left: 2px solid var(--sienna);
   padding-left: var(--space-3);
   font-style: italic;
   color: var(--muted);

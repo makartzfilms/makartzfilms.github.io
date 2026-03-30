@@ -1,13 +1,43 @@
 :root {
-  --black:  #050505;
-  --black2: #0d0d0d;
-  --black3: #141414;
-  --cream:  #EDE8DC;
-  --cream2: #D6D0C3;
-  --red:    #C8352A;
-  --muted:  rgba(237, 232, 220, 0.72);
-  --muted-faint: rgba(237, 232, 220, 0.42);
-  --border: rgba(237,232,220,0.09);
+  /* ─── Dark tones — warm-based blacks ─── */
+  --ink:        #181210;
+  --ink2:       #221A12;
+  --ink3:       #2C2218;
+  --ink4:       #3A2D1F;
+
+  /* ─── Light tones — parchment spectrum ─── */
+  --parchment:  #F4EAD5;
+  --parchment2: #E8D9BF;
+  --parchment3: #D4C4A8;
+
+  /* ─── Accents ─── */
+  --sienna:     #C4402B;
+  --amber:      #C87E35;
+
+  /* ─── Text on dark backgrounds ─── */
+  --text-primary:    #F4EAD5;
+  --text-body:       rgba(244,234,213,0.78);
+  --text-muted:      rgba(244,234,213,0.45);
+
+  /* ─── Text on light backgrounds ─── */
+  --text-dark:       #181210;
+  --text-dark-body:  rgba(24,18,16,0.75);
+  --text-dark-muted: rgba(24,18,16,0.45);
+
+  /* ─── Borders ─── */
+  --border-dark:  rgba(244,234,213,0.09);
+  --border-light: rgba(24,18,16,0.12);
+
+  /* ─── Legacy aliases — keep so existing code doesn't break ─── */
+  --black:       #181210;
+  --black2:      #221A12;
+  --black3:      #2C2218;
+  --cream:       #F4EAD5;
+  --cream2:      #E8D9BF;
+  --red:         #C4402B;
+  --muted:       rgba(244,234,213,0.78);
+  --muted-faint: rgba(244,234,213,0.45);
+  --border:      rgba(244,234,213,0.09);
 
   --font-serif: 'EB Garamond', Georgia, serif;
   --font-sans: 'Syne', system-ui, sans-serif;
@@ -31,8 +61,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  background-color: var(--black);
-  color: var(--cream);
+  background-color: var(--ink);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -52,7 +82,7 @@ img {
   position: relative;
   aspect-ratio: 2 / 3;
   overflow: hidden;
-  background: var(--black3);
+  background: var(--ink3);
 }
 .poster-container img {
   position: absolute;
@@ -62,11 +92,11 @@ img {
   object-fit: cover;
 }
 
-::selection { background: var(--red); color: var(--cream); }
+::selection { background: var(--sienna); color: var(--parchment); }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--black); }
-::-webkit-scrollbar-thumb { background: var(--red); }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--sienna); }
 
 /* Skip to content — accessibility + SEO */
 .skip-link {
@@ -76,8 +106,8 @@ img {
   width: 1px;
   height: 1px;
   overflow: hidden;
-  background: var(--red);
-  color: var(--cream);
+  background: var(--sienna);
+  color: var(--parchment);
   padding: var(--space-1) var(--space-2);
   font-family: var(--font-sans);
   font-size: 0.875rem;
@@ -112,21 +142,30 @@ img {
               border-color var(--duration-fast) var(--ease-cinematic);
 }
 .btn--primary {
-  background: var(--red);
-  color: var(--cream);
-  border: 1px solid var(--red);
+  background: var(--sienna);
+  color: var(--parchment);
+  border: 1px solid var(--sienna);
 }
 .btn--primary:hover {
   background: transparent;
-  color: var(--cream);
-  border-color: var(--cream);
+  color: var(--parchment);
+  border-color: var(--parchment);
 }
 .btn--ghost {
   background: transparent;
-  color: var(--cream);
-  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dark);
 }
 .btn--ghost:hover {
-  border-color: var(--red);
-  color: var(--red);
+  border-color: var(--sienna);
+  color: var(--sienna);
+}
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+}
+.btn--ghost-dark:hover {
+  border-color: var(--sienna);
+  color: var(--sienna);
 }

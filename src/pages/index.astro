@@ -92,7 +92,7 @@ const featuredTeam = allTeam
   </div>
 
   <!-- SECTION 3: FEATURED FILMS -->
-  <section class="films-section section-pad films-section--padded">
+  <section class="films-section section-pad films-section--padded section--light">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">Selected Works</p>
@@ -127,13 +127,13 @@ const featuredTeam = allTeam
         ))}
       </div>
       <div class="section-cta reveal">
-        <a href="/films" class="btn btn--ghost">View All Films</a>
+        <a href="/films" class="btn btn--ghost-dark">View All Films</a>
       </div>
     </div>
   </section>
 
   <!-- SECTION 4: MISSION -->
-  <section class="mission-section section-pad">
+  <section class="mission-section section-pad" style="background: var(--ink2);">
     <div class="container mission-grid">
       <div class="mission-quote reveal">
         <div class="quote-rule" aria-hidden="true"></div>
@@ -165,29 +165,29 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 5: STATS STRIP -->
-  <div class="stats-strip" aria-label="MakArtz Films by the numbers">
+  <div class="stats-strip" aria-label="MakArtz Films by the numbers" style="background: var(--ink3); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark);">
     <div class="container stats-grid">
       <div class="stat reveal">
-        <span class="display stat__number">18</span>
+        <span class="display stat__number" style="color: var(--amber);">18</span>
         <span class="eyebrow">Features Produced</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number">47</span>
+        <span class="display stat__number" style="color: var(--amber);">47</span>
         <span class="eyebrow">Festival Awards</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number">23</span>
+        <span class="display stat__number" style="color: var(--amber);">23</span>
         <span class="eyebrow">Countries</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number">11</span>
+        <span class="display stat__number" style="color: var(--amber);">11</span>
         <span class="eyebrow">Years</span>
       </div>
     </div>
   </div>
 
   <!-- SECTION 6: TEAM TEASER -->
-  <section class="team-section section-pad">
+  <section class="team-section section-pad section--light">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">The People</p>
@@ -215,13 +215,13 @@ const featuredTeam = allTeam
         ))}
       </div>
       <div class="section-cta reveal">
-        <a href="/team" class="btn btn--ghost">Meet the Full Team</a>
+        <a href="/team" class="btn btn--ghost-dark">Meet the Full Team</a>
       </div>
     </div>
   </section>
 
   <!-- SECTION 7: PRESS QUOTES -->
-  <section class="press-section">
+  <section class="press-section" style="background: var(--ink2); border-top: 1px solid var(--border-dark);">
     <div class="container">
       <p class="eyebrow reveal press-eyebrow">Press &amp; Recognition</p>
       <div class="press-grid reveal-grid">
@@ -246,12 +246,12 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 8: CONTACT CTA -->
-  <section class="cta-section">
+  <section class="cta-section" style="background: var(--ink); border-top: 1px solid var(--border-dark); padding: var(--space-16) 0; text-align: center;">
     <div class="container cta-inner">
       <div class="reveal">
-        <div class="quote-rule cta-rule" aria-hidden="true"></div>
+        <div class="quote-rule cta-rule" style="width:1px;height:48px;background:var(--amber);margin:0 auto var(--space-3);" aria-hidden="true"></div>
         <p class="eyebrow cta-eyebrow">Work With Us</p>
-        <h2 class="heading-1 cta-heading">
+        <h2 class="heading-1 cta-heading" style="color: var(--text-primary);">
           Got a film that<br />needs a home?
         </h2>
         <p class="body-large cta-body">
@@ -277,10 +277,12 @@ const featuredTeam = allTeam
 .section-header .eyebrow { margin-bottom: var(--space-1); }
 .section-cta { margin-top: var(--space-8); }
 
-.films-section { background: var(--black); }
+.films-section { background: var(--parchment); }
 .films-section--padded { padding-top: var(--space-24); }
+.films-section .section-header .heading-1 { color: var(--text-dark); }
 
-.team-section { background: var(--black); }
+.team-section { background: var(--parchment); }
+.team-section .section-header .heading-1 { color: var(--text-dark); }
 
 /* ─────────────────────────────────────────
    SECTION 1: HERO
@@ -319,10 +321,10 @@ const featuredTeam = allTeam
   z-index: 1;
   background: linear-gradient(
     to top,
-    rgba(5,5,5,1) 0%,
-    rgba(5,5,5,0.7) 40%,
-    rgba(5,5,5,0.15) 70%,
-    rgba(5,5,5,0.05) 100%
+    rgba(24, 18, 16, 1) 0%,
+    rgba(24, 18, 16, 0.72) 38%,
+    rgba(24, 18, 16, 0.18) 68%,
+    rgba(24, 18, 16, 0.06) 100%
   );
 }
 
@@ -332,7 +334,7 @@ const featuredTeam = allTeam
   top: 20%;
   bottom: 20%;
   width: 1px;
-  background: var(--red);
+  background: var(--sienna);
   z-index: 2;
   opacity: 0.7;
 }
@@ -347,17 +349,18 @@ const featuredTeam = allTeam
 
 .hero__headline {
   margin: var(--space-2) 0;
-  color: var(--cream);
+  color: var(--text-primary);
 }
 
 .hero__headline em {
   font-style: italic;
-  color: var(--red);
+  color: var(--sienna);
 }
 
 .hero__subline {
   margin-bottom: var(--space-4);
   max-width: 52ch;
+  color: var(--text-body);
 }
 
 .hero__ctas {
@@ -381,7 +384,7 @@ const featuredTeam = allTeam
 .hero__scroll-line {
   width: 1px;
   height: 48px;
-  background: var(--cream);
+  background: var(--text-muted);
   animation: scrollPulse 2s var(--ease-cinematic) infinite;
 }
 
@@ -401,7 +404,7 @@ const featuredTeam = allTeam
    SECTION 2: MARQUEE
 ───────────────────────────────────────── */
 .marquee-wrap {
-  background: var(--red);
+  background: var(--sienna);
   overflow: hidden;
   padding: 0.75rem 0;
   white-space: nowrap;
@@ -419,7 +422,7 @@ const featuredTeam = allTeam
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--parchment);
 }
 
 .marquee-dot {
@@ -453,12 +456,14 @@ const featuredTeam = allTeam
 }
 
 .film-card {
-  background: var(--black2);
-  border: 1px solid var(--border);
-  transition: border-color var(--duration-base) var(--ease-cinematic);
+  background: #fff;
+  border: 1px solid var(--border-light);
+  transition: border-color var(--duration-base) var(--ease-cinematic),
+              box-shadow var(--duration-base) var(--ease-cinematic);
 }
 .film-card:hover {
-  border-color: rgba(237, 232, 220, 0.18);
+  border-color: var(--parchment3);
+  box-shadow: 0 8px 32px rgba(24, 18, 16, 0.12);
 }
 .film-card__link { text-decoration: none; display: block; }
 
@@ -479,21 +484,29 @@ const featuredTeam = allTeam
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: rgba(5,5,5,0.8);
-  color: var(--cream2);
+  background: rgba(24, 18, 16, 0.75);
+  color: var(--parchment2);
   padding: 0.25rem 0.5rem;
-  border: 1px solid var(--border);
+  border: none;
 }
 
-.film-card__info { padding: var(--space-3); }
+.film-card__info {
+  padding: var(--space-3);
+  background: #fff;
+}
+
+/* Caption/metadata override inside film cards on parchment section */
+.films-section .film-card .caption {
+  color: var(--text-dark-muted);
+}
 
 .film-card__title {
-  color: var(--cream);
+  color: var(--text-dark);
   margin: var(--space-1) 0;
   transition: color var(--duration-fast) var(--ease-cinematic);
 }
 
-.film-card__link:hover .film-card__title { color: var(--red); }
+.film-card__link:hover .film-card__title { color: var(--sienna); }
 
 .film-card__logline {
   display: -webkit-box;
@@ -505,9 +518,7 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    SECTION 4: MISSION
 ───────────────────────────────────────── */
-.mission-section {
-  background: #111111;
-}
+/* Mission background set via inline style on the section element */
 
 .mission-grid {
   display: grid;
@@ -526,11 +537,11 @@ const featuredTeam = allTeam
 .quote-rule {
   width: 1px;
   height: 64px;
-  background: var(--red);
+  background: var(--sienna);
   margin-bottom: var(--space-3);
 }
 
-.mission-blockquote { color: var(--cream); }
+.mission-blockquote { color: var(--text-primary); }
 
 .mission-blockquote__text {
   font-size: clamp(2rem, 4vw, 3.5rem);
@@ -550,10 +561,8 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    SECTION 5: STATS STRIP
 ───────────────────────────────────────── */
+/* Stats background/border set via inline style on the element */
 .stats-strip {
-  background: var(--black2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
   padding: var(--space-8) 0;
 }
 
@@ -575,9 +584,9 @@ const featuredTeam = allTeam
   gap: var(--space-1);
 }
 
+/* Stat numbers use --amber, set via inline style on each span */
 .stat__number {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  color: var(--red);
 }
 
 /* ─────────────────────────────────────────
@@ -601,7 +610,7 @@ const featuredTeam = allTeam
   overflow: hidden;
   margin-bottom: var(--space-3);
   aspect-ratio: 1 / 1;
-  background: var(--black3);
+  background: var(--parchment2);
 }
 
 .team-card__photo img {
@@ -611,7 +620,7 @@ const featuredTeam = allTeam
 }
 
 .team-card__name {
-  color: var(--cream);
+  color: var(--text-dark);
   margin-top: var(--space-1);
 }
 
@@ -621,14 +630,14 @@ const featuredTeam = allTeam
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: var(--text-dark-body);
 }
 
 /* ─────────────────────────────────────────
    SECTION 7: PRESS QUOTES
 ───────────────────────────────────────── */
+/* Press background/border set via inline style on the section element */
 .press-section {
-  background: var(--black2);
-  border-top: 1px solid var(--border);
   padding: var(--space-12) 0;
 }
 
@@ -652,24 +661,24 @@ const featuredTeam = allTeam
 }
 
 .press-card {
-  padding: var(--space-5, 2.5rem);
-  border: 1px solid var(--border);
-  background: rgba(237, 232, 220, 0.03);
+  padding: var(--space-4);
+  border: 1px solid var(--border-dark);
+  background: rgba(244, 234, 213, 0.03);
   position: relative;
   transition: border-color var(--duration-base) var(--ease-cinematic),
               background var(--duration-base) var(--ease-cinematic);
 }
 
 .press-card:hover {
-  border-color: var(--red);
-  background: rgba(237, 232, 220, 0.05);
+  border-color: var(--sienna);
+  background: rgba(244, 234, 213, 0.055);
 }
 
 .press-card__quote {
   font-family: var(--font-serif);
   font-size: 1.1rem;
   font-style: italic;
-  color: var(--cream);
+  color: var(--text-primary);
   line-height: 1.65;
   margin-bottom: var(--space-3);
 }
@@ -680,7 +689,7 @@ const featuredTeam = allTeam
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--sienna);
   font-style: normal;
 }
 
@@ -691,7 +700,7 @@ const featuredTeam = allTeam
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--red);
+  background: var(--sienna);
   transition: width var(--duration-base) var(--ease-cinematic);
 }
 
@@ -700,10 +709,8 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    SECTION 8: CONTACT CTA
 ───────────────────────────────────────── */
+/* CTA background/border/padding set via inline style on the section element */
 .cta-section {
-  background: #161010;
-  border-top: 1px solid var(--border);
-  padding: var(--space-16) 0;
   text-align: center;
 }
 
