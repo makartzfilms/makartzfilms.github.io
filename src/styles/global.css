@@ -7,8 +7,8 @@
 
   /* ─── Light tones ─── */
   --parchment:  #ffffff;
-  --parchment2: #f5f5f5;
-  --parchment3: #e8e8e8;
+  --parchment2: #ffffff;
+  --parchment3: #f0f0f0;
 
   /* ─── Accent ─── */
   --sienna:     #E03020;
@@ -33,7 +33,7 @@
   --black2:      #1A1A1A;
   --black3:      #222222;
   --cream:       #ffffff;
-  --cream2:      #f5f5f5;
+  --cream2:      #ffffff;
   --red:         #E03020;
   --muted:         rgba(255,255,255,0.65);
   --muted-faint:   rgba(255,255,255,0.38);
