@@ -1,0 +1,36 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import FilmLayout from '../../layouts/FilmLayout.astro';
+
+export async function getStaticPaths() {
+  const films = await getCollection('films');
+  return films.map((film: CollectionEntry<'films'>) => ({
+    params: { slug: film.slug },
+    props: { film },
+  }));
+}
+
+interface Props {
+  film: CollectionEntry<'films'>;
+}
+
+const { film } = Astro.props;
+const { Content } = await film.render();
+const { data } = film;
+---
+
+<FilmLayout
+  title={data.title}
+  director={data.director}
+  year={data.year}
+  genre={data.genre}
+  description={data.synopsis}
+  posterImage={data.posterImage}
+  slug={film.slug}
+  imdbUrl={data.imdbUrl}
+  streamingLinks={data.streamingLinks}
+  runtime={data.runtime}
+  festivalHistory={data.festivalHistory}
+>
+  <Content />
+</FilmLayout>

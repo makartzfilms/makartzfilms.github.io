@@ -1,0 +1,46 @@
+---
+interface Props {
+  items: string[];
+  speed?: number; // seconds for one full loop, default 30
+}
+const { items, speed = 30 } = Astro.props;
+---
+
+<div class="marquee-wrapper" aria-hidden="true">
+  <div class="marquee-track" style={`animation-duration: ${speed}s`}>
+    {items.map((item) => <span class="marquee-item">{item}</span>)}
+    {/* Duplicate for seamless loop */}
+    {items.map((item) => <span class="marquee-item" aria-hidden="true">{item}</span>)}
+  </div>
+</div>
+
+<style>
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-2) 0;
+}
+.marquee-track {
+  display: inline-flex;
+  gap: var(--space-6);
+  animation: marquee linear infinite;
+}
+.marquee-item {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+</style>
