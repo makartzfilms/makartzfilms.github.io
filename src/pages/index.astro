@@ -794,14 +794,11 @@ const featuredTeam = allTeam
   }
   .films-grid::-webkit-scrollbar { display: none; }
   .film-card {
-    flex: 0 0 72vw;
-    max-width: 320px;
-    scroll-snap-align: start;
+    flex: 0 0 100%;
+    max-width: none;
+    scroll-snap-align: center;
     scroll-snap-stop: always;
   }
-}
-@media (max-width: 600px) {
-  .film-card { flex: 0 0 80vw; }
 }
 
 /* Carousel hint dots */
@@ -868,14 +865,11 @@ const featuredTeam = allTeam
   }
   .team-grid::-webkit-scrollbar { display: none; }
   .team-card {
-    flex: 0 0 72vw;
-    max-width: 300px;
-    scroll-snap-align: start;
+    flex: 0 0 100%;
+    max-width: none;
+    scroll-snap-align: center;
     scroll-snap-stop: always;
   }
-}
-@media (max-width: 600px) {
-  .team-card { flex: 0 0 80vw; }
 }
 
 /* CHANGE 7 — Press carousel */
