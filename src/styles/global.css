@@ -183,13 +183,30 @@ img {
   color: var(--ink);
 }
 
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.section-pad {
+  padding: var(--space-16) 0;
+}
+
+@media (max-width: 900px) {
+  .section-pad {
+    padding: 5rem 0;
+  }
+}
+
 @media (max-width: 600px) {
   .container {
     padding-left: var(--space-3);
     padding-right: var(--space-3);
   }
   .section-pad {
-    padding: 5rem 0;
+    padding: var(--space-8) 0;
   }
 
   /* Section CTAs — full width, centered, consistent size across all pages */

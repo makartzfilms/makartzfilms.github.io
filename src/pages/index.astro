@@ -254,7 +254,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 8: CONTACT CTA -->
-  <section class="cta-section section--light" style="background: var(--parchment); border-top: 1px solid var(--border-light); padding: var(--space-16) 0; text-align: center;">
+  <section class="cta-section section--light" style="background: var(--parchment); border-top: 1px solid var(--border-light); padding: var(--space-12) 0; text-align: center;">
     <div class="container cta-inner">
       <div class="reveal">
         <div style="width: 48px; height: 2px; background: var(--sienna); margin: 0 auto var(--space-4);" aria-hidden="true"></div>
@@ -265,7 +265,7 @@ const featuredTeam = allTeam
         <p class="body-large cta-body" style="color: var(--text-dark-body);">
           We accept submissions year-round. If you have a project in development, production, or post — and you believe in what it is — we want to hear from you.
         </p>
-        <div class="cta-buttons" style="display: flex; gap: var(--space-2); justify-content: center; flex-wrap: wrap;">
+        <div class="cta-buttons">
           <a href="/submit" class="btn btn--primary">Submit a Project</a>
           <a href="/contact" class="btn btn--ghost-dark">Get in Touch</a>
         </div>
@@ -279,8 +279,7 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    SHARED LAYOUT UTILITIES
 ───────────────────────────────────────── */
-.section-pad { padding: var(--space-16) 0; }
-.container { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6); }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 var(--space-6); }
 .section-header { margin-bottom: var(--space-8); }
 .section-header .eyebrow { margin-bottom: var(--space-1); }
 .section-cta { margin-top: var(--space-8); }
@@ -520,7 +519,7 @@ const featuredTeam = allTeam
 .mission-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
+  gap: 5rem;
   align-items: center;
 }
 
@@ -635,7 +634,6 @@ const featuredTeam = allTeam
 
 .press-eyebrow {
   margin-bottom: var(--space-6);
-  text-align: center;
 }
 
 .press-grid {
@@ -727,7 +725,6 @@ const featuredTeam = allTeam
   display: flex;
   gap: var(--space-2);
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 /* Film strip accent — press section decoration */
@@ -756,6 +753,9 @@ const featuredTeam = allTeam
 ───────────────────────────────────────── */
 
 /* CHANGE 2 — Hero mobile */
+@media (max-width: 900px) {
+  .hero__content { padding: 0 var(--space-4); }
+}
 @media (max-width: 600px) {
   .hero {
     min-height: 100svh;
@@ -767,6 +767,7 @@ const featuredTeam = allTeam
     padding-bottom: var(--space-4);
     max-width: 100%;
   }
+  .hero__headline { line-height: 1.08; }
   .hero__ctas {
     flex-direction: column;
     gap: var(--space-2);
@@ -934,9 +935,9 @@ const featuredTeam = allTeam
 }
 
 /* CHANGE 8 — CTA mobile */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .cta-buttons {
-    flex-direction: column !important;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: 400px;
@@ -947,11 +948,13 @@ const featuredTeam = allTeam
     width: 100%;
     justify-content: center;
   }
-  .cta-section h2 {
-    font-size: clamp(1.8rem, 7vw, 3rem);
-  }
   .cta-section {
-    padding: var(--space-12) var(--space-3) !important;
+    padding-left: var(--space-3) !important;
+    padding-right: var(--space-3) !important;
+  }
+  .cta-inner {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -981,6 +984,27 @@ const featuredTeam = allTeam
     margin-top: var(--space-4);
   }
 }
+
+/* CHANGE 12 — Film card title size */
+.film-card__title {
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+}
+
+/* CHANGE 14 — Stats eyebrow mobile */
+@media (max-width: 600px) {
+  .stats-strip .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+/* CHANGE 15 — Section header margin responsive */
+@media (max-width: 900px) {
+  .section-header { margin-bottom: var(--space-6); }
+}
+@media (max-width: 600px) {
+  .section-header { margin-bottom: var(--space-4); }
+}
 </style>
 
 <script>
@@ -999,7 +1023,8 @@ function initCarousel(grid: HTMLElement | null, dots: HTMLElement[]) {
     dot.addEventListener('click', () => {
       const card = cards[i];
       if (!card) return;
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const scrollTarget = card.offsetLeft - (grid.clientWidth - card.offsetWidth) / 2;
+      grid.scrollTo({ left: scrollTarget, behavior: 'smooth' });
     });
   });
 
