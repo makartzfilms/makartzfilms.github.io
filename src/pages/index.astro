@@ -38,9 +38,7 @@ const featuredTeam = allTeam
     <div class="hero__content">
       <p class="eyebrow">Winter Springs, FL · Est. 2014</p>
       <h1 class="display hero__headline">
-        Cinema That<br />
-        <em>Refuses</em><br />
-        Compromise.
+        Cinema That <em>Refuses</em> Compromise.
       </h1>
       <p class="body-large hero__subline">
         We develop, produce, and champion independent films<br />
@@ -98,7 +96,7 @@ const featuredTeam = allTeam
         <p class="eyebrow">Selected Works</p>
         <h2 class="heading-1">Recent Films</h2>
       </div>
-      <div class="films-grid reveal-grid">
+      <div class="films-grid reveal-grid" id="films-carousel">
         {featuredFilms.map(film => (
           <article class="film-card">
             <a href={`/films/${film.slug}`} class="film-card__link">
@@ -125,6 +123,9 @@ const featuredTeam = allTeam
             </a>
           </article>
         ))}
+      </div>
+      <div class="carousel-hint" aria-hidden="true">
+        <span></span><span></span><span></span>
       </div>
       <div class="section-cta reveal">
         <a href="/films" class="btn btn--ghost-dark">View All Films</a>
@@ -212,6 +213,9 @@ const featuredTeam = allTeam
           </div>
         ))}
       </div>
+      <div class="carousel-hint" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
       <div class="section-cta reveal">
         <a href="/team" class="btn btn--ghost-dark">Meet the Full Team</a>
       </div>
@@ -258,7 +262,7 @@ const featuredTeam = allTeam
         <p class="body-large cta-body" style="color: var(--text-dark-body);">
           We accept submissions year-round. If you have a project in development, production, or post — and you believe in what it is — we want to hear from you.
         </p>
-        <div class="cta-buttons">
+        <div class="cta-buttons" style="display: flex; gap: var(--space-2); justify-content: center; flex-wrap: wrap;">
           <a href="/submit" class="btn btn--primary">Submit a Project</a>
           <a href="/contact" class="btn btn--ghost-dark">Get in Touch</a>
         </div>
@@ -742,5 +746,230 @@ const featuredTeam = allTeam
 .films-section .section-header .heading-1,
 .team-section .section-header .heading-1 {
   color: var(--text-dark);
+}
+
+/* ─────────────────────────────────────────
+   MOBILE RESPONSIVENESS
+───────────────────────────────────────── */
+
+/* CHANGE 2 — Hero mobile */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 100svh;
+    padding-bottom: var(--space-8);
+    align-items: flex-end;
+  }
+  .hero__content {
+    padding: 0 var(--space-3);
+    padding-bottom: var(--space-4);
+    max-width: 100%;
+  }
+  .hero__ctas {
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+  }
+  .hero__ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero__scroll { display: none; }
+}
+
+/* CHANGE 3 — Films carousel */
+@media (max-width: 900px) {
+  .films-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .films-grid::-webkit-scrollbar { display: none; }
+  .film-card {
+    flex: 0 0 72vw;
+    max-width: 320px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+@media (max-width: 600px) {
+  .films-grid {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+    margin-left: calc(-1 * var(--space-6));
+    margin-right: calc(-1 * var(--space-6));
+    width: calc(100% + var(--space-12));
+  }
+  .film-card { flex: 0 0 80vw; }
+  .films-section .section-header {
+    margin-bottom: var(--space-4);
+    padding: 0 var(--space-3);
+  }
+  .films-section .section-cta { padding: 0 var(--space-3); }
+}
+
+/* Carousel hint dots */
+.carousel-hint { display: none; }
+@media (max-width: 900px) {
+  .carousel-hint {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: var(--space-3);
+  }
+  .carousel-hint span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--parchment3);
+  }
+  .carousel-hint span:first-child {
+    background: var(--sienna);
+    width: 18px;
+    border-radius: 3px;
+  }
+}
+
+/* CHANGE 4 — Mission mobile */
+@media (max-width: 900px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+@media (max-width: 600px) {
+  .mission-blockquote p {
+    font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+  }
+  .mission-section .container {
+    padding: 0 var(--space-3);
+  }
+}
+
+/* CHANGE 5 — Stats mobile */
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4) var(--space-2);
+  }
+  .stats-strip {
+    padding: var(--space-8) var(--space-3);
+  }
+}
+
+/* CHANGE 6 — Team carousel */
+@media (max-width: 900px) {
+  .team-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .team-grid::-webkit-scrollbar { display: none; }
+  .team-card {
+    flex: 0 0 72vw;
+    max-width: 300px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+@media (max-width: 600px) {
+  .team-grid {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+    margin-left: calc(-1 * var(--space-6));
+    margin-right: calc(-1 * var(--space-6));
+    width: calc(100% + var(--space-12));
+  }
+  .team-card { flex: 0 0 80vw; }
+  .team-section .section-header {
+    margin-bottom: var(--space-4);
+    padding: 0 var(--space-3);
+  }
+  .team-section .section-cta { padding: 0 var(--space-3); }
+}
+
+/* CHANGE 7 — Press carousel */
+@media (max-width: 900px) {
+  .press-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .press-grid::-webkit-scrollbar { display: none; }
+  .press-card {
+    flex: 0 0 80vw;
+    max-width: 340px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+@media (max-width: 600px) {
+  .press-grid {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+    margin-left: calc(-1 * var(--space-6));
+    margin-right: calc(-1 * var(--space-6));
+    width: calc(100% + var(--space-12));
+  }
+  .press-card { flex: 0 0 85vw; }
+  .press-section {
+    padding: var(--space-8) var(--space-3);
+  }
+}
+
+/* CHANGE 8 — CTA mobile */
+@media (max-width: 600px) {
+  .cta-buttons {
+    flex-direction: column !important;
+    align-items: stretch;
+    width: 100%;
+  }
+  .cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .cta-section h2 {
+    font-size: clamp(1.8rem, 7vw, 3rem);
+  }
+  .cta-section {
+    padding: var(--space-12) var(--space-3) !important;
+  }
+}
+
+/* CHANGE 11 — Touch targets */
+@media (max-width: 900px) {
+  .btn {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .film-card__link,
+  .team-card,
+  .press-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* CHANGE 12 — Film strip hide on mobile */
+@media (max-width: 600px) {
+  .film-strip-accent { display: none; }
 }
 </style>
