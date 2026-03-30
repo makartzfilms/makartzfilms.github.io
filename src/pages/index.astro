@@ -26,15 +26,16 @@ const featuredTeam = allTeam
   <section class="hero">
     <div class="hero__bg" aria-hidden="true">
       <img
-        src="/logo-hero.png"
+        src="/hero-bg-gemini.jpg"
         alt=""
-        width="900"
-        height="900"
+        width="1920"
+        height="1080"
         loading="eager"
         fetchpriority="high"
-        class="hero__logo-bg"
+        class="hero__photo-bg"
       />
     </div>
+    <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
       <p class="eyebrow">Winter Springs, FL · Est. 2014</p>
       <h1 class="display hero__headline">
@@ -164,22 +165,22 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 5: STATS STRIP -->
-  <div class="stats-strip" aria-label="MakArtz Films by the numbers" style="background: var(--ink2); border-top: 2px solid var(--sienna); border-bottom: 1px solid var(--border-dark); padding: var(--space-12) 0;">
+  <div class="stats-strip" aria-label="MakArtz Films by the numbers">
     <div class="container stats-grid">
       <div class="stat reveal">
-        <span class="display stat__number" style="font-size: clamp(3rem, 7vw, 5.5rem); color: var(--sienna); letter-spacing: -0.02em;">18</span>
+        <span class="display stat__number">18</span>
         <span class="eyebrow">Features Produced</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number" style="font-size: clamp(3rem, 7vw, 5.5rem); color: var(--sienna); letter-spacing: -0.02em;">47</span>
+        <span class="display stat__number">47</span>
         <span class="eyebrow">Festival Awards</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number" style="font-size: clamp(3rem, 7vw, 5.5rem); color: var(--sienna); letter-spacing: -0.02em;">23</span>
+        <span class="display stat__number">23</span>
         <span class="eyebrow">Countries</span>
       </div>
       <div class="stat reveal">
-        <span class="display stat__number" style="font-size: clamp(3rem, 7vw, 5.5rem); color: var(--sienna); letter-spacing: -0.02em;">11</span>
+        <span class="display stat__number">11</span>
         <span class="eyebrow">Years</span>
       </div>
     </div>
@@ -254,15 +255,15 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 8: CONTACT CTA -->
-  <section class="cta-section" style="background: var(--sienna); border-top: none; padding: var(--space-12) 0; text-align: center;">
+  <section class="cta-section">
     <div class="container cta-inner">
       <div class="reveal">
-        <div style="width: 48px; height: 2px; background: rgba(255,255,255,0.4); margin: 0 auto var(--space-4);" aria-hidden="true"></div>
-        <p class="eyebrow cta-eyebrow" style="color: rgba(255,255,255,0.7);">Work With Us</p>
-        <h2 class="heading-1 cta-heading" style="color: #ffffff; margin-bottom: var(--space-3);">
+        <div class="cta-rule" aria-hidden="true"></div>
+        <p class="eyebrow cta-eyebrow">Work With Us</p>
+        <h2 class="heading-1 cta-heading">
           Got a film that<br />needs a home?
         </h2>
-        <p class="body-large cta-body" style="margin-bottom: var(--space-6); color: rgba(255,255,255,0.8);">
+        <p class="body-large cta-body">
           We accept submissions year-round. If you have a project in development, production, or post — and you believe in what it is — we want to hear from you.
         </p>
         <div class="cta-buttons">
@@ -308,20 +309,30 @@ const featuredTeam = allTeam
   position: absolute;
   inset: 0;
   z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.hero__logo-bg {
-  width: clamp(560px, 72vw, 1100px);
-  height: auto;
-  opacity: 0.18;
+.hero__photo-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(17, 17, 17, 0.92) 0%,
+    rgba(17, 17, 17, 0.55) 40%,
+    rgba(17, 17, 17, 0.2) 100%
+  );
 }
 
 .hero__content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   padding: 0 var(--space-8);
   padding-bottom: var(--space-4);
   max-width: 1000px;
@@ -422,13 +433,7 @@ const featuredTeam = allTeam
   gap: var(--space-4);
 }
 
-@media (max-width: 900px) {
-  .films-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 600px) {
-  .films-grid { grid-template-columns: 1fr; }
-}
+/* films-grid responsive handled in carousel blocks below */
 
 .film-card {
   background: #ffffff;
@@ -532,9 +537,11 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    SECTION 5: STATS STRIP
 ───────────────────────────────────────── */
-/* Stats background/border set via inline style on the element */
 .stats-strip {
-  padding: var(--space-8) 0;
+  background: var(--ink2);
+  border-top: 2px solid var(--sienna);
+  border-bottom: 1px solid var(--border-dark);
+  padding: var(--space-12) 0;
 }
 
 .stats-grid {
@@ -555,10 +562,10 @@ const featuredTeam = allTeam
   gap: var(--space-1);
 }
 
-/* Stat numbers — size and tracking */
 .stat__number {
   font-size: clamp(3rem, 7vw, 5.5rem);
   letter-spacing: -0.02em;
+  color: var(--sienna);
 }
 
 /* ─────────────────────────────────────────
@@ -570,13 +577,7 @@ const featuredTeam = allTeam
   gap: var(--space-6);
 }
 
-@media (max-width: 900px) {
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 600px) {
-  .team-grid { grid-template-columns: 1fr; }
-}
+/* team-grid responsive handled in carousel blocks below */
 
 .team-card__photo {
   overflow: hidden;
@@ -623,13 +624,7 @@ const featuredTeam = allTeam
   gap: var(--space-4);
 }
 
-@media (max-width: 1000px) {
-  .press-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 600px) {
-  .press-grid { grid-template-columns: 1fr; }
-}
+/* press-grid responsive handled in carousel blocks below */
 
 .press-card {
   padding: var(--space-4);
@@ -680,8 +675,9 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    SECTION 8: CONTACT CTA
 ───────────────────────────────────────── */
-/* CTA background/border/padding set via inline style on the section element */
 .cta-section {
+  background: var(--sienna);
+  padding: var(--space-12) 0;
   text-align: center;
 }
 
@@ -690,17 +686,26 @@ const featuredTeam = allTeam
 }
 
 .cta-rule {
-  margin: 0 auto var(--space-3);
+  width: 48px;
+  height: 2px;
+  background: rgba(255,255,255,0.4);
+  margin: 0 auto var(--space-4);
 }
 
-.cta-eyebrow { margin-bottom: var(--space-2); }
+.cta-eyebrow {
+  margin-bottom: var(--space-2);
+  color: rgba(255,255,255,0.7);
+}
 
 .cta-heading {
-  color: var(--cream);
+  color: #ffffff;
   margin-bottom: var(--space-3);
 }
 
-.cta-body { margin-bottom: var(--space-6); }
+.cta-body {
+  margin-bottom: var(--space-6);
+  color: rgba(255,255,255,0.8);
+}
 
 .cta-buttons {
   display: flex;
@@ -742,13 +747,21 @@ const featuredTeam = allTeam
   .hero {
     min-height: 100svh;
     padding-bottom: var(--space-8);
+    align-items: flex-end;
   }
   .hero__content {
     padding: 0 var(--space-3);
     padding-bottom: var(--space-4);
     max-width: 100%;
   }
-  .hero__headline { line-height: 1.08; }
+  .hero__headline {
+    line-height: 1.06;
+  }
+  .hero .eyebrow {
+    font-size: 0.7rem;
+    opacity: 1;
+    margin-bottom: var(--space-2);
+  }
   .hero__ctas {
     flex-direction: column;
     gap: var(--space-2);
@@ -761,7 +774,6 @@ const featuredTeam = allTeam
   .hero__scroll { display: none; }
 }
 
-/* CHANGE 3 — Films carousel */
 @media (max-width: 900px) {
   .films-grid {
     display: flex;
@@ -773,13 +785,28 @@ const featuredTeam = allTeam
     padding-bottom: var(--space-3);
     scrollbar-width: none;
     -ms-overflow-style: none;
+    grid-template-columns: unset;
   }
   .films-grid::-webkit-scrollbar { display: none; }
   .film-card {
-    flex: 0 0 100%;
-    max-width: none;
-    scroll-snap-align: center;
+    flex: 0 0 72vw;
+    max-width: 320px;
+    scroll-snap-align: start;
     scroll-snap-stop: always;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .films-grid {
+    margin-left: calc(-1 * var(--space-3));
+    margin-right: calc(-1 * var(--space-3));
+    width: calc(100% + var(--space-6));
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .film-card {
+    flex: 0 0 80vw;
   }
 }
 
@@ -815,26 +842,29 @@ const featuredTeam = allTeam
   }
 }
 @media (max-width: 600px) {
-  .mission-blockquote p {
-    font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+  .mission-blockquote .mission-blockquote__text {
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+    line-height: 1.12;
   }
   .mission-section .container {
     padding: 0 var(--space-3);
   }
 }
 
-/* CHANGE 5 — Stats mobile */
 @media (max-width: 600px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4) var(--space-2);
+    padding: 0 var(--space-3);
   }
   .stats-strip {
     padding: var(--space-8) var(--space-3);
   }
+  .stat .stat__number {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
 }
 
-/* CHANGE 6 — Team carousel */
 @media (max-width: 900px) {
   .team-grid {
     display: flex;
@@ -846,17 +876,31 @@ const featuredTeam = allTeam
     padding-bottom: var(--space-3);
     scrollbar-width: none;
     -ms-overflow-style: none;
+    grid-template-columns: unset;
   }
   .team-grid::-webkit-scrollbar { display: none; }
   .team-card {
-    flex: 0 0 100%;
-    max-width: none;
-    scroll-snap-align: center;
+    flex: 0 0 72vw;
+    max-width: 300px;
+    scroll-snap-align: start;
     scroll-snap-stop: always;
+    min-width: 0;
   }
 }
 
-/* CHANGE 7 — Press carousel */
+@media (max-width: 600px) {
+  .team-grid {
+    margin-left: calc(-1 * var(--space-3));
+    margin-right: calc(-1 * var(--space-3));
+    width: calc(100% + var(--space-6));
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .team-card {
+    flex: 0 0 80vw;
+  }
+}
+
 @media (max-width: 900px) {
   .press-grid {
     display: flex;
@@ -868,19 +912,28 @@ const featuredTeam = allTeam
     padding-bottom: var(--space-3);
     scrollbar-width: none;
     -ms-overflow-style: none;
+    grid-template-columns: unset;
   }
   .press-grid::-webkit-scrollbar { display: none; }
   .press-card {
     flex: 0 0 80vw;
     max-width: 340px;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     scroll-snap-stop: always;
+    min-width: 0;
   }
 }
+
 @media (max-width: 600px) {
-  .press-card { flex: 0 0 85vw; }
-  .press-section {
-    padding: var(--space-8) var(--space-3);
+  .press-grid {
+    margin-left: calc(-1 * var(--space-3));
+    margin-right: calc(-1 * var(--space-3));
+    width: calc(100% + var(--space-6));
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .press-card {
+    flex: 0 0 85vw;
   }
 }
 
@@ -909,7 +962,6 @@ const featuredTeam = allTeam
   }
 }
 
-/* CHANGE 8 — CTA mobile */
 @media (max-width: 900px) {
   .cta-buttons {
     flex-direction: column;
@@ -924,8 +976,8 @@ const featuredTeam = allTeam
     justify-content: center;
   }
   .cta-section {
-    padding-left: var(--space-3) !important;
-    padding-right: var(--space-3) !important;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
   }
   .cta-inner {
     padding-left: 0;
@@ -933,7 +985,8 @@ const featuredTeam = allTeam
   }
 }
 
-/* CHANGE 11 — Touch targets */
+
+/* Touch targets */
 @media (max-width: 900px) {
   .btn {
     min-height: 48px;
@@ -973,11 +1026,11 @@ const featuredTeam = allTeam
 }
 
 /* Press pagination — now on light background */
-.press-pagination span {
-  background: rgba(17,17,17,0.2) !important;
+.carousel-hint.press-pagination span {
+  background: rgba(17,17,17,0.2);
 }
-.press-pagination span.active {
-  background: var(--sienna) !important;
+.carousel-hint.press-pagination span.active {
+  background: var(--sienna);
 }
 
 /* CHANGE 15 — Section header margin responsive */

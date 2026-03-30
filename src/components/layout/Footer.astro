@@ -231,22 +231,14 @@ const currentYear = new Date().getFullYear();
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
-}
-
-@media (max-width: 600px) {
   .site-footer {
-    padding: var(--space-8) var(--space-3) var(--space-4);
-  }
-  .footer-inner {
-    padding: 0;
+    padding: var(--space-8) var(--space-3) var(--space-6);
   }
   .footer-bottom {
     flex-direction: column;
     gap: var(--space-2);
     text-align: center;
-    padding: var(--space-4) var(--space-3);
+    padding: var(--space-4) 0 0;
   }
-  .footer-copy { margin-right: 0; }
-  .footer-social { justify-content: center; }
 }
 </style>
