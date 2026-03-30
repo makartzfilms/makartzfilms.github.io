@@ -208,11 +208,18 @@ header {
               opacity var(--duration-base) var(--ease-cinematic);
 }
 
+.nav-hamburger.is-open .hamburger-bar:first-child {
+  transform: translateY(3px) rotate(45deg);
+}
+.nav-hamburger.is-open .hamburger-bar:last-child {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
 /* Mobile overlay */
 .nav-mobile-overlay {
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 1001;
   background: var(--ink);
   display: flex;
   flex-direction: column;
@@ -325,14 +332,18 @@ header {
   function openMenu() {
     overlay?.classList.add('open');
     overlay?.removeAttribute('aria-hidden');
+    hamburger?.classList.add('is-open');
     hamburger?.setAttribute('aria-expanded', 'true');
+    hamburger?.setAttribute('aria-label', 'Close navigation menu');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
     overlay?.classList.remove('open');
     overlay?.setAttribute('aria-hidden', 'true');
+    hamburger?.classList.remove('is-open');
     hamburger?.setAttribute('aria-expanded', 'false');
+    hamburger?.setAttribute('aria-label', 'Open navigation menu');
     document.body.style.overflow = '';
   }
 
