@@ -74,11 +74,6 @@ const isActive = (path: string) =>
 
   <!-- Mobile overlay -->
   <div class="nav-mobile-overlay" id="nav-mobile-overlay" aria-hidden="true">
-    <button
-      class="nav-mobile-close"
-      id="nav-mobile-close"
-      aria-label="Close navigation menu"
-    >✕</button>
     <ul class="nav-mobile-links" role="list">
       <li style="--i:0"><a href="/films">Films</a></li>
       <li style="--i:1"><a href="/notes">From the Cutting Room</a></li>
@@ -102,7 +97,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1002;
   display: flex;
   align-items: center;
   gap: var(--space-4);
@@ -235,19 +230,6 @@ header {
   pointer-events: all;
 }
 
-.nav-mobile-close {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color var(--duration-fast);
-}
-
-.nav-mobile-close:hover { color: var(--cream); }
 
 .nav-mobile-links {
   list-style: none;
@@ -319,7 +301,6 @@ header {
   const nav = document.getElementById('site-nav');
   const hamburger = document.getElementById('nav-hamburger');
   const overlay = document.getElementById('nav-mobile-overlay');
-  const closeBtn = document.getElementById('nav-mobile-close');
 
   // Scroll state
   window.addEventListener('scroll', () => {
@@ -347,8 +328,13 @@ header {
     document.body.style.overflow = '';
   }
 
-  hamburger?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
+  hamburger?.addEventListener('click', () => {
+    if (hamburger.classList.contains('is-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
 
   // Close on Escape
   document.addEventListener('keydown', (e) => {

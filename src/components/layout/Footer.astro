@@ -14,7 +14,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Col 2: Explore -->
       <nav class="footer-col" aria-label="Explore">
-        <p class="eyebrow footer-heading">Explore</p>
+        <p class="footer-col-heading">Explore</p>
         <ul role="list">
           <li><a href="/films">Films</a></li>
           <li><a href="/about">About</a></li>
@@ -24,7 +24,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Col 3: Work With Us -->
       <nav class="footer-col" aria-label="Work with us">
-        <p class="eyebrow footer-heading">Work With Us</p>
+        <p class="footer-col-heading">Work With Us</p>
         <ul role="list">
           <li><a href="/submit">Submit a Project</a></li>
           <li><a href="/contact">Contact</a></li>
@@ -33,7 +33,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Col 4: Read -->
       <nav class="footer-col" aria-label="Reading">
-        <p class="eyebrow footer-heading">Read</p>
+        <p class="footer-col-heading">Read</p>
         <ul role="list">
           <li><a href="/journal">Journal</a></li>
           <li><a href="/notes">From the Cutting Room</a></li>
@@ -148,7 +148,13 @@ const currentYear = new Date().getFullYear();
   max-width: 28ch;
 }
 
-.footer-heading {
+.footer-col-heading {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sienna);
   margin-bottom: var(--space-3);
 }
 
