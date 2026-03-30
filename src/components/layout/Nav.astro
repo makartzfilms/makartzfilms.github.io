@@ -37,7 +37,7 @@ const isActive = (path: string) =>
           href="/notes"
           class:list={['nav-link', { active: isActive('/notes') }]}
           aria-current={isActive('/notes') ? 'page' : undefined}
-        >From the Cutting Room</a>
+        ><span class="nav-label-full">From the Cutting Room</span><span class="nav-label-short">Cutting Room</span></a>
       </li>
       <li>
         <a
@@ -175,14 +175,25 @@ header {
   color: var(--parchment);
 }
 
+.nav-label-short { display: none; }
+@media (max-width: 1100px) {
+  .nav-label-full { display: none; }
+  .nav-label-short { display: inline; }
+}
+
 .nav-hamburger {
   display: none;
   flex-direction: column;
   gap: 5px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  cursor: pointer;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: var(--space-1);
+  color: var(--text-primary);
   margin-left: auto;
 }
 
@@ -271,11 +282,27 @@ header {
   color: var(--parchment) !important;
 }
 
+.nav-mobile-overlay .nav-link {
+  display: block;
+  padding: 1rem 0;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  font-family: var(--font-serif);
+  min-height: 44px;
+}
+
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
   .site-nav { padding: var(--space-3) var(--space-4); }
+
+  .nav-mobile-overlay .nav-cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+  }
 }
 </style>
 

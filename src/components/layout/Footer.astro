@@ -220,15 +220,27 @@ const currentYear = new Date().getFullYear();
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    padding: var(--space-8) var(--space-3) var(--space-4);
+  }
+  .footer-inner {
+    padding: 0;
   }
   .footer-bottom {
     flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
+    gap: var(--space-2);
+    text-align: center;
+    padding: var(--space-4) var(--space-3);
   }
   .footer-copy { margin-right: 0; }
+  .footer-social { justify-content: center; }
 }
 </style>

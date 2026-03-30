@@ -182,3 +182,13 @@ img {
   border-color: var(--ink);
   color: var(--ink);
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .section-pad {
+    padding: 5rem 0;
+  }
+}
