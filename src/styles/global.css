@@ -5,7 +5,8 @@
   --cream:  #EDE8DC;
   --cream2: #D6D0C3;
   --red:    #C8352A;
-  --muted:  rgba(237,232,220,0.42);
+  --muted:  rgba(237, 232, 220, 0.72);
+  --muted-faint: rgba(237, 232, 220, 0.42);
   --border: rgba(237,232,220,0.09);
 
   --font-serif: 'EB Garamond', Georgia, serif;
@@ -35,7 +36,6 @@ html {
   font-family: var(--font-sans);
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  cursor: none;
 }
 
 body { min-height: 100vh; overflow-x: hidden; }
@@ -71,17 +71,29 @@ img {
 /* Skip to content — accessibility + SEO */
 .skip-link {
   position: absolute;
-  top: -100%;
-  left: var(--space-2);
+  top: auto;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
   background: var(--red);
   color: var(--cream);
   padding: var(--space-1) var(--space-2);
   font-family: var(--font-sans);
   font-size: 0.875rem;
+  font-weight: 600;
   text-decoration: none;
   z-index: 10000;
+  white-space: nowrap;
 }
-.skip-link:focus { top: var(--space-2); }
+.skip-link:focus {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
 
 /* Button system */
 .btn {
@@ -98,7 +110,6 @@ img {
   transition: background var(--duration-fast) var(--ease-cinematic),
               color var(--duration-fast) var(--ease-cinematic),
               border-color var(--duration-fast) var(--ease-cinematic);
-  cursor: none;
 }
 .btn--primary {
   background: var(--red);
