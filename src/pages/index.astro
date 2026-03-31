@@ -50,7 +50,7 @@ const featuredTeam = allTeam
       </p>
       <div class="hero__ctas">
         <a href="/films" class="btn btn--primary">View Our Films</a>
-        <a href="/submit" class="btn btn--ghost">Submit a Project</a>
+        <a href="/submit" class="btn btn--ghost-dark">Submit a Project</a>
       </div>
     </div>
     <div class="hero__scroll" aria-hidden="true">
@@ -94,7 +94,7 @@ const featuredTeam = allTeam
   </div>
 
   <!-- SECTION 3: FEATURED FILMS -->
-  <section class="films-section section-container section--light">
+  <section class="films-section section-container">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">Selected Works</p>
@@ -132,13 +132,13 @@ const featuredTeam = allTeam
         <span></span><span></span><span></span>
       </div>
       <div class="section-cta reveal">
-        <a href="/films" class="btn btn--ghost-dark">View All Films</a>
+        <a href="/films" class="btn btn--ghost">View All Films</a>
       </div>
     </div>
   </section>
 
   <!-- SECTION 4: MISSION -->
-  <section class="mission-section section-container" style="background: var(--ink2);">
+  <section class="mission-section section-container section--light" style="background: var(--parchment2);">
     <div class="container mission-grid">
       <div class="mission-quote reveal">
         <div style="width: 48px; height: 2px; background: var(--sienna); margin-bottom: var(--space-3);" aria-hidden="true"></div>
@@ -153,16 +153,16 @@ const featuredTeam = allTeam
       </div>
       <div class="mission-body reveal">
         <p class="eyebrow mission-eyebrow">Our Mission</p>
-        <p class="body-large mission-lead" style="color: var(--text-body);">
+        <p class="body-large mission-lead" style="color: var(--text-dark-body);">
           MakArtz Films was founded on a single conviction: that independent cinema — truly independent, uncompromising, filmmaker-driven cinema — requires advocates who understand both the art and the business, and who refuse to let one consume the other.
         </p>
-        <p class="body mission-copy" style="color: var(--text-body);">
+        <p class="body mission-copy" style="color: var(--text-dark-body);">
           We work with directors at every stage — from the first draft of a script through the last screening in a festival run. We develop projects, structure financing, produce films, and shepherd them into the world through careful distribution strategy. We don't acquire finished films. We build them.
         </p>
-        <p class="body mission-copy" style="color: var(--text-body);">
+        <p class="body mission-copy" style="color: var(--text-dark-body);">
           Our slate spans documentary and narrative, debut features and established voices, American stories and international co-productions. What our films share is a refusal to be anything other than exactly what they are.
         </p>
-        <a href="/about" class="btn btn--ghost">About MakArtz Films</a>
+        <a href="/about" class="btn btn--ghost-dark">About MakArtz Films</a>
       </div>
     </div>
   </section>
@@ -190,7 +190,7 @@ const featuredTeam = allTeam
   </div>
 
   <!-- SECTION 6: TEAM TEASER -->
-  <section class="team-section section-container section--light" style="background: var(--parchment2);">
+  <section class="team-section section-container" style="background: var(--ink2);">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">The People</p>
@@ -221,13 +221,13 @@ const featuredTeam = allTeam
         <span></span><span></span><span></span>
       </div>
       <div class="section-cta reveal">
-        <a href="/team" class="btn btn--ghost-dark">Meet the Full Team</a>
+        <a href="/team" class="btn btn--ghost">Meet the Full Team</a>
       </div>
     </div>
   </section>
 
   <!-- SECTION 7: PRESS QUOTES -->
-  <section class="press-section section-container section--light" style="background: var(--parchment2); border-top: 2px solid var(--border-light);">
+  <section class="press-section section-container" style="background: var(--ink2); border-top: 2px solid var(--border-dark);">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">Press &amp; Recognition</p>
@@ -288,11 +288,11 @@ const featuredTeam = allTeam
 .section-header .eyebrow { margin-bottom: var(--space-1); }
 .section-cta { margin-top: var(--space-4); }
 
-.films-section { background: var(--parchment); }
-.films-section .section-header .heading-1 { color: var(--text-dark); }
+.films-section { background: var(--ink2); }
+.films-section .section-header .heading-1 { color: var(--text-primary); }
 
-.team-section { background: var(--parchment); }
-.team-section .section-header .heading-1 { color: var(--text-dark); }
+.team-section { background: var(--ink2); }
+.team-section .section-header .heading-1 { color: var(--text-primary); }
 
 /* ─────────────────────────────────────────
    SECTION 1: HERO
@@ -300,7 +300,7 @@ const featuredTeam = allTeam
 .hero {
   position: relative;
   min-height: 100vh;
-  background: var(--ink);
+  background: #ffffff;
   display: flex;
   align-items: flex-end;
   padding-bottom: var(--space-16);
@@ -326,9 +326,9 @@ const featuredTeam = allTeam
   z-index: 1;
   background: linear-gradient(
     to top,
-    rgba(17, 17, 17, 0.92) 0%,
-    rgba(17, 17, 17, 0.65) 40%,
-    rgba(17, 17, 17, 0.82) 100%
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.55) 40%,
+    rgba(255, 255, 255, 0.65) 100%
   );
 }
 
@@ -342,7 +342,7 @@ const featuredTeam = allTeam
 
 .hero__headline {
   margin: var(--space-2) 0;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .hero__headline em {
@@ -353,8 +353,7 @@ const featuredTeam = allTeam
 .hero__subline {
   margin-bottom: var(--space-4);
   max-width: 52ch;
-  color: var(--cream);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  color: var(--ink);
 }
 
 .hero__ctas {
@@ -439,15 +438,15 @@ const featuredTeam = allTeam
 /* films-grid responsive handled in carousel blocks below */
 
 .film-card {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
+  background: var(--ink);
+  border: 1px solid var(--border-dark);
   transition: border-color var(--duration-base) var(--ease-cinematic),
               box-shadow var(--duration-base) var(--ease-cinematic),
               transform var(--duration-base) var(--ease-cinematic);
 }
 .film-card:hover {
-  border-color: #cccccc;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   transform: translateY(-2px);
 }
 .film-card__link { text-decoration: none; display: block; }
@@ -477,16 +476,16 @@ const featuredTeam = allTeam
 
 .film-card__info {
   padding: var(--space-3);
-  background: #fff;
+  background: var(--ink);
 }
 
-/* Caption/metadata override inside film cards on parchment section */
+/* Caption/metadata override inside film cards */
 .films-section .film-card .caption {
-  color: var(--text-dark-muted);
+  color: var(--text-muted);
 }
 
 .film-card__title {
-  color: var(--text-dark);
+  color: var(--text-primary);
   margin: var(--space-1) 0;
   transition: color var(--duration-fast) var(--ease-cinematic);
 }
@@ -519,7 +518,7 @@ const featuredTeam = allTeam
   }
 }
 
-.mission-blockquote { color: var(--text-primary); }
+.mission-blockquote { color: var(--text-dark); }
 
 .mission-blockquote__text {
   font-size: clamp(2.2rem, 4.5vw, 4.2rem);
@@ -541,9 +540,9 @@ const featuredTeam = allTeam
    SECTION 5: STATS STRIP
 ───────────────────────────────────────── */
 .stats-strip {
-  background: var(--ink2);
+  background: var(--parchment2);
   border-top: 2px solid var(--sienna);
-  border-bottom: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .stats-grid {
@@ -585,7 +584,7 @@ const featuredTeam = allTeam
   overflow: hidden;
   margin-bottom: var(--space-3);
   aspect-ratio: 1 / 1;
-  background: var(--parchment2);
+  background: var(--ink);
 }
 
 .team-card__photo img {
@@ -595,7 +594,7 @@ const featuredTeam = allTeam
 }
 
 .team-card__name {
-  color: var(--text-dark);
+  color: var(--text-primary);
   margin-top: var(--space-1);
 }
 
@@ -605,7 +604,7 @@ const featuredTeam = allTeam
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: var(--text-dark-body);
+  color: var(--text-body);
 }
 
 /* ─────────────────────────────────────────
@@ -625,8 +624,8 @@ const featuredTeam = allTeam
 
 .press-card {
   padding: var(--space-4);
-  background: #ffffff;
-  border: 1px solid var(--border-light);
+  background: var(--ink);
+  border: 1px solid var(--border-dark);
   position: relative;
   transition: border-color var(--duration-base) var(--ease-cinematic),
               box-shadow var(--duration-base) var(--ease-cinematic);
@@ -634,14 +633,14 @@ const featuredTeam = allTeam
 
 .press-card:hover {
   border-color: var(--sienna);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .press-card__quote {
   font-family: var(--font-serif);
   font-size: 1.05rem;
   font-style: italic;
-  color: var(--text-dark);
+  color: var(--text-primary);
   line-height: 1.65;
   margin-bottom: var(--space-3);
 }
@@ -709,11 +708,8 @@ const featuredTeam = allTeam
   justify-content: center;
 }
 
-/* Film strip accent — press section decoration */
-/* Section header heading color on light sections */
-.films-section .section-header .heading-1,
-.team-section .section-header .heading-1,
-.press-section .section-header .heading-1 {
+/* Section header heading color overrides */
+.mission-section .section-header .heading-1 {
   color: var(--text-dark);
 }
 
