@@ -61,6 +61,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
+  overflow-x: hidden;
   background-color: var(--ink);
   color: var(--text-primary);
   font-family: var(--font-sans);
@@ -217,7 +218,7 @@ img {
   padding-right: var(--space-6);
 }
 
-.section-pad {
+.section-container {
   padding: 60px 0;
 }
 
@@ -226,7 +227,7 @@ img {
     padding-left: var(--space-3);
     padding-right: var(--space-3);
   }
-  .section-pad {
+  .section-container {
     padding: 40px 0;
   }
 

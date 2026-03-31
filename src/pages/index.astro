@@ -94,7 +94,7 @@ const featuredTeam = allTeam
   </div>
 
   <!-- SECTION 3: FEATURED FILMS -->
-  <section class="films-section section-pad films-section--padded section--light">
+  <section class="films-section section-container section--light">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">Selected Works</p>
@@ -138,7 +138,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 4: MISSION -->
-  <section class="mission-section section-pad" style="background: var(--ink2);">
+  <section class="mission-section section-container" style="background: var(--ink2);">
     <div class="container mission-grid">
       <div class="mission-quote reveal">
         <div style="width: 48px; height: 2px; background: var(--sienna); margin-bottom: var(--space-3);" aria-hidden="true"></div>
@@ -168,7 +168,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 5: STATS STRIP -->
-  <div class="stats-strip" aria-label="MakArtz Films by the numbers">
+  <div class="stats-strip section-container" aria-label="MakArtz Films by the numbers">
     <div class="container stats-grid">
       <div class="stat reveal">
         <span class="display stat__number">18</span>
@@ -190,7 +190,7 @@ const featuredTeam = allTeam
   </div>
 
   <!-- SECTION 6: TEAM TEASER -->
-  <section class="team-section section-pad section--light" style="background: var(--parchment2);">
+  <section class="team-section section-container section--light" style="background: var(--parchment2);">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">The People</p>
@@ -227,7 +227,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 7: PRESS QUOTES -->
-  <section class="press-section section--light" style="background: var(--parchment2); border-top: 1px solid var(--border-light);">
+  <section class="press-section section-container section--light" style="background: var(--parchment2); border-top: 2px solid var(--border-light);">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">Press &amp; Recognition</p>
@@ -258,7 +258,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 8: CONTACT CTA -->
-  <section class="cta-section">
+  <section class="cta-section section-container">
     <div class="container cta-inner">
       <div class="reveal">
         <div class="cta-rule" aria-hidden="true"></div>
@@ -289,7 +289,6 @@ const featuredTeam = allTeam
 .section-cta { margin-top: var(--space-4); }
 
 .films-section { background: var(--parchment); }
-.films-section--padded { padding-top: 60px; }
 .films-section .section-header .heading-1 { color: var(--text-dark); }
 
 .team-section { background: var(--parchment); }
@@ -545,7 +544,6 @@ const featuredTeam = allTeam
   background: var(--ink2);
   border-top: 2px solid var(--sienna);
   border-bottom: 1px solid var(--border-dark);
-  padding: var(--space-12) 0;
 }
 
 .stats-grid {
@@ -615,7 +613,6 @@ const featuredTeam = allTeam
 ───────────────────────────────────────── */
 /* Press background/border set via inline style on the section element */
 .press-section {
-  padding: var(--space-12) 0;
 }
 
 .press-grid {
@@ -677,7 +674,6 @@ const featuredTeam = allTeam
 ───────────────────────────────────────── */
 .cta-section {
   background: var(--sienna);
-  padding: var(--space-12) 0;
   text-align: center;
 }
 
@@ -804,7 +800,7 @@ const featuredTeam = allTeam
     display: flex;
     justify-content: center;
     gap: 6px;
-    margin-top: 0;
+    margin-top: 12px;
   }
   .carousel-hint span {
     width: 6px;
@@ -843,9 +839,6 @@ const featuredTeam = allTeam
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4) var(--space-2);
     padding: 0 var(--space-3);
-  }
-  .stats-strip {
-    padding: var(--space-8) var(--space-3);
   }
   .stat .stat__number {
     font-size: clamp(2rem, 10vw, 3rem);
@@ -995,7 +988,7 @@ const featuredTeam = allTeam
 /* Press pagination — dark section variant */
 @media (max-width: 900px) {
   .press-pagination {
-    margin-top: var(--space-4);
+    margin-top: 12px;
   }
 }
 
