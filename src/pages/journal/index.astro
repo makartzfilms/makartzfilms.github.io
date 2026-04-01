@@ -1,11 +1,329 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('journal');
+const posts = allPosts
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featuredPost = posts[0];
+const remainingPosts = posts.slice(1);
 ---
+
 <BaseLayout
   title="Journal"
   description="The MakArtz Films Journal — industry insights, distribution guides, festival strategy, filmmaker interviews, and independent cinema commentary."
 >
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:var(--space-16);">
-    <p style="color:var(--muted);font-family:var(--font-sans);">— Journal coming soon —</p>
+  <!-- Hero -->
+  <section class="journal-hero">
+    <div class="journal-hero__inner">
+      <p class="eyebrow reveal">Journal</p>
+      <h1 class="display reveal">Thinking Out Loud</h1>
+      <p class="body-large journal-hero__subline reveal">
+        Industry insight, festival dispatches, filmmaker conversations, and the occasional manifesto.
+      </p>
+    </div>
   </section>
+
+  <!-- Filter Bar -->
+  <section class="filter-bar reveal">
+    <div class="filter-bar__inner">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Festivals">Festivals</button>
+      <button class="filter-btn" data-filter="Industry">Industry</button>
+      <button class="filter-btn" data-filter="Filmmaking">Filmmaking</button>
+      <button class="filter-btn" data-filter="Interviews">Interviews</button>
+    </div>
+  </section>
+
+  {posts.length === 0 ? (
+    <section class="empty-state">
+      <p class="body-large">No posts yet. Check back soon.</p>
+    </section>
+  ) : (
+    <>
+      {/* Featured Post */}
+      {featuredPost && (
+        <section class="featured reveal" data-category={featuredPost.data.category}>
+          <a href={`/journal/${featuredPost.slug}`} class="featured__link">
+            {featuredPost.data.featuredImage && (
+              <div class="featured__image">
+                <img
+                  src={featuredPost.data.featuredImage}
+                  alt={featuredPost.data.featuredImageAlt ?? featuredPost.data.title}
+                  width="1200"
+                  height="675"
+                  loading="eager"
+                />
+              </div>
+            )}
+            <div class="featured__body">
+              <span class="category-pill">{featuredPost.data.category}</span>
+              <h2 class="heading-1 featured__title">{featuredPost.data.title}</h2>
+              <p class="caption featured__meta">
+                {featuredPost.data.author} &middot;
+                <time datetime={featuredPost.data.pubDate.toISOString()}>
+                  {featuredPost.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+              </p>
+              <p class="body-large featured__excerpt">{featuredPost.data.description}</p>
+              <span class="btn btn--ghost">Read More</span>
+            </div>
+          </a>
+        </section>
+      )}
+
+      {/* Post Grid */}
+      {remainingPosts.length > 0 && (
+        <section class="post-grid">
+          {remainingPosts.map(post => (
+            <article class="post-card reveal" data-category={post.data.category}>
+              <a href={`/journal/${post.slug}`} class="post-card__link">
+                {post.data.featuredImage && (
+                  <div class="post-card__image">
+                    <img
+                      src={post.data.featuredImage}
+                      alt={post.data.featuredImageAlt ?? post.data.title}
+                      width="600"
+                      height="338"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="post-card__body">
+                  <span class="category-pill">{post.data.category}</span>
+                  <h3 class="heading-3 post-card__title">{post.data.title}</h3>
+                  <p class="caption post-card__meta">
+                    {post.data.author} &middot;
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </time>
+                  </p>
+                  <p class="body post-card__desc">{post.data.description}</p>
+                </div>
+              </a>
+            </article>
+          ))}
+        </section>
+      )}
+    </>
+  )}
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const featured = document.querySelector('.featured');
+    const cards = document.querySelectorAll('.post-card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        const items = [featured, ...cards].filter(Boolean);
+
+        items.forEach(item => {
+          if (!item) return;
+          const cat = item.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            (item as HTMLElement).style.display = '';
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .journal-hero {
+    background: #ffffff;
+    padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-8);
+    text-align: center;
+  }
+  .journal-hero__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .journal-hero .display {
+    color: var(--text-dark);
+  }
+  .journal-hero__subline {
+    color: var(--text-dark-muted);
+    margin-top: var(--space-3);
+  }
+
+  /* Filter Bar */
+  .filter-bar {
+    background: var(--ink2);
+    padding: var(--space-6) var(--space-6) var(--space-8);
+  }
+  .filter-bar__inner {
+    max-width: 1120px;
+    margin: 40px auto 0;
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .filter-btn {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+  }
+  .filter-btn.active {
+    background: var(--sienna);
+    color: #ffffff;
+    border-color: var(--sienna);
+  }
+
+  /* Category Pill */
+  .category-pill {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-2);
+    background: var(--sienna);
+    color: var(--parchment);
+    border-radius: 2px;
+    margin-bottom: var(--space-2);
+  }
+
+  /* Empty State */
+  .empty-state {
+    background: var(--ink2);
+    text-align: center;
+    padding: var(--space-16) var(--space-6);
+    color: var(--text-muted);
+  }
+
+  /* Featured Post */
+  .featured {
+    background: var(--ink2);
+    padding: 0 var(--space-6) var(--space-12);
+  }
+  .featured__link {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    max-width: 1120px;
+    margin: 0 auto;
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+    border: 1px solid var(--border-dark);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  .featured__link:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .featured__image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .featured__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .featured__link:hover .featured__image img {
+    transform: scale(1.03);
+  }
+  .featured__body {
+    padding: var(--space-6);
+  }
+  .featured__title {
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+  .featured__meta {
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+  }
+  .featured__excerpt {
+    color: var(--text-body);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Post Grid */
+  .post-grid {
+    background: var(--ink2);
+    padding: 0 var(--space-6) var(--space-16);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .post-card {
+    width: calc(50% - var(--space-3));
+    max-width: 548px;
+    border: 1px solid var(--border-dark);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  .post-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .post-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .post-card__image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .post-card__link:hover .post-card__image img {
+    transform: scale(1.03);
+  }
+  .post-card__body {
+    padding: var(--space-4);
+  }
+  .post-card__title {
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+  .post-card__meta {
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+  .post-card__desc {
+    color: var(--text-body);
+  }
+
+  @media (max-width: 768px) {
+    .featured__link {
+      grid-template-columns: 1fr;
+    }
+    .post-card {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+</style>

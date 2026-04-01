@@ -5,7 +5,6 @@ const isActive = (path: string) =>
 ---
 
 <header>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav class="site-nav" aria-label="Primary navigation" role="navigation" id="site-nav">
     <a
       href="/"
@@ -203,6 +202,9 @@ header {
               opacity var(--duration-base) var(--ease-cinematic);
 }
 
+.nav-hamburger.is-open .hamburger-bar {
+  background: var(--cream);
+}
 .nav-hamburger.is-open .hamburger-bar:first-child {
   transform: translateY(3px) rotate(45deg);
 }

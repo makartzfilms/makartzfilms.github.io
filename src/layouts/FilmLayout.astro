@@ -85,7 +85,7 @@ const schema = movieSchema({
           )}
         </dl>
 
-        {streamingLinks?.length && (
+        {streamingLinks && streamingLinks.length > 0 && (
           <div class="film-streaming">
             <p class="eyebrow" style="margin-bottom: var(--space-2);">Watch</p>
             <div class="streaming-links">
@@ -101,7 +101,7 @@ const schema = movieSchema({
           </div>
         )}
 
-        {festivalHistory?.length && (
+        {festivalHistory && festivalHistory.length > 0 && (
           <div class="film-festivals">
             <p class="eyebrow" style="margin-bottom: var(--space-2);">Festival History</p>
             <ul class="festival-list" role="list">
