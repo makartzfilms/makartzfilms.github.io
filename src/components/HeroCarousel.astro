@@ -1,0 +1,640 @@
+---
+/**
+ * HeroCarousel — Full-viewport cinematic film showcase
+ *
+ * COLOR DECISIONS (derived from codebase audit):
+ * ─────────────────────────────────────────────────
+ * Overlay vignette: right-heavy gradient using --ink (#111111)
+ *   Right side 0.88 opacity — matches the high end of hero__overlay (0.92) in index.astro
+ *   Left side 0.15 opacity — allows image to read clearly, lighter than the 0.55 midpoint
+ *   Chosen to keep image cinematic left, list legible right
+ *
+ * Film list inactive text: rgba(255,255,255,0.38) — matches --text-muted / --muted-faint
+ * Film list active text: #ffffff — matches --text-primary
+ * Film list hover text: rgba(255,255,255,0.65) — matches --text-body / --muted
+ * Film list year: rgba(255,255,255,0.38) — matches --text-muted
+ * Film list separator: rgba(255,255,255,0.1) — matches --border-dark / --border
+ *
+ * Active red rule: --sienna (#E03020) — site accent, used in eyebrow, scrollbar, buttons
+ * Progress bar: --sienna — consistent with scrollbar-thumb and selection background
+ * Auto badge pulsing dot: --sienna — consistent accent
+ * Paused badge: rgba(255,255,255,0.38) text — matches --text-muted
+ *
+ * Info block genre label: --sienna with 2px red rule prefix — matches .eyebrow pattern
+ * Info block title: #ffffff at display scale — matches .display + --text-primary
+ * Info block meta: rgba(255,255,255,0.65) — matches --text-body
+ *
+ * Wordmark: rgba(255,255,255,0.38) — matches --text-muted, subtle presence
+ *
+ * Crossfade duration: 1100ms — between --duration-slow (700ms) and site feel
+ * Info fade: 200ms — matches --duration-fast
+ * Ease: var(--ease-cinematic) cubic-bezier(0.25, 0.46, 0.45, 0.94) throughout
+ * Spacing: var(--space-*) tokens exclusively
+ */
+
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  films: CollectionEntry<'films'>[];
+}
+
+const { films } = Astro.props;
+
+const filmData = films.map((film, i) => ({
+  slug: film.slug,
+  title: film.data.title,
+  director: film.data.director,
+  year: film.data.year,
+  genre: film.data.genre,
+  heroImage: film.data.heroImage ?? film.data.posterImage,
+  index: String(i + 1).padStart(2, '0'),
+}));
+---
+
+<section class="hc" aria-label="Featured films carousel" data-films={JSON.stringify(filmData)}>
+  <!-- Background layers -->
+  <div class="hc__bg" aria-hidden="true">
+    <div class="hc__bg-layer hc__bg-layer--active"></div>
+    <div class="hc__bg-layer hc__bg-layer--next"></div>
+  </div>
+
+  <!-- Vignette overlay -->
+  <div class="hc__vignette" aria-hidden="true"></div>
+
+  <!-- Wordmark top-left -->
+  <div class="hc__wordmark" aria-hidden="true">MakArtz Films</div>
+
+  <!-- Active film info bottom-left -->
+  <div class="hc__info" aria-live="polite">
+    <div class="hc__info-inner">
+      <p class="hc__genre">
+        <span class="hc__genre-rule" aria-hidden="true"></span>
+        <span class="hc__genre-text"></span>
+      </p>
+      <h2 class="hc__title"></h2>
+      <p class="hc__meta"></p>
+    </div>
+  </div>
+
+  <!-- Film list right column -->
+  <nav class="hc__list" aria-label="Film selection">
+    <ol class="hc__list-inner" role="list">
+      {filmData.map((film, i) => (
+        <li>
+          <button
+            class={`hc__item ${i === 0 ? 'hc__item--active' : ''}`}
+            data-index={i}
+            aria-current={i === 0 ? 'true' : undefined}
+            aria-label={`${film.title}, ${film.year}`}
+          >
+            <span class="hc__item-rule" aria-hidden="true"></span>
+            <span class="hc__item-num">{film.index}</span>
+            <span class="hc__item-title">{film.title}</span>
+            <span class="hc__item-year">{film.year}</span>
+          </button>
+        </li>
+      ))}
+    </ol>
+  </nav>
+
+  <!-- Progress bar -->
+  <div class="hc__progress" aria-hidden="true">
+    <div class="hc__progress-bar"></div>
+  </div>
+
+  <!-- Auto/paused badge -->
+  <div class="hc__badge" aria-hidden="true">
+    <span class="hc__badge-dot"></span>
+    <span class="hc__badge-label">Auto</span>
+  </div>
+</section>
+
+<style>
+/* ─── Container ─── */
+.hc {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+  user-select: none;
+}
+
+/* ─── Background image layers ─── */
+.hc__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hc__bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1100ms var(--ease-cinematic);
+  will-change: opacity;
+}
+.hc__bg-layer--active { opacity: 1; }
+.hc__bg-layer--next { opacity: 0; }
+
+/* ─── Vignette: right-heavy so image reads left, list legible right ─── */
+.hc__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to right,
+      rgba(17,17,17,0.15) 0%,
+      rgba(17,17,17,0.3) 45%,
+      rgba(17,17,17,0.88) 100%
+    ),
+    linear-gradient(to top,
+      rgba(17,17,17,0.7) 0%,
+      transparent 40%
+    );
+  pointer-events: none;
+}
+
+/* ─── Wordmark top-left ─── */
+.hc__wordmark {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  z-index: 4;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  pointer-events: none;
+}
+
+/* ─── Active film info bottom-left ─── */
+.hc__info {
+  position: absolute;
+  bottom: var(--space-12);
+  left: var(--space-6);
+  z-index: 3;
+  max-width: 560px;
+}
+.hc__info-inner {
+  transition: opacity 200ms var(--ease-cinematic);
+}
+.hc__info-inner.is-fading { opacity: 0; }
+
+.hc__genre {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--space-2);
+}
+.hc__genre-rule {
+  width: 24px;
+  height: 2px;
+  background: var(--sienna);
+  flex-shrink: 0;
+}
+.hc__genre-text {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sienna);
+}
+
+.hc__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.hc__meta {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ─── Film list ─── */
+.hc__list {
+  position: absolute;
+  right: 56px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+.hc__list-inner {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.hc__list-inner li {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.hc__list-inner li:last-child {
+  border-bottom: none;
+}
+
+.hc__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 400ms var(--ease-cinematic),
+              opacity 400ms var(--ease-cinematic);
+  transform: translateX(0);
+  text-align: left;
+}
+
+.hc__item-rule {
+  width: 0;
+  height: 2px;
+  background: var(--sienna);
+  transition: width 400ms var(--ease-cinematic);
+  flex-shrink: 0;
+}
+
+.hc__item-num {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.38);
+  min-width: 1.5rem;
+  transition: color 400ms var(--ease-cinematic);
+}
+
+.hc__item-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-weight: 500;
+  color: rgba(255,255,255,0.38);
+  transition: color 400ms var(--ease-cinematic);
+  white-space: nowrap;
+}
+
+.hc__item-year {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.38);
+  margin-left: auto;
+  padding-left: var(--space-4);
+  transition: color 400ms var(--ease-cinematic);
+}
+
+/* Hover */
+.hc__item:hover .hc__item-title { color: rgba(255,255,255,0.65); }
+.hc__item:hover .hc__item-num { color: rgba(255,255,255,0.65); }
+
+/* Active */
+.hc__item--active {
+  transform: translateX(10px);
+}
+.hc__item--active .hc__item-rule { width: 20px; }
+.hc__item--active .hc__item-num { color: var(--sienna); }
+.hc__item--active .hc__item-title { color: #ffffff; }
+.hc__item--active .hc__item-year { color: rgba(255,255,255,0.65); }
+
+/* ─── Progress bar ─── */
+.hc__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 5;
+  background: rgba(255,255,255,0.1);
+}
+.hc__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--sienna);
+  transition: none;
+}
+.hc__progress-bar.is-running {
+  width: 100%;
+  transition: width linear;
+}
+.hc__progress-bar.is-paused {
+  transition: none;
+}
+
+/* ─── Auto/Paused badge ─── */
+.hc__badge {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-6);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.65;
+}
+.hc__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sienna);
+}
+.hc__badge-dot.is-live {
+  animation: hcPulse 2s var(--ease-cinematic) infinite;
+}
+.hc__badge-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+}
+
+@keyframes hcPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ─── Responsive: 768–1023 ─── */
+@media (max-width: 1023px) {
+  .hc__list {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: var(--space-16);
+    transform: translateX(-50%);
+  }
+  .hc__list-inner {
+    flex-direction: row;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hc__list-inner li {
+    border-bottom: none;
+  }
+  .hc__item { padding: var(--space-1) var(--space-2); }
+  .hc__item-year { display: none; }
+  .hc__item-rule { display: none; }
+  .hc__item--active { transform: translateX(0); }
+  .hc__item--active .hc__item-title { color: #ffffff; }
+  .hc__item-title { font-size: 0.95rem; }
+
+  .hc__info {
+    bottom: auto;
+    top: 50%;
+    left: var(--space-4);
+    transform: translateY(-50%);
+    max-width: 420px;
+  }
+  .hc__title { font-size: clamp(1.8rem, 5vw, 2.8rem); }
+  .hc__badge { bottom: var(--space-3); right: var(--space-4); }
+  .hc__wordmark { left: var(--space-4); top: var(--space-4); }
+}
+
+/* ─── Responsive: <768 ─── */
+@media (max-width: 767px) {
+  .hc__list { display: none; }
+  .hc__info {
+    left: var(--space-3);
+    right: var(--space-3);
+    top: auto;
+    bottom: var(--space-8);
+    transform: none;
+    text-align: center;
+    max-width: none;
+  }
+  .hc__genre { justify-content: center; }
+  .hc__title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .hc__wordmark { left: var(--space-3); top: var(--space-3); }
+  .hc__badge { right: var(--space-3); bottom: var(--space-3); }
+
+  .hc__vignette {
+    background:
+      linear-gradient(to top,
+        rgba(17,17,17,0.85) 0%,
+        rgba(17,17,17,0.2) 50%,
+        rgba(17,17,17,0.5) 100%
+      );
+  }
+}
+</style>
+
+<script>
+(function () {
+  const section = document.querySelector<HTMLElement>('.hc');
+  if (!section) return;
+
+  const films: { slug: string; title: string; director: string; year: number; genre: string[]; heroImage: string; index: string }[] =
+    JSON.parse(section.dataset.films || '[]');
+  if (films.length === 0) return;
+
+  const bgActive = section.querySelector<HTMLElement>('.hc__bg-layer--active')!;
+  const bgNext = section.querySelector<HTMLElement>('.hc__bg-layer--next')!;
+  const infoInner = section.querySelector<HTMLElement>('.hc__info-inner')!;
+  const genreText = section.querySelector<HTMLElement>('.hc__genre-text')!;
+  const titleEl = section.querySelector<HTMLElement>('.hc__title')!;
+  const metaEl = section.querySelector<HTMLElement>('.hc__meta')!;
+  const progressBar = section.querySelector<HTMLElement>('.hc__progress-bar')!;
+  const badgeDot = section.querySelector<HTMLElement>('.hc__badge-dot')!;
+  const badgeLabel = section.querySelector<HTMLElement>('.hc__badge-label')!;
+  const items = [...section.querySelectorAll<HTMLButtonElement>('.hc__item')];
+
+  let current = 0;
+  let paused = false;
+  let autoTimer: ReturnType<typeof setTimeout> | null = null;
+  let crossfadeTimer: ReturnType<typeof setTimeout> | null = null;
+  let infoTimer: ReturnType<typeof setTimeout> | null = null;
+  let remainingTime = 5000;
+  let cycleStart = 0;
+  let isVisible = true;
+  const CYCLE = 5000;
+  const RESUME_DELAY = 800;
+
+  // Preload all hero images
+  films.forEach(f => {
+    const img = new Image();
+    img.src = f.heroImage;
+  });
+
+  function setFilm(index: number, animate = true) {
+    const film = films[index];
+    if (!film) return;
+
+    // Cancel any pending crossfade/info swap from previous transition
+    if (crossfadeTimer) { clearTimeout(crossfadeTimer); crossfadeTimer = null; }
+    if (infoTimer) { clearTimeout(infoTimer); infoTimer = null; }
+
+    // Update list items
+    items.forEach((item, i) => {
+      const isActive = i === index;
+      item.classList.toggle('hc__item--active', isActive);
+      item.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+
+    // Crossfade background
+    if (animate) {
+      // Snap active to current state, set next to target
+      bgActive.style.backgroundImage = bgActive.style.backgroundImage || `url(${films[current]?.heroImage})`;
+      bgNext.style.backgroundImage = `url(${film.heroImage})`;
+      bgNext.style.opacity = '1';
+      crossfadeTimer = setTimeout(() => {
+        bgActive.style.backgroundImage = `url(${film.heroImage})`;
+        bgNext.style.opacity = '0';
+        crossfadeTimer = null;
+      }, 1100);
+    } else {
+      bgActive.style.backgroundImage = `url(${film.heroImage})`;
+      bgNext.style.opacity = '0';
+    }
+
+    // Fade info: out → swap → in
+    if (animate) {
+      infoInner.classList.add('is-fading');
+      infoTimer = setTimeout(() => {
+        genreText.textContent = film.genre.join(' / ');
+        titleEl.textContent = film.title;
+        metaEl.textContent = `${film.director} · ${film.year}`;
+        infoInner.classList.remove('is-fading');
+        infoTimer = null;
+      }, 200);
+    } else {
+      infoInner.classList.remove('is-fading');
+      genreText.textContent = film.genre.join(' / ');
+      titleEl.textContent = film.title;
+      metaEl.textContent = `${film.director} · ${film.year}`;
+    }
+
+    current = index;
+  }
+
+  function startCycle(duration = CYCLE) {
+    stopCycle();
+    remainingTime = duration;
+    cycleStart = Date.now();
+
+    progressBar.classList.remove('is-running', 'is-paused');
+    progressBar.style.width = `${((CYCLE - duration) / CYCLE) * 100}%`;
+    // Force reflow
+    void progressBar.offsetWidth;
+    progressBar.style.transitionDuration = `${duration}ms`;
+    progressBar.classList.add('is-running');
+
+    autoTimer = setTimeout(() => {
+      const next = (current + 1) % films.length;
+      setFilm(next);
+      startCycle(CYCLE);
+    }, duration);
+
+    badgeDot.classList.add('is-live');
+    badgeLabel.textContent = 'Auto';
+    paused = false;
+  }
+
+  function stopCycle() {
+    if (autoTimer) {
+      clearTimeout(autoTimer);
+      autoTimer = null;
+    }
+    const elapsed = Date.now() - cycleStart;
+    remainingTime = Math.max(0, remainingTime - elapsed);
+
+    progressBar.classList.remove('is-running');
+    progressBar.classList.add('is-paused');
+    const currentWidth = progressBar.getBoundingClientRect().width;
+    const parentWidth = progressBar.parentElement!.getBoundingClientRect().width;
+    progressBar.style.width = parentWidth > 0 ? `${(currentWidth / parentWidth) * 100}%` : '0%';
+
+    badgeDot.classList.remove('is-live');
+    badgeLabel.textContent = 'Paused';
+    paused = true;
+  }
+
+  // Initialize first film
+  setFilm(0, false);
+  startCycle();
+
+  // Hover on list items
+  const listEl = section.querySelector<HTMLElement>('.hc__list');
+  listEl?.addEventListener('mouseenter', () => {
+    stopCycle();
+  });
+  listEl?.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+      if (!paused || !isVisible) return;
+      startCycle(Math.max(remainingTime, 1000));
+    }, RESUME_DELAY);
+  });
+
+  items.forEach((item, i) => {
+    item.addEventListener('mouseenter', () => {
+      stopCycle();
+      if (i !== current) {
+        setFilm(i);
+      }
+    });
+    item.addEventListener('click', () => {
+      window.location.href = `/films/${films[i].slug}`;
+    });
+  });
+
+  // IntersectionObserver: pause when out of viewport
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (!isVisible && !paused) {
+        stopCycle();
+      } else if (isVisible && paused) {
+        startCycle(Math.max(remainingTime, 1000));
+      }
+    },
+    { threshold: 0.1 }
+  );
+  observer.observe(section);
+
+  // Keyboard navigation
+  section.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      stopCycle();
+      setFilm((current + 1) % films.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      stopCycle();
+      setFilm((current - 1 + films.length) % films.length);
+    } else if (e.key === 'Enter') {
+      window.location.href = `/films/${films[current].slug}`;
+    }
+  });
+
+  // Touch: swipe left/right
+  let touchStartX = 0;
+  let touchStartY = 0;
+  section.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  section.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
+      stopCycle();
+      if (dx < 0) {
+        setFilm((current + 1) % films.length);
+      } else {
+        setFilm((current - 1 + films.length) % films.length);
+      }
+    }
+  }, { passive: true });
+})();
+</script>

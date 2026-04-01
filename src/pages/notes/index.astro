@@ -134,6 +134,7 @@ const remainingNotes = notes.slice(1);
 
   /* Empty State */
   .empty-state {
+    background: var(--ink2);
     text-align: center;
     padding: var(--space-16) var(--space-6);
     color: var(--text-muted);
@@ -141,17 +142,24 @@ const remainingNotes = notes.slice(1);
 
   /* Featured Entry */
   .featured {
-    max-width: 1120px;
-    margin: 0 auto var(--space-10);
-    padding: 0 var(--space-6);
+    background: var(--ink2);
+    padding: var(--space-8) var(--space-6) var(--space-12);
   }
   .featured__link {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
+    max-width: 1120px;
+    margin: 0 auto;
     text-decoration: none;
     color: inherit;
     align-items: center;
+    border: 1px solid var(--border-dark);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  .featured__link:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   }
   .featured__image {
     aspect-ratio: 16 / 9;
@@ -166,7 +174,11 @@ const remainingNotes = notes.slice(1);
   .featured__link:hover .featured__image img {
     transform: scale(1.03);
   }
+  .featured__body {
+    padding: var(--space-6);
+  }
   .featured__title {
+    color: var(--text-primary);
     margin-bottom: var(--space-2);
   }
   .featured__meta {
@@ -180,12 +192,22 @@ const remainingNotes = notes.slice(1);
 
   /* Entry Grid */
   .notes-grid {
-    max-width: 1120px;
-    margin: 0 auto;
+    background: var(--ink2);
     padding: 0 var(--space-6) var(--space-16);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .note-card {
+    width: calc(50% - var(--space-3));
+    max-width: 548px;
+    border: 1px solid var(--border-dark);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  .note-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   }
   .note-card__link {
     display: block;
@@ -195,7 +217,6 @@ const remainingNotes = notes.slice(1);
   .note-card__image {
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    margin-bottom: var(--space-4);
   }
   .note-card__image img {
     width: 100%;
@@ -206,7 +227,11 @@ const remainingNotes = notes.slice(1);
   .note-card__link:hover .note-card__image img {
     transform: scale(1.03);
   }
+  .note-card__body {
+    padding: var(--space-4);
+  }
   .note-card__title {
+    color: var(--text-primary);
     margin-bottom: var(--space-2);
   }
   .note-card__meta {
@@ -221,8 +246,9 @@ const remainingNotes = notes.slice(1);
     .featured__link {
       grid-template-columns: 1fr;
     }
-    .notes-grid {
-      grid-template-columns: 1fr;
+    .note-card {
+      width: 100%;
+      max-width: 100%;
     }
   }
 </style>

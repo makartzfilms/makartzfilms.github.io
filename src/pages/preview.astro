@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import { getCollection } from 'astro:content';
+
+const allFilms = await getCollection('films');
+const films = allFilms.sort((a, b) => b.data.year - a.data.year);
+---
+
+<BaseLayout
+  title="Homepage Preview — HeroCarousel"
+  description="Client preview of the proposed hero carousel for the MakArtz Films homepage."
+  noindex={true}
+>
+  <HeroCarousel films={films} />
+</BaseLayout>

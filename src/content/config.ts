@@ -23,6 +23,7 @@ const films = defineCollection({
     })).optional(),
     runtime: z.string().optional(),        // e.g. "1h 34m"
     language: z.string().default('English'),
+    heroImage: z.string().optional(),
     imdbUrl: z.string().optional(),
     featured: z.boolean().default(false),
   }),

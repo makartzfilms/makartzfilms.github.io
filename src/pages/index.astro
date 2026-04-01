@@ -306,86 +306,38 @@ const featuredTeam = allTeam
   padding-bottom: var(--space-16);
   overflow: hidden;
 }
-
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__photo-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-
+.hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero__photo-bg { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
 .hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(255, 255, 255, 0.55) 40%,
-    rgba(255, 255, 255, 0.65) 100%
-  );
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.55) 40%, rgba(255,255,255,0.65) 100%);
 }
-
-.hero__content {
-  position: relative;
-  z-index: 3;
-  padding: 0 var(--space-8);
-  padding-bottom: var(--space-4);
-  max-width: 1000px;
-}
-
-.hero__headline {
-  margin: var(--space-2) 0;
-  color: var(--ink);
-}
-
-.hero__headline em {
-  font-style: italic;
-  color: var(--sienna);
-}
-
-.hero__subline {
-  margin-bottom: var(--space-4);
-  max-width: 52ch;
-  color: var(--ink);
-}
-
-.hero__ctas {
-  display: flex;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-}
-
-.hero__scroll {
-  position: absolute;
-  bottom: var(--space-4);
-  right: var(--space-6);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
-  opacity: 0.5;
-}
-
-.hero__scroll-line {
-  width: 1px;
-  height: 48px;
-  background: var(--text-muted);
-  animation: scrollPulse 2s var(--ease-cinematic) infinite;
-}
-
+.hero__content { position: relative; z-index: 3; padding: 0 var(--space-8); padding-bottom: var(--space-4); max-width: 1000px; }
+.hero__headline { margin: var(--space-2) 0; color: var(--ink); }
+.hero__headline em { font-style: italic; color: var(--sienna); }
+.hero__subline { margin-bottom: var(--space-4); max-width: 52ch; color: var(--ink); }
+.hero__ctas { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.hero__scroll { position: absolute; bottom: var(--space-4); right: var(--space-6); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: var(--space-1); opacity: 0.5; }
+.hero__scroll-line { width: 1px; height: 48px; background: var(--text-muted); animation: scrollPulse 2s var(--ease-cinematic) infinite; }
 @keyframes scrollPulse {
   0%   { transform: scaleY(0); transform-origin: top; }
   50%  { transform: scaleY(1); transform-origin: top; }
   51%  { transform: scaleY(1); transform-origin: bottom; }
   100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Hero mobile */
+@media (max-width: 900px) {
+  .hero__content { padding: 0 var(--space-4); }
+}
+@media (max-width: 600px) {
+  .hero { min-height: 100svh; padding-bottom: var(--space-8); align-items: flex-end; }
+  .hero__content { padding: 0 var(--space-3); padding-bottom: var(--space-4); max-width: 100%; }
+  .hero__headline { line-height: 1.06; }
+  .hero .eyebrow { font-size: 0.7rem; margin-bottom: var(--space-2); }
+  .hero__ctas { flex-direction: column; gap: var(--space-2); width: 100%; }
+  .hero__ctas .btn { width: 100%; justify-content: center; }
+  .hero__scroll { display: none; }
 }
 
 /* ─────────────────────────────────────────
@@ -717,42 +669,6 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    MOBILE RESPONSIVENESS
 ───────────────────────────────────────── */
-
-/* Hero mobile */
-@media (max-width: 900px) {
-  .hero__content { padding: 0 var(--space-4); }
-  .hero__logo-bg { opacity: 0.1; width: clamp(340px, 70vw, 560px); }
-}
-@media (max-width: 600px) {
-  .hero {
-    min-height: 100svh;
-    padding-bottom: var(--space-8);
-    align-items: flex-end;
-  }
-  .hero__content {
-    padding: 0 var(--space-3);
-    padding-bottom: var(--space-4);
-    max-width: 100%;
-  }
-  .hero__headline {
-    line-height: 1.06;
-  }
-  .hero .eyebrow {
-    font-size: 0.7rem;
-    opacity: 1;
-    margin-bottom: var(--space-2);
-  }
-  .hero__ctas {
-    flex-direction: column;
-    gap: var(--space-2);
-    width: 100%;
-  }
-  .hero__ctas .btn {
-    width: 100%;
-    justify-content: center;
-  }
-  .hero__scroll { display: none; }
-}
 
 @media (max-width: 900px) {
   .films-grid {
