@@ -9,12 +9,246 @@ const contactPageSchema = {
   description: 'Get in touch with MakArtz Films — an independent film agency in Winter Springs, FL.',
 };
 ---
+
 <BaseLayout
   title="Contact"
   description="Contact MakArtz Films — reach our independent film agency in Winter Springs, FL. Get in touch for production inquiries, press, and general questions."
   schema={contactPageSchema}
 >
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:var(--space-16);">
-    <p style="color:var(--muted);font-family:var(--font-sans);">— Contact page coming soon —</p>
+  <section class="contact-hero">
+    <p class="eyebrow reveal">Contact</p>
+    <h1 class="display reveal">Let's Talk</h1>
+  </section>
+
+  <section class="contact-grid">
+    <!-- Left Column: Contact Info -->
+    <div class="contact-info reveal">
+      <h2 class="heading-2 contact-info__heading">Get In Touch</h2>
+
+      <div class="contact-info__block">
+        <p class="caption contact-info__label">General Inquiries</p>
+        <a href="mailto:hello@makartzfilms.com" class="body-large contact-info__email">hello@makartzfilms.com</a>
+      </div>
+
+      <div class="contact-info__block">
+        <p class="caption contact-info__label">Submissions</p>
+        <a href="mailto:submit@makartzfilms.com" class="body-large contact-info__email">submit@makartzfilms.com</a>
+      </div>
+
+      <div class="contact-info__block">
+        <p class="caption contact-info__label">Press</p>
+        <a href="mailto:press@makartzfilms.com" class="body-large contact-info__email">press@makartzfilms.com</a>
+      </div>
+
+      <div class="contact-info__block">
+        <p class="caption contact-info__label">Office</p>
+        <p class="body-large">Winter Springs, FL</p>
+      </div>
+
+      <p class="body contact-info__note">
+        We respond to all inquiries within 3&ndash;5 business days.
+      </p>
+    </div>
+
+    <!-- Right Column: Contact Form -->
+    <div class="contact-form-wrap reveal">
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+        <input type="checkbox" name="botcheck" style="display:none" />
+
+        <div class="form-group">
+          <label for="name" class="caption">Name *</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="caption">Email *</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="inquiry" class="caption">Inquiry Type</label>
+          <select id="inquiry" name="inquiry_type">
+            <option value="">Select one...</option>
+            <option value="Film Submission">Film Submission</option>
+            <option value="Production Partnership">Production Partnership</option>
+            <option value="Distribution">Distribution</option>
+            <option value="Press">Press</option>
+            <option value="General">General</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="project-title" class="caption">Project Title (optional)</label>
+          <input type="text" id="project-title" name="project_title" />
+        </div>
+
+        <div class="form-group">
+          <label for="message" class="caption">Message *</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send Message</button>
+        <div id="contact-result" class="form-result" aria-live="polite"></div>
+      </form>
+    </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const result = document.getElementById('contact-result') as HTMLDivElement;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      result.textContent = '';
+      result.className = 'form-result';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await response.json();
+
+        if (data.success) {
+          result.textContent = 'Thank you — we\'ll be in touch within 3\u20135 business days.';
+          result.classList.add('form-result--success');
+          form.reset();
+        } else {
+          result.textContent = 'Something went wrong. Please try again or email us directly.';
+          result.classList.add('form-result--error');
+        }
+      } catch {
+        result.textContent = 'Something went wrong. Please try again or email us directly.';
+        result.classList.add('form-result--error');
+      }
+    });
+  });
+</script>
+
+<style>
+  .contact-hero {
+    background: #ffffff;
+    padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-8);
+    text-align: center;
+  }
+  .contact-hero .display {
+    color: var(--text-dark);
+  }
+
+  .contact-grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px var(--space-6) var(--space-16);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  /* Contact Info */
+  .contact-info__heading {
+    font-family: var(--font-serif);
+    margin-bottom: var(--space-6);
+  }
+  .contact-info__block {
+    margin-bottom: var(--space-5);
+  }
+  .contact-info__label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-1);
+  }
+  .contact-info__email {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .contact-info__email:hover {
+    color: var(--sienna);
+  }
+  .contact-info__note {
+    color: var(--text-muted);
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+  }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .form-group label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    padding: var(--space-3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--parchment);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  .form-submit {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: var(--space-3) var(--space-6);
+    background: var(--sienna);
+    color: var(--parchment);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    align-self: flex-start;
+  }
+  .form-submit:hover {
+    background: var(--red);
+  }
+
+  .form-result {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    min-height: 1.4em;
+  }
+  .form-result--success {
+    color: #2a7d2a;
+  }
+  .form-result--error {
+    color: var(--sienna);
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

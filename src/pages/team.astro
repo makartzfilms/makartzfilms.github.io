@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allTeam = await getCollection('team');
+const team = allTeam.sort((a, b) => a.data.order - b.data.order);
 
 const teamPageSchema = {
   '@context': 'https://schema.org',
@@ -9,12 +13,193 @@ const teamPageSchema = {
   description: 'Meet the people behind MakArtz Films — our team of film industry professionals based in Winter Springs, FL.',
 };
 ---
+
 <BaseLayout
-  title="Team"
+  title="Team — MakArtz Films"
   description="Meet the team behind MakArtz Films — film industry professionals dedicated to independent and arthouse cinema in Winter Springs, FL."
   schema={teamPageSchema}
 >
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:var(--space-16);">
-    <p style="color:var(--muted);font-family:var(--font-sans);">— Team page coming soon —</p>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero__content reveal">
+        <p class="eyebrow">The People</p>
+        <h1 class="display">Who We Are</h1>
+        <p class="body-large page-hero__sub">
+          Great films are made by people who care — about the story, the craft, and the audience. Here's who we are.
+        </p>
+      </div>
+    </div>
   </section>
+
+  <!-- TEAM GRID -->
+  <section class="team-section section-container">
+    <div class="container">
+      <div class="team-grid">
+        {team.map(member => (
+          <div class="team-card reveal">
+            {member.data.headshotImage && (
+              <div class="team-card__photo">
+                <img
+                  src={member.data.headshotImage}
+                  alt={member.data.headshotAlt ?? `${member.data.name} — ${member.data.title}`}
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  class="team-card__img"
+                />
+              </div>
+            )}
+            <div class="team-card__info">
+              <h3 class="heading-3 team-card__name">{member.data.name}</h3>
+              <p class="eyebrow team-card__title">{member.data.title}</p>
+              <p class="body team-card__bio">{member.data.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section section-container">
+    <div class="container cta-inner">
+      <div class="reveal">
+        <div class="cta-rule" aria-hidden="true"></div>
+        <p class="eyebrow cta-eyebrow">Collaborate</p>
+        <h2 class="heading-1 cta-heading">
+          Work with our team.
+        </h2>
+        <p class="body-large cta-body">
+          Whether you have a project in development or an idea that needs a home, we'd love to hear from you.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn--primary">Get in Touch</a>
+          <a href="/submit" class="btn btn--ghost">Submit a Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+
+  /* ── Hero ── */
+  .page-hero {
+    background: #ffffff;
+    padding: var(--space-24) 0 var(--space-12);
+  }
+  .page-hero__content {
+    max-width: 700px;
+  }
+  .page-hero__content .display {
+    color: var(--text-dark);
+    margin: var(--space-2) 0;
+  }
+  .page-hero__sub {
+    color: var(--text-dark-muted);
+    max-width: 52ch;
+  }
+
+  /* ── Team Section ── */
+  .team-section {
+    background: var(--parchment2);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  @media (max-width: 900px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .team-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Team Card ── */
+  .team-card {
+    background: var(--parchment2);
+    border: 1px solid var(--border-light);
+    padding: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+    border-left: 3px solid transparent;
+  }
+  .team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-left-color: var(--sienna);
+  }
+
+  .team-card__photo {
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: var(--cream);
+  }
+  .team-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .team-card__info {
+    padding: var(--space-4);
+  }
+
+  .team-card__name {
+    color: var(--text-dark);
+    margin-bottom: var(--space-1);
+  }
+
+  .team-card__title {
+    color: var(--sienna);
+    margin-bottom: var(--space-2);
+  }
+
+  .team-card__bio {
+    color: var(--text-dark-body);
+    font-size: 0.925rem;
+    line-height: 1.6;
+  }
+
+  .team-card__imdb {
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--ink2);
+  }
+  .cta-inner {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .cta-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--sienna);
+    margin: 0 auto var(--space-4);
+  }
+  .cta-eyebrow { margin-bottom: var(--space-2); }
+  .cta-heading {
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+  .cta-body {
+    color: var(--muted);
+    margin-bottom: var(--space-6);
+  }
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

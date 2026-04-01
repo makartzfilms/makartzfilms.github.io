@@ -1,11 +1,301 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
+
 <BaseLayout
   title="Submit a Project"
   description="Submit your independent film or script to MakArtz Films. We accept submissions from filmmakers seeking development, production support, festival strategy, and distribution consulting."
 >
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:var(--space-16);">
-    <p style="color:var(--muted);font-family:var(--font-sans);">— Submission form coming soon —</p>
+  <!-- Hero -->
+  <section class="submit-hero">
+    <p class="eyebrow reveal">Submit a Project</p>
+    <h1 class="display reveal">Tell Us About Your Film</h1>
+    <p class="body-large submit-hero__subline reveal">
+      We're always looking for filmmakers with a distinct voice and a story that needs telling.
+      If that sounds like you, we'd love to hear about your project.
+    </p>
+  </section>
+
+  <!-- Guidelines -->
+  <section class="submit-guidelines reveal">
+    <div class="submit-guidelines__inner">
+      <h2 class="heading-3 submit-guidelines__heading">What We're Looking For</h2>
+      <ul class="submit-guidelines__list">
+        <li class="body">Narrative features and feature-length documentaries at any stage of development, from script to completed film.</li>
+        <li class="body">Projects driven by a singular creative vision — we're drawn to filmmakers who know exactly what they want to make.</li>
+        <li class="body">We consider all genres, budgets, and backgrounds. No prerequisites, no gatekeeping — just the work.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="submit-form-section">
+    <form id="submit-form" action="https://api.web3forms.com/submit" method="POST" class="submit-form reveal">
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+      <input type="checkbox" name="botcheck" style="display:none" />
+      <input type="hidden" name="subject" value="New Project Submission" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="project-title" class="caption">Project Title *</label>
+          <input type="text" id="project-title" name="project_title" required />
+        </div>
+        <div class="form-group">
+          <label for="genre" class="caption">Genre</label>
+          <select id="genre" name="genre">
+            <option value="">Select genre...</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Horror">Horror</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="logline" class="caption">Logline *</label>
+        <textarea id="logline" name="logline" rows="2" required placeholder="One sentence that captures the essence of your film."></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="director" class="caption">Director Name *</label>
+          <input type="text" id="director" name="director_name" required />
+        </div>
+        <div class="form-group">
+          <label for="stage" class="caption">Stage of Development</label>
+          <select id="stage" name="stage">
+            <option value="">Select stage...</option>
+            <option value="Concept">Concept</option>
+            <option value="In Development">In Development</option>
+            <option value="In Production">In Production</option>
+            <option value="In Post">In Post</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="budget" class="caption">Budget Range (optional)</label>
+        <select id="budget" name="budget_range">
+          <option value="">Select range...</option>
+          <option value="Under $100K">Under $100K</option>
+          <option value="$100K-$500K">$100K &ndash; $500K</option>
+          <option value="$500K-$1M">$500K &ndash; $1M</option>
+          <option value="$1M-$5M">$1M &ndash; $5M</option>
+          <option value="$5M+">$5M+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="festival-history" class="caption">Festival History (optional)</label>
+        <textarea id="festival-history" name="festival_history" rows="3" placeholder="List any festivals where the film has screened or been accepted."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="materials-link" class="caption">Link to Materials (optional)</label>
+        <input type="url" id="materials-link" name="materials_link" placeholder="https://" />
+      </div>
+
+      <hr class="form-divider" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="your-name" class="caption">Your Name *</label>
+          <input type="text" id="your-name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="your-email" class="caption">Your Email *</label>
+          <input type="email" id="your-email" name="email" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="additional-notes" class="caption">Additional Notes (optional)</label>
+        <textarea id="additional-notes" name="additional_notes" rows="4"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Submit Your Project</button>
+      <div id="submit-result" class="form-result" aria-live="polite"></div>
+    </form>
   </section>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('submit-form') as HTMLFormElement;
+    const result = document.getElementById('submit-result') as HTMLDivElement;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      result.textContent = '';
+      result.className = 'form-result';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await response.json();
+
+        if (data.success) {
+          result.textContent = 'Thank you \u2014 we\u2019ll be in touch within 3\u20135 business days.';
+          result.classList.add('form-result--success');
+          form.reset();
+        } else {
+          result.textContent = 'Something went wrong. Please try again or email submit@makartzfilms.com directly.';
+          result.classList.add('form-result--error');
+        }
+      } catch {
+        result.textContent = 'Something went wrong. Please try again or email submit@makartzfilms.com directly.';
+        result.classList.add('form-result--error');
+      }
+    });
+  });
+</script>
+
+<style>
+  .submit-hero {
+    background: #ffffff;
+    padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-8);
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .submit-hero .display {
+    color: var(--text-dark);
+  }
+  .submit-hero__subline {
+    color: var(--text-dark-muted);
+    margin-top: var(--space-3);
+  }
+
+  /* Guidelines */
+  .submit-guidelines {
+    max-width: 720px;
+    margin: 0 auto var(--space-10);
+    padding: 0 var(--space-6);
+  }
+  .submit-guidelines__inner {
+    border-left: 3px solid var(--sienna);
+    padding-left: var(--space-6);
+  }
+  .submit-guidelines__heading {
+    margin-bottom: var(--space-3);
+  }
+  .submit-guidelines__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .submit-guidelines__list li {
+    color: var(--text-body);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+  .submit-guidelines__list li::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+
+  /* Form */
+  .submit-form-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-16);
+  }
+  .submit-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .form-group label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    padding: var(--space-3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--parchment);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+  .form-group textarea {
+    resize: vertical;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  .form-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: var(--space-4) 0;
+  }
+
+  .form-submit {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: var(--space-3) var(--space-6);
+    background: var(--sienna);
+    color: var(--parchment);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    align-self: flex-start;
+  }
+  .form-submit:hover {
+    background: var(--red);
+  }
+
+  .form-result {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    min-height: 1.4em;
+  }
+  .form-result--success {
+    color: #2a7d2a;
+  }
+  .form-result--error {
+    color: var(--sienna);
+  }
+
+  @media (max-width: 768px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

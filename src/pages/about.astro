@@ -14,12 +14,398 @@ const aboutPageSchema = {
   },
 };
 ---
+
 <BaseLayout
-  title="About"
+  title="About — MakArtz Films"
   description="MakArtz Films is an independent film agency based in Winter Springs, FL. Learn about our mission to develop and champion uncompromising independent cinema."
   schema={aboutPageSchema}
 >
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:var(--space-16);">
-    <p style="color:var(--muted);font-family:var(--font-sans);">— About page coming soon —</p>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero__bg" aria-hidden="true">
+      <img
+        src="https://picsum.photos/seed/cinematic-about/1920/800"
+        alt=""
+        width="1920"
+        height="800"
+        loading="eager"
+        fetchpriority="high"
+        class="page-hero__img"
+      />
+    </div>
+    <div class="page-hero__overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-hero__content reveal">
+        <p class="eyebrow">Our Story</p>
+        <h1 class="display">Built for Films<br />That <em>Matter</em></h1>
+      </div>
+    </div>
   </section>
+
+  <!-- ORIGIN STORY -->
+  <section class="origin-section section-container">
+    <div class="container origin-grid">
+      <div class="origin-quote reveal">
+        <div class="origin-rule" aria-hidden="true"></div>
+        <blockquote class="origin-blockquote">
+          <p class="display origin-blockquote__text">
+            "We exist for the films that couldn't exist without us."
+          </p>
+          <cite class="eyebrow origin-blockquote__cite">
+            — Jacob Schwartz, Founder
+          </cite>
+        </blockquote>
+      </div>
+      <div class="origin-body reveal">
+        <p class="body-large">
+          MakArtz Films was founded in 2014 in Winter Springs, Florida by Jacob Schwartz, a former independent distribution executive who saw an ever-widening gap between the films he believed in and the infrastructure available to bring them into the world.
+        </p>
+        <p class="body">
+          The industry had plenty of acquisitions companies and sales agents willing to pick up finished work. What it lacked were partners who would commit to a film before the first frame was shot — who would develop the script, structure the financing, manage the production, and stay with the project through its entire festival and distribution life.
+        </p>
+        <p class="body">
+          MakArtz was built to fill that gap. We don't acquire films. We build them. Every project in our catalog was developed from the inside, in close collaboration with the filmmaker, with the singular goal of protecting the director's vision while giving the film the best possible path to its audience.
+        </p>
+        <p class="body">
+          Over the past decade, that philosophy has carried us through documentary and narrative, debut features and established voices, American stories and international co-productions. What our films share is a refusal to be anything other than exactly what they are.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy-section section-container" style="background: var(--ink2);">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="eyebrow">How We Work</p>
+        <h2 class="heading-1" style="color: var(--text-primary);">Our Approach</h2>
+      </div>
+      <div class="philosophy-grid">
+        <div class="philosophy-card reveal">
+          <h3 class="heading-3 philosophy-card__heading">Development Philosophy</h3>
+          <p class="body philosophy-card__text">
+            We partner with filmmakers at the earliest stages — often before a first draft exists — to shape story, structure, and creative direction. Our development process is collaborative, unhurried, and focused on finding the version of the film that is most honestly itself.
+          </p>
+        </div>
+        <div class="philosophy-card reveal">
+          <h3 class="heading-3 philosophy-card__heading">Production Approach</h3>
+          <p class="body philosophy-card__text">
+            Every production is built around the creative needs of the project, not the other way around. We structure budgets, schedules, and crews to serve the director's vision — keeping overhead lean and creative control exactly where it belongs.
+          </p>
+        </div>
+        <div class="philosophy-card reveal">
+          <h3 class="heading-3 philosophy-card__heading">Distribution Strategy</h3>
+          <p class="body philosophy-card__text">
+            We believe every film has an audience — the challenge is finding the right path to reach them. Our distribution strategy is bespoke for each project, combining festival positioning, sales partnerships, and direct audience engagement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip section-container" aria-label="MakArtz Films by the numbers">
+    <div class="container stats-grid">
+      <div class="stat reveal">
+        <span class="display stat__number">18</span>
+        <span class="eyebrow">Features Produced</span>
+      </div>
+      <div class="stat reveal">
+        <span class="display stat__number">47</span>
+        <span class="eyebrow">Festival Awards</span>
+      </div>
+      <div class="stat reveal">
+        <span class="display stat__number">23</span>
+        <span class="eyebrow">Countries</span>
+      </div>
+      <div class="stat reveal">
+        <span class="display stat__number">11</span>
+        <span class="eyebrow">Years</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE -->
+  <section class="pullquote-section section-container" style="background: var(--ink2);">
+    <div class="container">
+      <blockquote class="pullquote reveal">
+        <p class="display pullquote__text">
+          "The best films don't happen by accident. They happen because someone decided they were worth fighting for."
+        </p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- BEHIND THE SCENES -->
+  <section class="bts-section section-container" style="background: var(--parchment2);">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="eyebrow">In the Field</p>
+        <h2 class="heading-1" style="color: var(--text-dark);">Behind the Scenes</h2>
+      </div>
+      <div class="bts-grid">
+        <figure class="bts-card reveal">
+          <img
+            src="https://picsum.photos/seed/bts-set-1/800/600"
+            alt="On set during production"
+            width="800"
+            height="600"
+            loading="lazy"
+            class="bts-card__img"
+          />
+          <figcaption class="caption">On location — pre-production scouting</figcaption>
+        </figure>
+        <figure class="bts-card reveal">
+          <img
+            src="https://picsum.photos/seed/bts-set-2/800/600"
+            alt="Film crew at work on set"
+            width="800"
+            height="600"
+            loading="lazy"
+            class="bts-card__img"
+          />
+          <figcaption class="caption">Crew at work during a night shoot</figcaption>
+        </figure>
+        <figure class="bts-card reveal">
+          <img
+            src="https://picsum.photos/seed/bts-set-3/800/600"
+            alt="Director reviewing footage"
+            width="800"
+            height="600"
+            loading="lazy"
+            class="bts-card__img"
+          />
+          <figcaption class="caption">Reviewing dailies in post-production</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section section-container">
+    <div class="container cta-inner">
+      <div class="reveal">
+        <div class="cta-rule" aria-hidden="true"></div>
+        <p class="eyebrow cta-eyebrow">What's Next</p>
+        <h2 class="heading-1 cta-heading">
+          Explore the work.<br />Or bring us yours.
+        </h2>
+        <div class="cta-buttons">
+          <a href="/films" class="btn btn--primary">View Our Films</a>
+          <a href="/submit" class="btn btn--ghost">Submit a Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+  .section-header { margin-bottom: var(--space-8); }
+  .section-header .eyebrow { margin-bottom: var(--space-1); }
+
+  /* ── Hero ── */
+  .page-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: var(--space-12);
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .page-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .page-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .page-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(255,255,255,0.92) 0%,
+      rgba(255,255,255,0.55) 40%,
+      rgba(255,255,255,0.65) 100%
+    );
+  }
+  .page-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+  .page-hero__content .display {
+    color: var(--ink);
+    margin: var(--space-2) 0;
+  }
+  .page-hero__content em {
+    font-style: italic;
+    color: var(--sienna);
+  }
+
+  /* ── Origin ── */
+  .origin-section {
+    background: var(--parchment2);
+  }
+  .origin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .origin-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+  .origin-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--sienna);
+    margin-bottom: var(--space-3);
+  }
+  .origin-blockquote__text {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--text-dark);
+  }
+  .origin-blockquote__cite {
+    margin-top: var(--space-3);
+    display: block;
+    color: var(--sienna);
+  }
+  .origin-body .body-large {
+    color: var(--text-dark-body);
+    margin-bottom: var(--space-3);
+  }
+  .origin-body .body {
+    color: var(--text-dark-body);
+    margin-bottom: var(--space-3);
+  }
+
+  /* ── Philosophy ── */
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+  @media (max-width: 900px) {
+    .philosophy-grid { grid-template-columns: 1fr; }
+  }
+  .philosophy-card {
+    padding: var(--space-6);
+    border: 1px solid var(--border-dark);
+    background: var(--ink);
+  }
+  .philosophy-card__heading {
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+  .philosophy-card__text {
+    color: var(--muted);
+  }
+
+  /* ── Stats ── */
+  .stats-strip {
+    background: var(--parchment2);
+    border-top: 2px solid var(--sienna);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    text-align: center;
+  }
+  @media (max-width: 700px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  .stat__number {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    letter-spacing: -0.02em;
+    color: var(--sienna);
+  }
+
+  /* ── Pull Quote ── */
+  .pullquote {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .pullquote__text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    color: var(--text-primary);
+  }
+
+  /* ── Behind the Scenes ── */
+  .bts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+  @media (max-width: 900px) {
+    .bts-grid { grid-template-columns: 1fr; }
+  }
+  .bts-card { margin: 0; }
+  .bts-card__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+  .bts-card .caption {
+    margin-top: var(--space-2);
+    color: var(--text-dark-body);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--ink2);
+  }
+  .cta-inner {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .cta-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--sienna);
+    margin: 0 auto var(--space-4);
+  }
+  .cta-eyebrow { margin-bottom: var(--space-2); }
+  .cta-heading {
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

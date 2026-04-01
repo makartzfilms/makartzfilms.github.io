@@ -1,11 +1,228 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('notes');
+const notes = allNotes
+  .filter(n => !n.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featuredNote = notes[0];
+const remainingNotes = notes.slice(1);
 ---
+
 <BaseLayout
   title="From the Cutting Room"
   description="Director's notes, editorial commentary, and first-hand perspectives from MakArtz Films — independent cinema from the inside."
 >
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:var(--space-16);">
-    <p style="color:var(--muted);font-family:var(--font-sans);">— From the Cutting Room coming soon —</p>
+  <!-- Hero -->
+  <section class="notes-hero">
+    <div class="notes-hero__inner">
+      <p class="eyebrow reveal">From the Cutting Room</p>
+      <h1 class="display reveal">Personal Reflections on the Work</h1>
+      <p class="body-large notes-hero__subline reveal">
+        Filmmaker spotlights, film essays, and process pieces — the stories behind the stories we tell.
+      </p>
+    </div>
   </section>
+
+  {notes.length === 0 ? (
+    <section class="empty-state">
+      <p class="body-large">Nothing here yet. Check back soon.</p>
+    </section>
+  ) : (
+    <>
+      {/* Featured Entry */}
+      {featuredNote && (
+        <section class="featured reveal">
+          <a href={`/notes/${featuredNote.slug}`} class="featured__link">
+            {featuredNote.data.featuredImage && (
+              <div class="featured__image">
+                <img
+                  src={featuredNote.data.featuredImage}
+                  alt={featuredNote.data.featuredImageAlt ?? featuredNote.data.title}
+                  width="1200"
+                  height="675"
+                  loading="eager"
+                />
+              </div>
+            )}
+            <div class="featured__body">
+              <span class="category-pill">{featuredNote.data.category}</span>
+              <h2 class="heading-1 featured__title">{featuredNote.data.title}</h2>
+              <p class="caption featured__meta">
+                {featuredNote.data.author} &middot;
+                <time datetime={featuredNote.data.pubDate.toISOString()}>
+                  {featuredNote.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+              </p>
+              <p class="body-large featured__excerpt">{featuredNote.data.description}</p>
+              <span class="btn btn--ghost">Read More</span>
+            </div>
+          </a>
+        </section>
+      )}
+
+      {/* Entry Grid */}
+      {remainingNotes.length > 0 && (
+        <section class="notes-grid">
+          {remainingNotes.map(note => (
+            <article class="note-card reveal">
+              <a href={`/notes/${note.slug}`} class="note-card__link">
+                {note.data.featuredImage && (
+                  <div class="note-card__image">
+                    <img
+                      src={note.data.featuredImage}
+                      alt={note.data.featuredImageAlt ?? note.data.title}
+                      width="600"
+                      height="338"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="note-card__body">
+                  <span class="category-pill">{note.data.category}</span>
+                  <h3 class="heading-3 note-card__title">{note.data.title}</h3>
+                  <p class="caption note-card__meta">
+                    {note.data.author} &middot;
+                    <time datetime={note.data.pubDate.toISOString()}>
+                      {note.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </time>
+                  </p>
+                  <p class="body note-card__desc">{note.data.description}</p>
+                </div>
+              </a>
+            </article>
+          ))}
+        </section>
+      )}
+    </>
+  )}
 </BaseLayout>
+
+<style>
+  .notes-hero {
+    background: #ffffff;
+    padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-8);
+    text-align: center;
+  }
+  .notes-hero__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .notes-hero .display {
+    color: var(--text-dark);
+  }
+  .notes-hero__subline {
+    color: var(--text-dark-muted);
+    margin-top: var(--space-3);
+  }
+
+  /* Category Pill */
+  .category-pill {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-2);
+    background: var(--sienna);
+    color: var(--parchment);
+    border-radius: 2px;
+    margin-bottom: var(--space-2);
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: var(--space-16) var(--space-6);
+    color: var(--text-muted);
+  }
+
+  /* Featured Entry */
+  .featured {
+    max-width: 1120px;
+    margin: 0 auto var(--space-10);
+    padding: 0 var(--space-6);
+  }
+  .featured__link {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+  }
+  .featured__image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .featured__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .featured__link:hover .featured__image img {
+    transform: scale(1.03);
+  }
+  .featured__title {
+    margin-bottom: var(--space-2);
+  }
+  .featured__meta {
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+  }
+  .featured__excerpt {
+    color: var(--text-body);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Entry Grid */
+  .notes-grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-16);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+  .note-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .note-card__image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    margin-bottom: var(--space-4);
+  }
+  .note-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .note-card__link:hover .note-card__image img {
+    transform: scale(1.03);
+  }
+  .note-card__title {
+    margin-bottom: var(--space-2);
+  }
+  .note-card__meta {
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+  .note-card__desc {
+    color: var(--text-body);
+  }
+
+  @media (max-width: 768px) {
+    .featured__link {
+      grid-template-columns: 1fr;
+    }
+    .notes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

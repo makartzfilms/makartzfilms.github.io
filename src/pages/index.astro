@@ -227,7 +227,7 @@ const featuredTeam = allTeam
   </section>
 
   <!-- SECTION 7: PRESS QUOTES -->
-  <section class="press-section section-container" style="background: var(--ink2); border-top: 2px solid var(--border-dark);">
+  <section class="press-section section-container" style="background: #ffffff; border-top: 2px solid var(--border-light);">
     <div class="container">
       <div class="section-header reveal">
         <p class="eyebrow">Press &amp; Recognition</p>
@@ -624,8 +624,8 @@ const featuredTeam = allTeam
 
 .press-card {
   padding: var(--space-4);
-  background: var(--ink);
-  border: 1px solid var(--border-dark);
+  background: #ffffff;
+  border: 1px solid var(--border-light);
   position: relative;
   transition: border-color var(--duration-base) var(--ease-cinematic),
               box-shadow var(--duration-base) var(--ease-cinematic);
@@ -633,14 +633,14 @@ const featuredTeam = allTeam
 
 .press-card:hover {
   border-color: var(--sienna);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .press-card__quote {
   font-family: var(--font-serif);
   font-size: 1.05rem;
   font-style: italic;
-  color: var(--text-primary);
+  color: var(--text-dark);
   line-height: 1.65;
   margin-bottom: var(--space-3);
 }
@@ -709,7 +709,8 @@ const featuredTeam = allTeam
 }
 
 /* Section header heading color overrides */
-.mission-section .section-header .heading-1 {
+.mission-section .section-header .heading-1,
+.press-section .section-header .heading-1 {
   color: var(--text-dark);
 }
 
