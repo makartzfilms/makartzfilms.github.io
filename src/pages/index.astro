@@ -1,9 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSlider from '../components/HeroSlider.astro';
 import { getCollection } from 'astro:content';
 import { organizationSchema } from '../lib/schema';
 
 const allFilms = await getCollection('films');
+const heroFilms = allFilms
+  .filter(f => f.data.heroImageLandscape)
+  .sort((a, b) => b.data.year - a.data.year);
 const featuredFilms = allFilms
   .filter(f => f.data.featured)
   .sort((a, b) => b.data.year - a.data.year)
@@ -22,42 +26,8 @@ const featuredTeam = allTeam
   schema={organizationSchema}
 >
 
-  <!-- SECTION 1: HERO -->
-  <section class="hero">
-    <div class="hero__bg" aria-hidden="true">
-      <picture>
-        <source media="(max-width: 768px)" srcset="/hero-bg-mobile.jpg" />
-        <img
-          src="/hero-bg.jpg"
-          alt=""
-          width="1920"
-          height="1080"
-          loading="eager"
-          fetchpriority="high"
-          class="hero__photo-bg"
-        />
-      </picture>
-    </div>
-    <div class="hero__overlay" aria-hidden="true"></div>
-    <div class="hero__content">
-      <p class="eyebrow">Winter Springs, FL · Est. 2014</p>
-      <h1 class="display hero__headline">
-        Cinema That <em>Refuses</em> Compromise.
-      </h1>
-      <p class="body-large hero__subline">
-        We develop, produce, and champion independent films<br />
-        that tell the stories no one else will.
-      </p>
-      <div class="hero__ctas">
-        <a href="/films" class="btn btn--primary">View Our Films</a>
-        <a href="/submit" class="btn btn--ghost-dark">Submit a Project</a>
-      </div>
-    </div>
-    <div class="hero__scroll" aria-hidden="true">
-      <span class="caption">Scroll</span>
-      <div class="hero__scroll-line"></div>
-    </div>
-  </section>
+  <!-- SECTION 1: HERO SLIDER -->
+  <HeroSlider films={heroFilms} />
 
   <!-- SECTION 2: MARQUEE -->
   <div class="marquee-wrap" aria-hidden="true">
@@ -293,52 +263,6 @@ const featuredTeam = allTeam
 
 .team-section { background: var(--ink2); }
 .team-section .section-header .heading-1 { color: var(--text-primary); }
-
-/* ─────────────────────────────────────────
-   SECTION 1: HERO
-───────────────────────────────────────── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  background: #ffffff;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: var(--space-16);
-  overflow: hidden;
-}
-.hero__bg { position: absolute; inset: 0; z-index: 0; }
-.hero__photo-bg { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
-.hero__overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.55) 40%, rgba(255,255,255,0.65) 100%);
-}
-.hero__content { position: relative; z-index: 3; padding: 0 var(--space-8); padding-bottom: var(--space-4); max-width: 1000px; }
-.hero__headline { margin: var(--space-2) 0; color: var(--ink); }
-.hero__headline em { font-style: italic; color: var(--sienna); }
-.hero__subline { margin-bottom: var(--space-4); max-width: 52ch; color: var(--ink); }
-.hero__ctas { display: flex; gap: var(--space-2); flex-wrap: wrap; }
-.hero__scroll { position: absolute; bottom: var(--space-4); right: var(--space-6); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: var(--space-1); opacity: 0.5; }
-.hero__scroll-line { width: 1px; height: 48px; background: var(--text-muted); animation: scrollPulse 2s var(--ease-cinematic) infinite; }
-@keyframes scrollPulse {
-  0%   { transform: scaleY(0); transform-origin: top; }
-  50%  { transform: scaleY(1); transform-origin: top; }
-  51%  { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-/* Hero mobile */
-@media (max-width: 900px) {
-  .hero__content { padding: 0 var(--space-4); }
-}
-@media (max-width: 600px) {
-  .hero { min-height: 100svh; padding-bottom: var(--space-8); align-items: flex-end; }
-  .hero__content { padding: 0 var(--space-3); padding-bottom: var(--space-4); max-width: 100%; }
-  .hero__headline { line-height: 1.06; }
-  .hero .eyebrow { font-size: 0.7rem; margin-bottom: var(--space-2); }
-  .hero__ctas { flex-direction: column; gap: var(--space-2); width: 100%; }
-  .hero__ctas .btn { width: 100%; justify-content: center; }
-  .hero__scroll { display: none; }
-}
 
 /* ─────────────────────────────────────────
    SECTION 2: MARQUEE

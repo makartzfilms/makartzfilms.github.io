@@ -1,0 +1,492 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  films: CollectionEntry<'films'>[];
+}
+
+const { films } = Astro.props;
+
+const slides = films.map((film, i) => ({
+  slug: film.slug,
+  title: film.data.title,
+  director: film.data.director,
+  year: film.data.year,
+  genre: film.data.genre,
+  eyebrow: film.data.eyebrow ?? film.data.genre[0] ?? '',
+  heroLandscape: film.data.heroImageLandscape ?? film.data.heroImage ?? film.data.posterImage,
+  heroPortrait: film.data.heroImagePortrait ?? film.data.heroImage ?? film.data.posterImage,
+}));
+---
+
+<section class="hs" aria-label="Featured films" data-slides={JSON.stringify(slides)}>
+  <!-- Background slides -->
+  <div class="hs__bg" aria-hidden="true">
+    {slides.map((slide, i) => (
+      <div class={`hs__slide ${i === 0 ? 'hs__slide--active' : ''}`} data-index={i}>
+        <picture>
+          <source media="(max-width: 768px)" srcset={slide.heroPortrait} />
+          <img
+            src={slide.heroLandscape}
+            alt=""
+            width="1920"
+            height="1080"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : undefined}
+            class="hs__slide-img"
+          />
+        </picture>
+      </div>
+    ))}
+  </div>
+
+  <!-- Vignette overlay -->
+  <div class="hs__vignette" aria-hidden="true"></div>
+
+  <!-- Text content -->
+  <div class="hs__content" aria-live="polite">
+    <div class="hs__text">
+      <p class="hs__eyebrow eyebrow"></p>
+      <h2 class="hs__title display"></h2>
+      <p class="hs__meta caption"></p>
+    </div>
+  </div>
+
+  <!-- Film strip tabs -->
+  <nav class="hs__strip" aria-label="Film selection">
+    {slides.map((slide, i) => (
+      <button
+        class={`hs__strip-item ${i === 0 ? 'hs__strip-item--active' : ''}`}
+        data-index={i}
+        aria-current={i === 0 ? 'true' : undefined}
+        aria-label={`${slide.title}, ${slide.year}`}
+      >
+        <span class="hs__strip-num">{String(i + 1).padStart(2, '0')}</span>
+        <span class="hs__strip-title">{slide.title}</span>
+      </button>
+    ))}
+  </nav>
+
+  <!-- Bottom bar: counter + progress + dots -->
+  <div class="hs__bottom">
+    <span class="hs__counter caption"></span>
+    <div class="hs__progress">
+      <div class="hs__progress-bar"></div>
+    </div>
+    <div class="hs__dots" aria-hidden="true">
+      {slides.map((_, i) => (
+        <button class={`hs__dot ${i === 0 ? 'hs__dot--active' : ''}`} data-index={i}></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+/* ─── Container ─── */
+.hs {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  background: var(--ink);
+  user-select: none;
+}
+
+/* ─── Background slides ─── */
+.hs__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hs__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s var(--ease-cinematic);
+  will-change: opacity;
+}
+.hs__slide--active { opacity: 1; }
+.hs__slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ─── Vignette ─── */
+.hs__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top,
+      rgba(17,17,17,0.88) 0%,
+      rgba(17,17,17,0.35) 40%,
+      rgba(17,17,17,0.25) 100%
+    );
+  pointer-events: none;
+}
+
+/* ─── Text content ─── */
+.hs__content {
+  position: absolute;
+  bottom: var(--space-16);
+  left: var(--space-6);
+  z-index: 3;
+  max-width: 600px;
+}
+.hs__text {
+  transition: opacity 320ms var(--ease-cinematic),
+              transform 320ms var(--ease-cinematic);
+}
+.hs__text.is-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.hs__eyebrow {
+  color: var(--sienna);
+  margin-bottom: var(--space-1);
+}
+.hs__title {
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+.hs__meta {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Film strip ─── */
+.hs__strip {
+  position: absolute;
+  right: var(--space-6);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+}
+.hs__strip-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 400ms var(--ease-cinematic);
+}
+.hs__strip-item:last-child { border-bottom: none; }
+
+.hs__strip-num {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.38);
+  min-width: 1.5rem;
+  transition: color 400ms var(--ease-cinematic);
+}
+.hs__strip-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 500;
+  color: rgba(255,255,255,0.38);
+  white-space: nowrap;
+  transition: color 400ms var(--ease-cinematic);
+}
+
+.hs__strip-item:hover .hs__strip-title { color: rgba(255,255,255,0.65); }
+.hs__strip-item:hover .hs__strip-num { color: rgba(255,255,255,0.65); }
+
+.hs__strip-item--active {
+  transform: translateX(8px);
+}
+.hs__strip-item--active .hs__strip-num { color: var(--sienna); }
+.hs__strip-item--active .hs__strip-title { color: #ffffff; }
+
+/* ─── Bottom bar ─── */
+.hs__bottom {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-6);
+  right: var(--space-6);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.hs__counter {
+  color: rgba(255,255,255,0.65);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 3.5rem;
+}
+.hs__progress {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+.hs__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--sienna);
+  transition: width 5s linear;
+}
+.hs__progress-bar.is-reset {
+  transition: none;
+}
+
+.hs__dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.hs__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 300ms var(--ease-cinematic),
+              width 300ms var(--ease-cinematic),
+              border-radius 300ms var(--ease-cinematic);
+}
+.hs__dot--active {
+  background: var(--sienna);
+  width: 18px;
+  border-radius: 3px;
+}
+
+/* ─── Responsive: tablet ─── */
+@media (max-width: 1023px) {
+  .hs__strip {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: var(--space-16);
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+  .hs__strip-item {
+    padding: var(--space-1) var(--space-2);
+    border-bottom: none;
+  }
+  .hs__strip-item--active { transform: translateX(0); }
+  .hs__strip-num { display: none; }
+  .hs__strip-title { font-size: 0.9rem; }
+
+  .hs__content {
+    bottom: calc(var(--space-16) + var(--space-12));
+    left: var(--space-4);
+    right: var(--space-4);
+    max-width: none;
+  }
+  .hs__bottom {
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: var(--space-3);
+  }
+}
+
+/* ─── Responsive: mobile ─── */
+@media (max-width: 767px) {
+  .hs__strip { display: none; }
+  .hs__content {
+    bottom: var(--space-12);
+    left: var(--space-3);
+    right: var(--space-3);
+    text-align: center;
+  }
+  .hs__eyebrow { justify-content: center; }
+  .hs__title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+
+  .hs__bottom {
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-3);
+  }
+
+  .hs__vignette {
+    background:
+      linear-gradient(to top,
+        rgba(17,17,17,0.9) 0%,
+        rgba(17,17,17,0.2) 50%,
+        rgba(17,17,17,0.4) 100%
+      );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs__slide { transition: opacity 0.01ms; }
+  .hs__text { transition: none; }
+  .hs__progress-bar { transition: none; }
+}
+</style>
+
+<script>
+(function () {
+  const section = document.querySelector<HTMLElement>('.hs');
+  if (!section) return;
+
+  const slides: { slug: string; title: string; director: string; year: number; genre: string[]; eyebrow: string; heroLandscape: string; heroPortrait: string }[] =
+    JSON.parse(section.dataset.slides || '[]');
+  if (slides.length === 0) return;
+
+  const bgSlides = [...section.querySelectorAll<HTMLElement>('.hs__slide')];
+  const textBlock = section.querySelector<HTMLElement>('.hs__text')!;
+  const eyebrowEl = section.querySelector<HTMLElement>('.hs__eyebrow')!;
+  const titleEl = section.querySelector<HTMLElement>('.hs__title')!;
+  const metaEl = section.querySelector<HTMLElement>('.hs__meta')!;
+  const progressBar = section.querySelector<HTMLElement>('.hs__progress-bar')!;
+  const counterEl = section.querySelector<HTMLElement>('.hs__counter')!;
+  const stripItems = [...section.querySelectorAll<HTMLButtonElement>('.hs__strip-item')];
+  const dots = [...section.querySelectorAll<HTMLButtonElement>('.hs__dot')];
+
+  let currentIndex = 0;
+  let autoTimer: ReturnType<typeof setTimeout> | null = null;
+  let textTimer: ReturnType<typeof setTimeout> | null = null;
+  const INTERVAL = 5000;
+  const TEXT_FADE = 320;
+
+  function updateText(film: typeof slides[0]) {
+    eyebrowEl.textContent = film.eyebrow;
+    titleEl.textContent = film.title;
+    metaEl.textContent = `${film.director} \u00b7 ${film.year} \u00b7 ${film.genre.join(', ')}`;
+  }
+
+  function updateCounter(index: number) {
+    counterEl.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+  }
+
+  function updateStrip(index: number) {
+    stripItems.forEach((item, i) => {
+      const active = i === index;
+      item.classList.toggle('hs__strip-item--active', active);
+      item.setAttribute('aria-current', active ? 'true' : 'false');
+    });
+  }
+
+  function updateDots(index: number) {
+    dots.forEach((dot, i) => dot.classList.toggle('hs__dot--active', i === index));
+  }
+
+  function startProgress() {
+    progressBar.classList.add('is-reset');
+    progressBar.style.width = '0%';
+    void progressBar.offsetWidth; // force reflow
+    progressBar.classList.remove('is-reset');
+    progressBar.style.width = '100%';
+  }
+
+  function goTo(n: number, animate = true) {
+    if (textTimer) { clearTimeout(textTimer); textTimer = null; }
+
+    const index = ((n % slides.length) + slides.length) % slides.length;
+    const film = slides[index];
+
+    // Crossfade background
+    bgSlides.forEach((slide, i) => slide.classList.toggle('hs__slide--active', i === index));
+
+    // Update strip, dots, counter simultaneously
+    updateStrip(index);
+    updateDots(index);
+    updateCounter(index);
+
+    // Animate text
+    if (animate && index !== currentIndex) {
+      textBlock.classList.add('is-out');
+      textTimer = setTimeout(() => {
+        updateText(film);
+        textBlock.classList.remove('is-out');
+        textTimer = null;
+      }, TEXT_FADE);
+    } else {
+      textBlock.classList.remove('is-out');
+      updateText(film);
+    }
+
+    currentIndex = index;
+  }
+
+  function resetAuto() {
+    if (autoTimer) clearTimeout(autoTimer);
+    startProgress();
+    autoTimer = setTimeout(() => {
+      goTo(currentIndex + 1);
+      resetAuto();
+    }, INTERVAL);
+  }
+
+  // Initialize
+  goTo(0, false);
+  resetAuto();
+
+  // Strip tab clicks
+  stripItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      goTo(i);
+      resetAuto();
+    });
+  });
+
+  // Dot clicks
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      goTo(i);
+      resetAuto();
+    });
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  let touchStartY = 0;
+  section.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  section.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      goTo(dx < 0 ? currentIndex + 1 : currentIndex - 1);
+      resetAuto();
+    }
+  }, { passive: true });
+
+  // Keyboard
+  section.setAttribute('tabindex', '0');
+  section.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      goTo(currentIndex + 1);
+      resetAuto();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goTo(currentIndex - 1);
+      resetAuto();
+    }
+  });
+
+  // Pause when not visible
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) {
+      if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+    } else {
+      resetAuto();
+    }
+  }, { threshold: 0.1 });
+  observer.observe(section);
+})();
+</script>
