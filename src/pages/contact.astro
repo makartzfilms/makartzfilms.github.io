@@ -202,13 +202,16 @@ const contactPageSchema = {
     border: 1px solid var(--border);
     border-radius: 2px;
     background: var(--parchment);
-    color: var(--text-primary);
+    color: var(--ink);
     transition: border-color 0.2s ease;
   }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-dark-muted);
+  }
+  .form-group input:focus-visible,
+  .form-group select:focus-visible,
+  .form-group textarea:focus-visible {
     border-color: var(--ink);
   }
   .form-group textarea {
