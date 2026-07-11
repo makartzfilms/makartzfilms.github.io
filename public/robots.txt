@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /privacy
-Sitemap: https://3jpictures.com/sitemap-index.xml
+Sitemap: https://makartzfilms.com/sitemap-index.xml

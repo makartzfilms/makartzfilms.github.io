@@ -1,4 +1,4 @@
-const SITE_URL = 'https://3jpictures.com';
+const SITE_URL = 'https://makartzfilms.com';
 const ORG_NAME = '3J Pictures';
 
 export const organizationSchema = {
@@ -19,14 +19,14 @@ export const organizationSchema = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'hello@3jpictures.com',
+    email: 'hello@makartzfilms.com',
     contactType: 'customer service',
   },
   sameAs: [
-    'https://www.instagram.com/3jpictures',
-    'https://vimeo.com/3jpictures',
-    'https://www.imdb.com/company/3jpictures',
-    'https://www.linkedin.com/company/3jpictures',
+    'https://www.instagram.com/makartzfilms',
+    'https://vimeo.com/makartzfilms',
+    'https://www.imdb.com/company/makartzfilms',
+    'https://www.linkedin.com/company/makartzfilms',
   ],
 };
 

@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://3jpictures.com',
+  site: 'https://makartzfilms.com',
   integrations: [sitemap()],
   output: 'static',
 });
