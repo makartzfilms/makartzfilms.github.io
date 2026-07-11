@@ -54,8 +54,9 @@ const contactPageSchema = {
     <div class="contact-form-wrap reveal">
       <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
         <input type="hidden" name="access_key" value="b8df6517-ae4f-4ec4-8452-bd7a8bc28960" />
-        <input type="hidden" name="subject" value="New contact from makartzfilms.com" />
-        <input type="hidden" name="from_name" value="makartzfilms.com" />
+        <input type="hidden" name="subject" value="New contact from 3jpictures.com" />
+        <input type="hidden" name="from_name" value="3jpictures.com" />
+        <input type="hidden" name="replyto" value="" />
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" />
 
         <div class="form-group">
@@ -108,6 +109,11 @@ const contactPageSchema = {
       result.className = 'form-result';
 
       try {
+        // Route email replies to the person who submitted the form
+        const emailField = form.querySelector('[name="email"]');
+        const replytoField = form.querySelector('[name="replyto"]');
+        if (emailField && replytoField) replytoField.value = emailField.value;
+
         const response = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),

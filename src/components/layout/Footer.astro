@@ -8,7 +8,7 @@ const currentYear = new Date().getFullYear();
       <!-- Col 1: Brand -->
       <div class="footer-brand">
         <a href="/" class="footer-wordmark" aria-label="3J Pictures, Home">
-          <img src="/favicon.png" alt="" class="footer-logo-img" width="40" height="40" />
+          <img src="/logo-mark.png" alt="" class="footer-logo-img" width="28" height="40" />
           <span class="footer-wordmark-text">3J&nbsp;<span class="footer-wordmark-accent">Pictures</span></span>
         </a>
         <p class="footer-tagline">Stories That Stay With You.</p>
@@ -103,11 +103,9 @@ const currentYear = new Date().getFullYear();
   margin-bottom: var(--space-2);
 }
 .footer-logo-img {
-  width: 40px;
   height: 40px;
-  border-radius: 9px;
-  object-fit: cover;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+  width: auto;
+  object-fit: contain;
 }
 .footer-wordmark-text {
   font-family: var(--font-sans);

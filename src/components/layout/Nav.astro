@@ -14,7 +14,7 @@ const isActive = (path: string) =>
       href="/"
       class="nav-logo"
       aria-label="3J Pictures, Home"
-    ><img src="/favicon.png" alt="" class="nav-logo-img" width="42" height="42" /><span class="nav-wordmark">3J&nbsp;<span class="nav-wordmark-accent">Pictures</span></span></a>
+    ><img src="/logo-mark.png" alt="" class="nav-logo-img" width="28" height="40" /><span class="nav-wordmark">3J&nbsp;<span class="nav-wordmark-accent">Pictures</span></span></a>
 
     <button
       class="nav-hamburger"
@@ -118,18 +118,16 @@ header {
   gap: 0.6rem;
 }
 .nav-logo-img {
-  height: 42px;
-  width: 42px;
-  border-radius: 9px;
+  height: 40px;
+  width: auto;
   display: block;
-  object-fit: cover;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-  transition: transform var(--duration-fast) var(--ease-cinematic),
-    box-shadow var(--duration-fast) var(--ease-cinematic);
+  object-fit: contain;
+  /* Gives the near-white "3" definition on light-page backgrounds */
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.45));
+  transition: transform var(--duration-fast) var(--ease-cinematic);
 }
 .nav-logo:hover .nav-logo-img {
   transform: scale(1.05);
-  box-shadow: 0 0 0 1px var(--sienna);
 }
 /* Wordmark lockup: "3J" tracks the nav text colour, "Pictures" is always red */
 .nav-wordmark {
