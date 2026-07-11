@@ -59,7 +59,7 @@
   padding-left: var(--space-3);
 }
 
-/* Accessibility: honor reduced-motion — show all content immediately, no animation */
+/* Accessibility: honor reduced-motion, show all content immediately, no animation */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-grid > * {

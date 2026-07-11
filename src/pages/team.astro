@@ -8,15 +8,15 @@ const team = allTeam.sort((a, b) => a.data.order - b.data.order);
 const teamPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Team — 3J Pictures',
+  name: 'Team · 3J Pictures',
   url: 'https://makartzfilms.com/team',
-  description: 'Meet the people behind 3J Pictures — our team of film industry professionals based in Central Florida.',
+  description: 'Meet the people behind 3J Pictures, our team of film industry professionals based in Central Florida.',
 };
 ---
 
 <BaseLayout
-  title="Team — 3J Pictures"
-  description="Meet the team behind 3J Pictures — the founders and filmmakers building original, emotionally driven stories from Central Florida."
+  title="Team"
+  description="Meet the team behind 3J Pictures, the founders and filmmakers building original, emotionally driven stories from Central Florida."
   schema={teamPageSchema}
 >
 
@@ -27,7 +27,7 @@ const teamPageSchema = {
         <p class="eyebrow">The People</p>
         <h1 class="display">Who We Are</h1>
         <p class="body-large page-hero__sub">
-          Great films are made by people who care — about the story, the craft, and the audience. Here's who we are.
+          Great films are made by people who care, about the story, the craft, and the audience. Here's who we are.
         </p>
       </div>
     </div>
@@ -43,7 +43,7 @@ const teamPageSchema = {
               <div class="team-card__photo">
                 <img
                   src={member.data.headshotImage}
-                  alt={member.data.headshotAlt ?? `${member.data.name} — ${member.data.title}`}
+                  alt={member.data.headshotAlt ?? `${member.data.name}, ${member.data.title}`}
                   width="400"
                   height="400"
                   loading="lazy"

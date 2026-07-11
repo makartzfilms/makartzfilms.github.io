@@ -4,13 +4,11 @@ import { getCollection } from 'astro:content';
 
 const allFilms = await getCollection('films');
 const films = allFilms.sort((a, b) => b.data.year - a.data.year);
-
-const allGenres = [...new Set(films.flatMap(f => f.data.genre))].sort();
 ---
 
 <BaseLayout
-  title="Our Films — 3J Pictures"
-  description="Explore the 3J Pictures slate — original stories we develop and produce across mystery, suspense, horror, science fiction, and drama."
+  title="Our Films"
+  description="Explore the 3J Pictures slate, original stories we develop and produce across mystery, suspense, horror, science fiction, and drama."
 >
 
   <!-- HERO -->
@@ -20,7 +18,7 @@ const allGenres = [...new Set(films.flatMap(f => f.data.genre))].sort();
         <p class="eyebrow">The Slate</p>
         <h1 class="display">Our Films</h1>
         <p class="body-large page-hero__sub">
-          Every film in our catalog was developed from the ground up — built with the filmmaker, for the audience it deserves.
+          Every film in our catalog was developed from the ground up, built with the filmmaker, for the audience it deserves.
         </p>
       </div>
     </div>
@@ -30,23 +28,15 @@ const allGenres = [...new Set(films.flatMap(f => f.data.genre))].sort();
   <section class="catalog-section section-container">
     <div class="container">
 
-      <!-- Genre filters -->
-      <div class="filters reveal" id="genre-filters">
-        <button class="filter-pill active" data-filter="all">All</button>
-        {allGenres.map(genre => (
-          <button class="filter-pill" data-filter={genre}>{genre}</button>
-        ))}
-      </div>
-
       <!-- Film grid -->
       <div class="catalog-grid" id="catalog-grid">
         {films.map(film => (
-          <article class="film-card reveal" data-genre={JSON.stringify(film.data.genre)}>
+          <article class="film-card reveal">
             <a href={`/films/${film.slug}`} class="film-card__link">
               <div class="film-card__poster">
                 <img
                   src={film.data.posterImage}
-                  alt={`${film.data.title} — directed by ${film.data.director}`}
+                  alt={`${film.data.title}, directed by ${film.data.director}`}
                   width="600"
                   height="900"
                   loading="lazy"
@@ -61,51 +51,16 @@ const allGenres = [...new Set(films.flatMap(f => f.data.genre))].sort();
               <div class="film-card__info">
                 <span class="caption">{film.data.year} · {film.data.director}</span>
                 <h3 class="heading-3 film-card__title">{film.data.title}</h3>
-                <p class="caption film-card__logline">{film.data.logline}</p>
               </div>
             </a>
           </article>
         ))}
       </div>
 
-      <!-- No results -->
-      <div class="no-results" id="no-results" style="display:none;">
-        <p class="body-large">No films match this genre. Try another filter.</p>
-      </div>
-
     </div>
   </section>
 
 </BaseLayout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const filters = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
-    const cards = document.querySelectorAll<HTMLElement>('.film-card');
-    const noResults = document.getElementById('no-results');
-
-    filters.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filters.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const genre = btn.dataset.filter;
-        let visible = 0;
-
-        cards.forEach(card => {
-          const genres: string[] = JSON.parse(card.dataset.genre || '[]');
-          const show = genre === 'all' || genres.includes(genre!);
-          card.style.display = show ? '' : 'none';
-          if (show) visible++;
-        });
-
-        if (noResults) {
-          noResults.style.display = visible === 0 ? 'block' : 'none';
-        }
-      });
-    });
-  });
-</script>
 
 <style>
   /* ── Page Hero ── */
@@ -136,49 +91,16 @@ const allGenres = [...new Set(films.flatMap(f => f.data.genre))].sort();
     padding-bottom: var(--space-16);
   }
 
-  /* ── Filters ── */
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-bottom: var(--space-8);
-  }
-
-  .filter-pill {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 0 1.25rem;
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--border-dark);
-    cursor: pointer;
-    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-  }
-
-  .filter-pill:hover {
-    color: var(--text-primary);
-    border-color: rgba(255,255,255,0.25);
-  }
-
-  .filter-pill.active {
-    background: var(--sienna);
-    color: #ffffff;
-    border-color: var(--sienna);
-  }
-
   /* ── Grid ── */
   .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-4);
   }
 
+  @media (max-width: 1100px) {
+    .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 900px) {
     .catalog-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -268,9 +190,4 @@ const allGenres = [...new Set(films.flatMap(f => f.data.genre))].sort();
   }
 
   /* ── No Results ── */
-  .no-results {
-    text-align: center;
-    padding: var(--space-12) 0;
-    color: var(--muted);
-  }
 </style>

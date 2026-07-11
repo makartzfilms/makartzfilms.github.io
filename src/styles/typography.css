@@ -52,7 +52,7 @@
   color: var(--text-muted);
 }
 
-/* Light section overrides — apply .section--light to parchment-background sections */
+/* Light section overrides, apply .section--light to parchment-background sections */
 .section--light .body-large  { color: var(--text-dark-body); }
 .section--light .body        { color: var(--text-dark-body); }
 .section--light .caption     { color: var(--text-dark-muted); }

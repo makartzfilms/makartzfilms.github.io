@@ -29,7 +29,7 @@
   --border-dark:  rgba(255,255,255,0.1);
   --border-light: rgba(17,17,17,0.12);
 
-  /* ─── Legacy aliases — keep so no existing code breaks ─── */
+  /* ─── Legacy aliases, keep so no existing code breaks ─── */
   --black:       #111111;
   --black2:      #1A1A1A;
   --black3:      #222222;
@@ -102,7 +102,7 @@ img {
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: var(--sienna); }
 
-/* Skip to content — accessibility + SEO */
+/* Skip to content, accessibility + SEO */
 .skip-link {
   position: absolute;
   top: auto;
@@ -173,7 +173,7 @@ img {
   appearance: none;
 }
 
-/* Primary — filled sienna. Works on any background. Hover darkens fill. */
+/* Primary, filled sienna. Works on any background. Hover darkens fill. */
 .btn--primary {
   background-color: var(--sienna);
   color: var(--parchment);
@@ -186,7 +186,7 @@ img {
   color: var(--parchment);
 }
 
-/* Ghost light — for use on DARK section backgrounds */
+/* Ghost light, for use on DARK section backgrounds */
 .btn--ghost {
   background-color: transparent;
   color: #ffffff;
@@ -199,7 +199,7 @@ img {
   color: #ffffff;
 }
 
-/* Ghost dark — for use on LIGHT (white) section backgrounds */
+/* Ghost dark, for use on LIGHT (white) section backgrounds */
 .btn--ghost-dark {
   background-color: transparent;
   color: var(--ink);
@@ -212,7 +212,7 @@ img {
   color: var(--ink);
 }
 
-/* CTA white — for use on red (sienna) section backgrounds */
+/* CTA white, for use on red (sienna) section backgrounds */
 .btn--cta-white {
   background-color: #ffffff;
   color: var(--sienna);
@@ -225,7 +225,7 @@ img {
   color: var(--sienna);
 }
 
-/* CTA outline — for use on red (sienna) section backgrounds */
+/* CTA outline, for use on red (sienna) section backgrounds */
 .btn--cta-outline {
   background-color: transparent;
   color: #ffffff;
@@ -258,7 +258,7 @@ img {
     padding: 40px 0;
   }
 
-  /* Section CTAs — full width, centered, consistent size across all pages */
+  /* Section CTAs, full width, centered, consistent size across all pages */
   .section-cta {
     display: flex;
     justify-content: center;

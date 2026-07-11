@@ -7,7 +7,10 @@ const currentYear = new Date().getFullYear();
     <div class="footer-grid">
       <!-- Col 1: Brand -->
       <div class="footer-brand">
-        <a href="/" class="footer-wordmark">3J Pictures</a>
+        <a href="/" class="footer-wordmark" aria-label="3J Pictures, Home">
+          <img src="/favicon.png" alt="" class="footer-logo-img" width="40" height="40" />
+          <span class="footer-wordmark-text">3J&nbsp;<span class="footer-wordmark-accent">Pictures</span></span>
+        </a>
         <p class="footer-tagline">Stories That Stay With You.</p>
         <p class="footer-desc">An independent film studio based in Central Florida.</p>
       </div>
@@ -33,14 +36,6 @@ const currentYear = new Date().getFullYear();
         </ul>
       </nav>
 
-      <!-- Col 4: Read -->
-      <nav class="footer-col" aria-label="Reading">
-        <p class="footer-col-heading">Read</p>
-        <ul role="list">
-          <li><a href="/journal">Journal</a></li>
-          <li><a href="/notes">From the Cutting Room</a></li>
-        </ul>
-      </nav>
     </div>
 
     <div class="footer-bottom">
@@ -50,7 +45,7 @@ const currentYear = new Date().getFullYear();
       <a href="/privacy" class="footer-privacy">Privacy Policy</a>
       <div class="footer-social">
         <a
-          href="https://instagram.com/makartzfilms"
+          href="https://www.instagram.com/makartzfilms/"
           aria-label="Instagram"
           class="social-link"
           rel="noopener noreferrer"
@@ -63,39 +58,15 @@ const currentYear = new Date().getFullYear();
           </svg>
         </a>
         <a
-          href="https://vimeo.com/makartzfilms"
-          aria-label="Vimeo"
+          href="https://www.youtube.com/@MakArtzFilms"
+          aria-label="YouTube"
           class="social-link"
           rel="noopener noreferrer"
           target="_blank"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M21 7.5c-.2 4-2.9 9.5-8.1 16.5C7.6 17.6 5 12.5 5 9c0-3.5 1.6-5 3.5-5 1.7 0 2.7 1 4 4.5.5-3.5 2-5.5 4.5-5.5 2 0 4 2.5 4 4.5z"/>
-          </svg>
-        </a>
-        <a
-          href="https://www.imdb.com/company/makartzfilms"
-          aria-label="IMDb"
-          class="social-link"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <rect x="2" y="6" width="20" height="12" rx="2"/>
-            <text x="4.5" y="15" font-size="7" font-weight="800" fill="#050505" font-family="sans-serif">IMDb</text>
-          </svg>
-        </a>
-        <a
-          href="https://linkedin.com/company/makartzfilms"
-          aria-label="LinkedIn"
-          class="social-link"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
+            <rect x="2" y="5" width="20" height="14" rx="4"/>
+            <path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/>
           </svg>
         </a>
       </div>
@@ -125,13 +96,29 @@ const currentYear = new Date().getFullYear();
 }
 
 .footer-wordmark {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
-  display: block;
   margin-bottom: var(--space-2);
+}
+.footer-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.footer-wordmark-text {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+.footer-wordmark-accent {
+  color: var(--sienna);
 }
 
 .footer-tagline {

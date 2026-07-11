@@ -28,7 +28,7 @@ const featuredTeam = allTeam
 >
 
   <!-- SECTION 1: HERO SLIDER -->
-  <h1 class="sr-only">3J Pictures — Independent Film Studio</h1>
+  <h1 class="sr-only">3J Pictures, Independent Film Studio</h1>
   <HeroSlider films={heroFilms} />
 
   <!-- SECTION 2: MARQUEE -->
@@ -79,7 +79,7 @@ const featuredTeam = allTeam
               <div class="poster-container film-card__poster">
                 <img
                   src={film.data.posterImage}
-                  alt={`${film.data.title} — directed by ${film.data.director}`}
+                  alt={`${film.data.title}, directed by ${film.data.director}`}
                   width="600"
                   height="900"
                   loading="lazy"
@@ -94,7 +94,6 @@ const featuredTeam = allTeam
               <div class="film-card__info">
                 <span class="caption">{film.data.year} · {film.data.director}</span>
                 <h3 class="heading-3 film-card__title">{film.data.title}</h3>
-                <p class="caption film-card__logline">{film.data.logline}</p>
               </div>
             </a>
           </article>
@@ -121,13 +120,13 @@ const featuredTeam = allTeam
       </div>
       <div class="mission-body reveal">
         <p class="body-large mission-lead" style="color: var(--text-dark-body);">
-          3J Pictures exists to create unforgettable stories that invite audiences to feel, question, and wonder — not simply to watch.
+          3J Pictures exists to create unforgettable stories that invite audiences to feel, question, and wonder, not simply to watch.
         </p>
         <p class="body mission-copy" style="color: var(--text-dark-body);">
           As an independent studio, we develop original stories from the ground up: from the first spark of an idea through production and into the hands of audiences around the world. Every project balances artistic ambition with thoughtful execution.
         </p>
         <p class="body mission-copy" style="color: var(--text-dark-body);">
-          Whether mystery, suspense, horror, science fiction, or drama, our stories share one purpose — to reveal something deeply human, and to stay with audiences long after they leave the theater.
+          Whether mystery, suspense, horror, science fiction, or drama, our stories share one purpose, to reveal something deeply human, and to stay with audiences long after they leave the theater.
         </p>
         <a href="/about" class="btn btn--ghost-dark">About 3J Pictures</a>
       </div>
@@ -147,7 +146,7 @@ const featuredTeam = allTeam
             <div class="team-card__photo">
               <img
                 src={member.data.headshotImage}
-                alt={member.data.headshotAlt ?? `${member.data.name} — ${member.data.title}`}
+                alt={member.data.headshotAlt ?? `${member.data.name}, ${member.data.title}`}
                 width="400"
                 height="400"
                 loading="lazy"
@@ -182,7 +181,7 @@ const featuredTeam = allTeam
           Got a film that<br />needs a home?
         </h2>
         <p class="body-large cta-body">
-          We accept submissions year-round. If you have a project in development, production, or post — and you believe in what it is — we want to hear from you.
+          We accept submissions year-round. If you have a project in development, production, or post, and you believe in what it is, we want to hear from you.
         </p>
         <div class="cta-buttons">
           <a href="/submit" class="btn btn--cta-white">Submit a Project</a>
@@ -506,7 +505,7 @@ const featuredTeam = allTeam
   }
 }
 
-/* CHANGE 4 — Mission mobile */
+/* CHANGE 4, Mission mobile */
 @media (max-width: 900px) {
   .mission-grid {
     grid-template-columns: 1fr;
@@ -606,7 +605,7 @@ const featuredTeam = allTeam
   }
 }
 
-/* Carousel section inset — padding lives on the section, not the grid */
+/* Carousel section inset, padding lives on the section, not the grid */
 @media (max-width: 900px) {
   .films-section,
   .team-section,
@@ -622,7 +621,7 @@ const featuredTeam = allTeam
   }
 }
 
-/* Mission body CTA — full width centered on mobile */
+/* Mission body CTA, full width centered on mobile */
 @media (max-width: 600px) {
   .mission-body .btn {
     width: 100%;
@@ -670,30 +669,30 @@ const featuredTeam = allTeam
   }
 }
 
-/* CHANGE 12 — Film strip hide on mobile */
+/* CHANGE 12, Film strip hide on mobile */
 @media (max-width: 600px) {
 }
 
-/* Press pagination — dark section variant */
+/* Press pagination, dark section variant */
 @media (max-width: 900px) {
   .press-pagination {
     margin-top: 12px;
   }
 }
 
-/* CHANGE 12 — Film card title size */
+/* CHANGE 12, Film card title size */
 .film-card__title {
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
 }
 
-/* Stats eyebrow — white/muted on dark background */
+/* Stats eyebrow, white/muted on dark background */
 .stats-strip .eyebrow {
   color: var(--text-dark-muted);
   letter-spacing: 0.22em;
   font-size: 0.65rem;
 }
 
-/* Press pagination — now on light background */
+/* Press pagination, now on light background */
 .carousel-hint.press-pagination span {
   background: rgba(17,17,17,0.2);
 }
@@ -701,7 +700,7 @@ const featuredTeam = allTeam
   background: var(--sienna);
 }
 
-/* CHANGE 15 — Section header margin responsive */
+/* CHANGE 15, Section header margin responsive */
 @media (max-width: 900px) {
   .section-header { margin-bottom: var(--space-6); }
 }

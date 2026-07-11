@@ -107,83 +107,68 @@ const schema = movieSchema({
     <!-- DETAILS below the fold -->
     <div class="film-details">
       <div class="film-details__inner">
-        {tagline && <p class="film-tagline">{tagline}</p>}
-        <p class="body-large film-description">{logline ?? description}</p>
+        <div class="film-details__left">
+          {tagline && <p class="film-tagline">{tagline}</p>}
+          <p class="body-large film-description">{logline ?? description}</p>
 
-        {streamingLinks && streamingLinks.length > 0 && (
-          <div class="film-watch">
-            {streamingLinks.map((link) => (
-              <a
-                href={link.url}
-                class="watch-btn watch-btn--ghost"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Watch on {link.label}</a>
-            ))}
-          </div>
-        )}
-
-        <dl class="film-credits">
-          {cast && cast.length > 0 && (
-            <div class="credit">
-              <dt class="credit-label">Starring</dt>
-              <dd class="credit-value">
-                <ul class="cast-list" role="list">
-                  {cast.map((member) => (
-                    <li class="cast-item">
-                      <span class="cast-name">{member.name}</span>
-                      {member.character && <span class="cast-character">{member.character}</span>}
-                    </li>
-                  ))}
-                </ul>
-              </dd>
-            </div>
-          )}
-          <div class="credit">
-            <dt class="credit-label">Directed by</dt>
-            <dd class="credit-value">{director}</dd>
-          </div>
-          {writer && (
-            <div class="credit">
-              <dt class="credit-label">Written by</dt>
-              <dd class="credit-value">{writer}</dd>
-            </div>
-          )}
-          {producer && (
-            <div class="credit">
-              <dt class="credit-label">Produced by</dt>
-              <dd class="credit-value">{producer}</dd>
-            </div>
-          )}
-          <div class="credit">
-            <dt class="credit-label">Release</dt>
-            <dd class="credit-value">{releaseValue}</dd>
-          </div>
-        </dl>
-
-        {festivalHistory && festivalHistory.length > 0 && (
-          <div class="film-festivals">
-            <p class="eyebrow" style="margin-bottom: var(--space-2);">Festival History</p>
-            <ul class="festival-list" role="list">
-              {festivalHistory.map((entry) => (
-                <li class="caption festival-item">{entry}</li>
+          {streamingLinks && streamingLinks.length > 0 && (
+            <div class="film-watch">
+              {streamingLinks.map((link) => (
+                <a
+                  href={link.url}
+                  class="watch-btn watch-btn--ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Watch on {link.label}</a>
               ))}
-            </ul>
-          </div>
-        )}
+            </div>
+          )}
 
-        {imdbUrl && (
-          <a
-            href={imdbUrl}
-            class="imdb-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${title} on IMDb`}
-          >View on IMDb</a>
-        )}
+          {festivalHistory && festivalHistory.length > 0 && (
+            <div class="film-festivals">
+              <p class="eyebrow" style="margin-bottom: var(--space-2);">Festival History</p>
+              <ul class="festival-list" role="list">
+                {festivalHistory.map((entry) => (
+                  <li class="caption festival-item">{entry}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-        <div class="film-body prose">
-          <slot />
+          {imdbUrl && (
+            <a
+              href={imdbUrl}
+              class="imdb-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${title} on IMDb`}
+            >View on IMDb</a>
+          )}
+        </div>
+
+        <div class="film-details__right">
+          <dl class="film-credits">
+            {cast && cast.length > 0 && (
+              <div class="credit">
+                <dt class="credit-label">Starring</dt>
+                <dd class="credit-value">{cast.map((member) => member.name).join(', ')}</dd>
+              </div>
+            )}
+            <div class="credit">
+              <dt class="credit-label">Directed by</dt>
+              <dd class="credit-value">{director}</dd>
+            </div>
+            {writer && (
+              <div class="credit">
+                <dt class="credit-label">Written by</dt>
+                <dd class="credit-value">{writer}</dd>
+              </div>
+            )}
+            <div class="credit">
+              <dt class="credit-label">Release</dt>
+              <dd class="credit-value">{releaseValue}</dd>
+            </div>
+          </dl>
         </div>
       </div>
     </div>
@@ -429,18 +414,44 @@ const schema = movieSchema({
 
 /* ── DETAILS below the fold ── */
 .film-details {
-  max-width: 820px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-16) var(--space-6);
 }
 
+.film-details__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  /* Both columns centered against each other so credits never top-align */
+  align-items: center;
+}
+
 .film-description {
+  color: var(--muted);
+  max-width: 46ch;
+}
+
+/* Starring, set naturally beneath the description, clearly separated by a hairline */
+.film-cast {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  max-width: 46ch;
+}
+.film-cast__label {
+  margin-bottom: var(--space-2);
+}
+.film-cast__names {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.7;
   color: var(--cream);
 }
 
-/* Credits — Monkeypaw-style labeled blocks */
+/* Credits, Monkeypaw-style labeled blocks */
 .film-credits {
-  margin: 0 0 var(--space-6);
+  margin: 0;
   border-top: 1px solid var(--border);
 }
 
@@ -506,9 +517,10 @@ const schema = movieSchema({
 .film-tagline {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.15rem;
-  color: var(--sienna);
-  margin-bottom: var(--space-3);
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: var(--space-4);
 }
 
 /* Cast list with character names */
@@ -551,7 +563,7 @@ const schema = movieSchema({
 }
 
 .festival-item::before {
-  content: '— ';
+  content: '· ';
   color: var(--red);
 }
 
@@ -573,6 +585,13 @@ const schema = movieSchema({
 }
 
 @media (max-width: 800px) {
+  .film-details__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .film-details__right {
+    align-self: start;
+  }
   .film-hero__media {
     height: min(62vh, 560px);
   }

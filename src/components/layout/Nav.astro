@@ -13,8 +13,8 @@ const isActive = (path: string) =>
     <a
       href="/"
       class="nav-logo"
-      aria-label="3J Pictures — Home"
-    ><img src="/favicon.png" alt="3J Pictures" class="nav-logo-img" width="46" height="46" /></a>
+      aria-label="3J Pictures, Home"
+    ><img src="/favicon.png" alt="" class="nav-logo-img" width="42" height="42" /><span class="nav-wordmark">3J&nbsp;<span class="nav-wordmark-accent">Pictures</span></span></a>
 
     <button
       class="nav-hamburger"
@@ -34,20 +34,6 @@ const isActive = (path: string) =>
           class:list={['nav-link', { active: isActive('/films') }]}
           aria-current={isActive('/films') ? 'page' : undefined}
         >Films</a>
-      </li>
-      <li>
-        <a
-          href="/notes"
-          class:list={['nav-link', { active: isActive('/notes') }]}
-          aria-current={isActive('/notes') ? 'page' : undefined}
-        ><span class="nav-label-full">From the Cutting Room</span><span class="nav-label-short">Cutting Room</span></a>
-      </li>
-      <li>
-        <a
-          href="/journal"
-          class:list={['nav-link', { active: isActive('/journal') }]}
-          aria-current={isActive('/journal') ? 'page' : undefined}
-        >Journal</a>
       </li>
       <li>
         <a
@@ -79,12 +65,10 @@ const isActive = (path: string) =>
   <div class="nav-mobile-overlay" id="nav-mobile-overlay" aria-hidden="true">
     <ul class="nav-mobile-links" role="list">
       <li style="--i:0"><a href="/films">Films</a></li>
-      <li style="--i:1"><a href="/notes">From the Cutting Room</a></li>
-      <li style="--i:2"><a href="/journal">Journal</a></li>
-      <li style="--i:3"><a href="/team">Team</a></li>
-      <li style="--i:4"><a href="/about">About</a></li>
-      <li style="--i:5"><a href="/contact">Contact</a></li>
-      <li style="--i:6"><a href="/submit" class="mobile-cta">Submit a Project</a></li>
+      <li style="--i:1"><a href="/team">Team</a></li>
+      <li style="--i:2"><a href="/about">About</a></li>
+      <li style="--i:3"><a href="/contact">Contact</a></li>
+      <li style="--i:4"><a href="/submit" class="mobile-cta">Submit a Project</a></li>
     </ul>
   </div>
 </header>
@@ -112,10 +96,18 @@ header {
 }
 
 .site-nav.scrolled {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(17, 17, 17, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: rgba(0,0,0,0.08);
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+/* Scrolled = black bar, so all text/marks go light regardless of page */
+.site-nav.scrolled .nav-link,
+.site-nav.scrolled .nav-wordmark {
+  color: var(--cream);
+}
+.site-nav.scrolled .hamburger-bar {
+  background: var(--cream);
 }
 
 .nav-logo {
@@ -123,11 +115,12 @@ header {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  gap: 0.6rem;
 }
 .nav-logo-img {
-  height: 46px;
-  width: 46px;
-  border-radius: 10px;
+  height: 42px;
+  width: 42px;
+  border-radius: 9px;
   display: block;
   object-fit: cover;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -137,6 +130,27 @@ header {
 .nav-logo:hover .nav-logo-img {
   transform: scale(1.05);
   box-shadow: 0 0 0 1px var(--sienna);
+}
+/* Wordmark lockup: "3J" tracks the nav text colour, "Pictures" is always red */
+.nav-wordmark {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  transition: color var(--duration-fast) var(--ease-cinematic);
+}
+.nav-wordmark-accent {
+  color: var(--sienna);
+}
+/* Dark-page: light "3J" at top; stays light on the scrolled black bar */
+.site-nav--dark .nav-wordmark {
+  color: var(--cream);
+}
+.site-nav--dark.scrolled .nav-wordmark {
+  color: var(--cream);
 }
 
 .nav-links {
@@ -164,12 +178,12 @@ header {
   color: var(--sienna);
 }
 
-/* Dark-page nav: light text at top (over dark bg), dark text once scrolled (white bar) */
+/* Dark-page nav: light text at top (over dark bg); stays light on the scrolled black bar */
 .site-nav--dark .nav-link {
   color: var(--cream);
 }
 .site-nav--dark.scrolled .nav-link {
-  color: var(--ink);
+  color: var(--cream);
 }
 .site-nav--dark .nav-link:hover,
 .site-nav--dark .nav-link.active,

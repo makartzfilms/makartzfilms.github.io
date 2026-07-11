@@ -23,10 +23,8 @@ export const organizationSchema = {
     contactType: 'customer service',
   },
   sameAs: [
-    'https://www.instagram.com/makartzfilms',
-    'https://vimeo.com/makartzfilms',
-    'https://www.imdb.com/company/makartzfilms',
-    'https://www.linkedin.com/company/makartzfilms',
+    'https://www.instagram.com/makartzfilms/',
+    'https://www.youtube.com/@MakArtzFilms',
   ],
 };
 

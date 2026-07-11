@@ -6,13 +6,13 @@ const contactPageSchema = {
   '@type': 'ContactPage',
   name: 'Contact 3J Pictures',
   url: 'https://makartzfilms.com/contact',
-  description: 'Get in touch with 3J Pictures — an independent film studio in Central Florida.',
+  description: 'Get in touch with 3J Pictures, an independent film studio in Central Florida.',
 };
 ---
 
 <BaseLayout
   title="Contact"
-  description="Contact 3J Pictures — reach our independent film studio in Central Florida. Get in touch for production inquiries, press, and general questions."
+  description="Contact 3J Pictures, reach our independent film studio in Central Florida. Get in touch for production inquiries, press, and general questions."
   schema={contactPageSchema}
 >
   <section class="contact-hero">
@@ -113,7 +113,7 @@ const contactPageSchema = {
         const data = await response.json();
 
         if (data.success) {
-          result.textContent = 'Thank you — we\'ll be in touch within 3\u20135 business days.';
+          result.textContent = 'Thank you, we\'ll be in touch within 3\u20135 business days.';
           result.classList.add('form-result--success');
           form.reset();
         } else {
