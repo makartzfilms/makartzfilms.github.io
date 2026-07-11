@@ -390,6 +390,7 @@ const slides = films.map((film, i) => ({
   let currentIndex = 0;
   let autoTimer: ReturnType<typeof setTimeout> | null = null;
   let textTimer: ReturnType<typeof setTimeout> | null = null;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const INTERVAL = 5000;
   const TEXT_FADE = 320;
 
@@ -457,6 +458,7 @@ const slides = films.map((film, i) => ({
 
   function resetAuto() {
     if (autoTimer) clearTimeout(autoTimer);
+    if (prefersReducedMotion) return; // honor reduced-motion: no auto-advance
     startProgress();
     autoTimer = setTimeout(() => {
       goTo(currentIndex + 1);
