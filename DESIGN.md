@@ -40,8 +40,8 @@
 - **Accent — Red:** `#E03020` (`--red` / `--sienna` / `--amber` all alias this). Used for CTAs, eyebrows, active nav, `::selection`, scrollbar, hover fills. Hover/pressed darken: `#9E3222`.
 - **Dark canvas (default):** `--ink #111111`, with `--ink2 #1A1A1A`, `--ink3 #222222`, `--ink4 #333333` for layered surfaces. Site background is `--ink`.
 - **Light surfaces:** white `#ffffff` (`--parchment`/`--cream`), plus `--parchment3 #f0f0f0`. Used for alternating light sections (About mission, Team).
-- **Text on dark:** primary `#ffffff` · body `rgba(255,255,255,0.65)` · muted `rgba(255,255,255,0.38)`.
-- **Text on light:** primary `#111111` · body `rgba(17,17,17,0.72)` · muted `rgba(17,17,17,0.42)`.
+- **Text on dark:** primary `#ffffff` · body `rgba(255,255,255,0.7)` · muted `rgba(255,255,255,0.55)`. (Tuned for WCAG AA; do not lower.)
+- **Text on light:** primary `#111111` · body `rgba(17,17,17,0.75)` · muted `rgba(17,17,17,0.58)`.
 - **Borders:** dark `rgba(255,255,255,0.1)` · light `rgba(17,17,17,0.12)`.
 - **Semantic:** none defined yet. If needed, keep them muted and subordinate to the red accent.
 - **Theme:** This is a dark-first site. "Light mode" is not a user toggle; it's per-section (white sections punctuate the dark). Nav is transparent over heroes; on dark pages it uses `darkNav` (light links + a frosted chip behind the logo).
