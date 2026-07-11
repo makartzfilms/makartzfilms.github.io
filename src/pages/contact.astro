@@ -21,6 +21,7 @@ const contactPageSchema = {
     <h1 class="display reveal">Let's Talk</h1>
   </section>
 
+  <div class="contact-section">
   <section class="contact-grid">
     <!-- Left Column: Contact Info -->
     <div class="contact-info reveal">
@@ -97,6 +98,7 @@ const contactPageSchema = {
       </form>
     </div>
   </section>
+  </div>
 </BaseLayout>
 
 <script>
@@ -138,6 +140,10 @@ const contactPageSchema = {
 </script>
 
 <style>
+  /* Charcoal band behind the form, distinct from the black hero */
+  .contact-section {
+    background: var(--ink2);
+  }
   .contact-hero {
     background: var(--ink);
     padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-8);
