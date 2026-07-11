@@ -80,6 +80,7 @@ const team = defineCollection({
     bio: z.string(),
     headshotImage: z.string().optional(),
     headshotAlt: z.string().optional(),  // always explicit for accessibility + SEO
+    headshotPosition: z.string().optional(),  // CSS object-position, e.g. "35% center"
     imdbUrl: z.string().optional(),
     personalSiteUrl: z.string().optional(),
     linkedinUrl: z.string().optional(),

@@ -49,6 +49,10 @@ const slides = films.map((film, i) => ({
       <p class="hs__eyebrow eyebrow"></p>
       <h2 class="hs__title display"></h2>
       <p class="hs__meta caption"></p>
+      <a class="hs__cta" href={`/films/${slides[0]?.slug ?? ''}`} aria-label={`View ${slides[0]?.title ?? 'film'}`}>
+        View Film
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 
@@ -159,6 +163,34 @@ const slides = films.map((film, i) => ({
   color: rgba(255,255,255,0.65);
   font-size: 0.85rem;
   letter-spacing: 0.04em;
+}
+
+.hs__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: var(--space-4);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.7rem 1.4rem;
+  transition: background var(--duration-fast) var(--ease-cinematic),
+    border-color var(--duration-fast) var(--ease-cinematic);
+}
+.hs__cta svg {
+  transition: transform var(--duration-fast) var(--ease-cinematic);
+}
+.hs__cta:hover {
+  background: var(--sienna);
+  border-color: var(--sienna);
+}
+.hs__cta:hover svg {
+  transform: translateX(3px);
 }
 
 /* ─── Film strip ─── */
@@ -349,6 +381,7 @@ const slides = films.map((film, i) => ({
   const eyebrowEl = section.querySelector<HTMLElement>('.hs__eyebrow')!;
   const titleEl = section.querySelector<HTMLElement>('.hs__title')!;
   const metaEl = section.querySelector<HTMLElement>('.hs__meta')!;
+  const ctaEl = section.querySelector<HTMLAnchorElement>('.hs__cta')!;
   const progressBar = section.querySelector<HTMLElement>('.hs__progress-bar')!;
   const counterEl = section.querySelector<HTMLElement>('.hs__counter')!;
   const stripItems = [...section.querySelectorAll<HTMLButtonElement>('.hs__strip-item')];
@@ -364,6 +397,8 @@ const slides = films.map((film, i) => ({
     eyebrowEl.textContent = film.eyebrow;
     titleEl.textContent = film.title;
     metaEl.textContent = `${film.director} \u00b7 ${film.year} \u00b7 ${film.genre.join(', ')}`;
+    ctaEl.setAttribute('href', `/films/${film.slug}`);
+    ctaEl.setAttribute('aria-label', `View ${film.title}`);
   }
 
   function updateCounter(index: number) {
