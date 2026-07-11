@@ -18,6 +18,7 @@ const teamPageSchema = {
   title="Team"
   description="Meet the team behind 3J Pictures, the founders and filmmakers building original, emotionally driven stories from Central Florida."
   schema={teamPageSchema}
+  darkNav={true}
 >
 
   <!-- HERO -->
@@ -94,18 +95,18 @@ const teamPageSchema = {
 
   /* ── Hero ── */
   .page-hero {
-    background: #ffffff;
+    background: var(--ink);
     padding: var(--space-24) 0 var(--space-12);
   }
   .page-hero__content {
     max-width: 700px;
   }
   .page-hero__content .display {
-    color: var(--text-dark);
+    color: var(--cream);
     margin: var(--space-2) 0;
   }
   .page-hero__sub {
-    color: var(--text-dark-muted);
+    color: var(--text-muted);
     max-width: 52ch;
   }
 

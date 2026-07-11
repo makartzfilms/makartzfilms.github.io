@@ -21,6 +21,7 @@ const aboutPageSchema = {
   title="About"
   description="3J Pictures is an independent film studio in Central Florida, building original stories through unforgettable, emotionally driven filmmaking across multiple genres."
   schema={aboutPageSchema}
+  darkNav={true}
 >
 
   <!-- HERO -->
@@ -126,14 +127,14 @@ const aboutPageSchema = {
 
   /* ── Hero ── */
   .page-hero {
-    background: #ffffff;
+    background: var(--ink);
     padding: var(--space-24) 0 var(--space-12);
   }
   .page-hero__content {
     max-width: 800px;
   }
   .page-hero__content .display {
-    color: var(--ink);
+    color: var(--cream);
     margin: var(--space-2) 0;
   }
   .page-hero__content em {

@@ -14,6 +14,7 @@ const contactPageSchema = {
   title="Contact"
   description="Contact 3J Pictures, reach our independent film studio in Central Florida. Get in touch for production inquiries, press, and general questions."
   schema={contactPageSchema}
+  darkNav={true}
 >
   <section class="contact-hero">
     <p class="eyebrow reveal">Contact</p>
@@ -138,12 +139,12 @@ const contactPageSchema = {
 
 <style>
   .contact-hero {
-    background: #ffffff;
+    background: var(--ink);
     padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-8);
     text-align: center;
   }
   .contact-hero .display {
-    color: var(--text-dark);
+    color: var(--cream);
   }
 
   .contact-grid {

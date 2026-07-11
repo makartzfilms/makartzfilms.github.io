@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout
   title="Submit a Project"
   description="Submit your independent film or script to 3J Pictures. We accept submissions from filmmakers seeking development, production support, festival strategy, and distribution consulting."
+  darkNav={true}
 >
   <!-- Hero -->
   <section class="submit-hero">
@@ -166,16 +167,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
   .submit-hero {
-    background: #ffffff;
+    background: var(--ink);
     padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-8);
     text-align: center;
     margin: 0 auto;
   }
   .submit-hero .display {
-    color: var(--text-dark);
+    color: var(--cream);
   }
   .submit-hero__subline {
-    color: var(--text-dark-muted);
+    color: var(--text-muted);
     margin-top: var(--space-3);
   }
 

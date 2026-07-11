@@ -9,6 +9,7 @@ const films = allFilms.sort((a, b) => b.data.year - a.data.year);
 <BaseLayout
   title="Our Films"
   description="Explore the 3J Pictures slate, original stories we develop and produce across mystery, suspense, horror, science fiction, and drama."
+  darkNav={true}
 >
 
   <!-- HERO -->
@@ -65,7 +66,7 @@ const films = allFilms.sort((a, b) => b.data.year - a.data.year);
 <style>
   /* ── Page Hero ── */
   .page-hero {
-    background: #ffffff;
+    background: var(--ink);
     padding: var(--space-24) 0 var(--space-12);
   }
   .container {
@@ -77,11 +78,11 @@ const films = allFilms.sort((a, b) => b.data.year - a.data.year);
     max-width: 700px;
   }
   .page-hero__content .display {
-    color: var(--text-dark);
+    color: var(--cream);
     margin: var(--space-2) 0;
   }
   .page-hero__sub {
-    color: var(--text-dark-muted);
+    color: var(--text-muted);
     max-width: 52ch;
   }
 
