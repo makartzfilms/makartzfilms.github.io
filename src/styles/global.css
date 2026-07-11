@@ -13,6 +13,7 @@
   /* ─── Accent ─── */
   --sienna:     #E03020;
   --amber:      #E03020;
+  --red-dark:   #9E3222;  /* hover/pressed accent */
 
   /* ─── Text on dark backgrounds ─── */
   --text-primary:    #ffffff;
@@ -180,8 +181,8 @@ img {
 }
 .btn--primary:hover,
 .btn--primary:focus-visible {
-  background-color: #9E3222;
-  border-color: #9E3222;
+  background-color: var(--red-dark);
+  border-color: var(--red-dark);
   color: var(--parchment);
 }
 

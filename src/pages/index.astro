@@ -358,39 +358,6 @@ const featuredTeam = allTeam
 .mission-copy:last-of-type { margin-bottom: var(--space-6); }
 
 /* ─────────────────────────────────────────
-   SECTION 5: STATS STRIP
-───────────────────────────────────────── */
-.stats-strip {
-  background: var(--parchment2);
-  border-top: 2px solid var(--sienna);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-  text-align: center;
-}
-
-@media (max-width: 700px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
-}
-
-.stat__number {
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  letter-spacing: -0.02em;
-  color: var(--sienna);
-}
-
-/* ─────────────────────────────────────────
    SECTION 6: TEAM TEASER
 ───────────────────────────────────────── */
 .team-grid {
@@ -428,66 +395,6 @@ const featuredTeam = allTeam
   color: var(--text-body);
 }
 
-/* ─────────────────────────────────────────
-   SECTION 7: PRESS QUOTES
-───────────────────────────────────────── */
-/* Press background/border set via inline style on the section element */
-.press-section {
-}
-
-.press-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
-
-/* press-grid responsive handled in carousel blocks below */
-
-.press-card {
-  padding: var(--space-4);
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  position: relative;
-  transition: border-color var(--duration-base) var(--ease-cinematic),
-              box-shadow var(--duration-base) var(--ease-cinematic);
-}
-
-.press-card:hover {
-  border-color: var(--sienna);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.press-card__quote {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--text-dark);
-  line-height: 1.65;
-  margin-bottom: var(--space-3);
-}
-
-.press-card__source {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--sienna);
-  font-style: normal;
-}
-
-.press-card::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--sienna);
-  transition: width var(--duration-base) var(--ease-cinematic);
-}
-
-.press-card:hover::after { width: 100%; }
 
 /* ─────────────────────────────────────────
    SECTION 8: CONTACT CTA
