@@ -79,7 +79,7 @@ const slides = films.map((film, i) => ({
     </div>
     <div class="hs__dots" aria-hidden="true">
       {slides.map((_, i) => (
-        <button class={`hs__dot ${i === 0 ? 'hs__dot--active' : ''}`} data-index={i}></button>
+        <button class={`hs__dot ${i === 0 ? 'hs__dot--active' : ''}`} data-index={i} tabindex="-1"></button>
       ))}
     </div>
   </div>
