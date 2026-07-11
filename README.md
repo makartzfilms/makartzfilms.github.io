@@ -1,7 +1,7 @@
-# MakArtz Films
+# 3J Pictures
 
 **Stack:** Astro (static) · GitHub Pages · `@astrojs/sitemap`
-**Domain:** makartzfilms.com · **Repo:** makartzfilms/makartzfilms.github.io · **Branch:** main
+**Domain:** 3jpictures.com · **Repo:** 3jpictures/3jpictures.github.io · **Branch:** main
 
 ---
 
@@ -146,7 +146,7 @@ The workflow is at [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
 
 ## DNS Setup
 
-Point `makartzfilms.com` to GitHub Pages:
+Point `3jpictures.com` to GitHub Pages:
 
 **A Records** (root domain):
 ```
@@ -158,13 +158,13 @@ Point `makartzfilms.com` to GitHub Pages:
 
 **CNAME Record** (www subdomain):
 ```
-www → makartzfilms.github.io
+www → 3jpictures.github.io
 ```
 
 After DNS propagates (up to 48h):
 
 1. GitHub repo → **Settings** → **Pages**
-2. Set **Custom domain** → `makartzfilms.com`
+2. Set **Custom domain** → `3jpictures.com`
 3. Check **Enforce HTTPS** ✓
 
-The `public/CNAME` file in this repo contains `makartzfilms.com` and is committed — GitHub Pages reads it automatically to configure the custom domain on deploy.
+The `public/CNAME` file in this repo contains `3jpictures.com` and is committed — GitHub Pages reads it automatically to configure the custom domain on deploy.

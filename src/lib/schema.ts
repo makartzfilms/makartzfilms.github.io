@@ -1,5 +1,5 @@
-const SITE_URL = 'https://makartzfilms.com';
-const ORG_NAME = 'MakArtz Films';
+const SITE_URL = 'https://3jpictures.com';
+const ORG_NAME = '3J Pictures';
 
 export const organizationSchema = {
   '@context': 'https://schema.org',
@@ -10,23 +10,23 @@ export const organizationSchema = {
     '@type': 'ImageObject',
     url: `${SITE_URL}/og-default.jpg`,
   },
-  description: 'An independent film agency based in Winter Springs, FL.',
+  description: 'An independent film studio based in Central Florida.',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Winter Springs',
+    addressLocality: 'Central Florida',
     addressRegion: 'FL',
     addressCountry: 'US',
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'hello@makartzfilms.com',
+    email: 'hello@3jpictures.com',
     contactType: 'customer service',
   },
   sameAs: [
-    'https://www.instagram.com/makartzfilms',
-    'https://vimeo.com/makartzfilms',
-    'https://www.imdb.com/company/makartzfilms',
-    'https://www.linkedin.com/company/makartzfilms',
+    'https://www.instagram.com/3jpictures',
+    'https://vimeo.com/3jpictures',
+    'https://www.imdb.com/company/3jpictures',
+    'https://www.linkedin.com/company/3jpictures',
   ],
 };
 

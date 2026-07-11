@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Submit a Project"
-  description="Submit your independent film or script to MakArtz Films. We accept submissions from filmmakers seeking development, production support, festival strategy, and distribution consulting."
+  description="Submit your independent film or script to 3J Pictures. We accept submissions from filmmakers seeking development, production support, festival strategy, and distribution consulting."
 >
   <!-- Hero -->
   <section class="submit-hero">
@@ -145,11 +145,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           result.classList.add('form-result--success');
           form.reset();
         } else {
-          result.textContent = 'Something went wrong. Please try again or email submit@makartzfilms.com directly.';
+          result.textContent = 'Something went wrong. Please try again or email submit@3jpictures.com directly.';
           result.classList.add('form-result--error');
         }
       } catch {
-        result.textContent = 'Something went wrong. Please try again or email submit@makartzfilms.com directly.';
+        result.textContent = 'Something went wrong. Please try again or email submit@3jpictures.com directly.';
         result.classList.add('form-result--error');
       }
     });

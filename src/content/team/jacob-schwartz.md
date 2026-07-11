@@ -1,10 +1,8 @@
 ---
 name: "Jacob Schwartz"
-title: "Founder & Executive Producer"
-bio: "Jacob founded MakArtz Films in 2014 after a decade working in independent distribution at Miramax and the Sundance Institute. He has shepherded over thirty features from development through festival run, with a particular focus on films by first and second generation American directors."
-headshotImage: "https://i.pravatar.cc/400?img=11"
-headshotAlt: "Jacob Schwartz, Founder and Executive Producer of MakArtz Films"
-imdbUrl: "https://www.imdb.com/name/nm0000000/"
-linkedinUrl: "https://linkedin.com"
+title: "Founder & Chief Creative Officer"
+bio: "Jacob leads the creative vision of 3J Pictures, developing original stories and directing films that explore mystery, human connection, and emotional transformation. He oversees the studio's creative strategy, ensuring every project contributes to a cohesive and enduring body of work."
+headshotImage: "/team/jacob-schwartz.jpg"
+headshotAlt: "Jacob Schwartz, Founder and Chief Creative Officer of 3J Pictures"
 order: 1
 ---

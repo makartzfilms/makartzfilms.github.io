@@ -4,20 +4,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const aboutPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
-  name: 'About MakArtz Films',
-  url: 'https://makartzfilms.com/about',
+  name: 'About 3J Pictures',
+  url: 'https://3jpictures.com/about',
   mainEntity: {
     '@type': 'Organization',
-    name: 'MakArtz Films',
-    url: 'https://makartzfilms.com',
-    description: 'An independent film agency based in Winter Springs, FL, dedicated to developing, producing, and championing uncompromising independent cinema.',
+    name: '3J Pictures',
+    url: 'https://3jpictures.com',
+    foundingDate: '2024',
+    slogan: 'Stories That Stay With You.',
+    description: 'An independent film studio founded in 2024 and headquartered in Central Florida, building original worlds through unforgettable, emotionally driven storytelling across multiple genres.',
   },
 };
 ---
 
 <BaseLayout
-  title="About — MakArtz Films"
-  description="MakArtz Films is an independent film agency based in Winter Springs, FL. Learn about our mission to develop and champion uncompromising independent cinema."
+  title="About — 3J Pictures"
+  description="3J Pictures is an independent film studio in Central Florida, building original stories through unforgettable, emotionally driven filmmaking across multiple genres."
   schema={aboutPageSchema}
 >
 
@@ -38,37 +40,27 @@ const aboutPageSchema = {
     <div class="container">
       <div class="page-hero__content reveal">
         <p class="eyebrow">Our Story</p>
-        <h1 class="display">Built for Films<br />That <em>Matter</em></h1>
+        <h1 class="display">Stories That<br /><em>Stay</em> With You</h1>
       </div>
     </div>
   </section>
 
-  <!-- ORIGIN STORY -->
-  <section class="origin-section section-container">
-    <div class="container origin-grid">
-      <div class="origin-quote reveal">
-        <div class="origin-rule" aria-hidden="true"></div>
-        <blockquote class="origin-blockquote">
-          <p class="display origin-blockquote__text">
-            "We exist for the films that couldn't exist without us."
-          </p>
-          <cite class="eyebrow origin-blockquote__cite">
-            — Jacob Schwartz, Founder
-          </cite>
-        </blockquote>
+  <!-- OUR MISSION -->
+  <section class="mission-section section-container">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="eyebrow">Why We Make Them</p>
+        <h2 class="heading-1" style="color: var(--text-dark);">Our Mission</h2>
       </div>
-      <div class="origin-body reveal">
-        <p class="body-large">
-          MakArtz Films was founded in 2014 in Winter Springs, Florida by Jacob Schwartz, a former independent distribution executive who saw an ever-widening gap between the films he believed in and the infrastructure available to bring them into the world.
+      <div class="mission-body reveal">
+        <p class="body-large mission-body__lead">
+          3J Pictures exists to create unforgettable stories that entertain first and endure long after the credits roll. We believe the best films don't simply ask audiences to watch — they invite them to feel, question, wonder, and leave changed.
         </p>
         <p class="body">
-          The industry had plenty of acquisitions companies and sales agents willing to pick up finished work. What it lacked were partners who would commit to a film before the first frame was shot — who would develop the script, structure the financing, manage the production, and stay with the project through its entire festival and distribution life.
+          As an independent studio, we develop original stories from the ground up, guiding them from the earliest spark of an idea through production and into the hands of audiences around the world. Whether mystery, suspense, horror, science fiction, or drama, our stories share one purpose: to reveal something deeply human.
         </p>
         <p class="body">
-          MakArtz was built to fill that gap. We don't acquire films. We build them. Every project in our catalog was developed from the inside, in close collaboration with the filmmaker, with the singular goal of protecting the director's vision while giving the film the best possible path to its audience.
-        </p>
-        <p class="body">
-          Over the past decade, that philosophy has carried us through documentary and narrative, debut features and established voices, American stories and international co-productions. What our films share is a refusal to be anything other than exactly what they are.
+          Founded in 2024 and headquartered in Central Florida, we build original intellectual property designed to endure — across film, television, publishing, and beyond. We're building a library of stories that can resonate for generations.
         </p>
       </div>
     </div>
@@ -83,102 +75,36 @@ const aboutPageSchema = {
       </div>
       <div class="philosophy-grid">
         <div class="philosophy-card reveal">
-          <h3 class="heading-3 philosophy-card__heading">Development Philosophy</h3>
+          <h3 class="heading-3 philosophy-card__heading">Original Stories</h3>
           <p class="body philosophy-card__text">
-            We partner with filmmakers at the earliest stages — often before a first draft exists — to shape story, structure, and creative direction. Our development process is collaborative, unhurried, and focused on finding the version of the film that is most honestly itself.
+            We build every project from the ground up as original intellectual property. From the first spark of an idea to the finished film, the story is ours to shape — never an acquisition, always an original.
           </p>
         </div>
         <div class="philosophy-card reveal">
-          <h3 class="heading-3 philosophy-card__heading">Production Approach</h3>
+          <h3 class="heading-3 philosophy-card__heading">Genre Without Limits</h3>
           <p class="body philosophy-card__text">
-            Every production is built around the creative needs of the project, not the other way around. We structure budgets, schedules, and crews to serve the director's vision — keeping overhead lean and creative control exactly where it belongs.
+            Mystery, suspense, horror, science fiction, drama. We follow each story wherever it leads, united by one focus: to entertain first and reveal something deeply human.
           </p>
         </div>
         <div class="philosophy-card reveal">
-          <h3 class="heading-3 philosophy-card__heading">Distribution Strategy</h3>
+          <h3 class="heading-3 philosophy-card__heading">Built to Endure</h3>
           <p class="body philosophy-card__text">
-            We believe every film has an audience — the challenge is finding the right path to reach them. Our distribution strategy is bespoke for each project, combining festival positioning, sales partnerships, and direct audience engagement.
+            Every film is designed to grow — across television, publishing, and future franchises — into a library of stories worth returning to for generations.
           </p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- STATS -->
-  <div class="stats-strip section-container" aria-label="MakArtz Films by the numbers">
-    <div class="container stats-grid">
-      <div class="stat reveal">
-        <span class="display stat__number">18</span>
-        <span class="eyebrow">Features Produced</span>
-      </div>
-      <div class="stat reveal">
-        <span class="display stat__number">47</span>
-        <span class="eyebrow">Festival Awards</span>
-      </div>
-      <div class="stat reveal">
-        <span class="display stat__number">23</span>
-        <span class="eyebrow">Countries</span>
-      </div>
-      <div class="stat reveal">
-        <span class="display stat__number">11</span>
-        <span class="eyebrow">Years</span>
-      </div>
-    </div>
-  </div>
 
   <!-- PULL QUOTE -->
   <section class="pullquote-section section-container" style="background: var(--ink2);">
     <div class="container">
       <blockquote class="pullquote reveal">
         <p class="display pullquote__text">
-          "The best films don't happen by accident. They happen because someone decided they were worth fighting for."
+          "Stories have the power to change the way we see ourselves, each other, and the world. That's why we make them."
         </p>
+        <cite class="eyebrow pullquote__cite">— Jacob Schwartz, Founder</cite>
       </blockquote>
-    </div>
-  </section>
-
-  <!-- BEHIND THE SCENES -->
-  <section class="bts-section section-container" style="background: var(--parchment2);">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="eyebrow">In the Field</p>
-        <h2 class="heading-1" style="color: var(--text-dark);">Behind the Scenes</h2>
-      </div>
-      <div class="bts-grid">
-        <figure class="bts-card reveal">
-          <img
-            src="https://picsum.photos/seed/bts-set-1/800/600"
-            alt="On set during production"
-            width="800"
-            height="600"
-            loading="lazy"
-            class="bts-card__img"
-          />
-          <figcaption class="caption">On location — pre-production scouting</figcaption>
-        </figure>
-        <figure class="bts-card reveal">
-          <img
-            src="https://picsum.photos/seed/bts-set-2/800/600"
-            alt="Film crew at work on set"
-            width="800"
-            height="600"
-            loading="lazy"
-            class="bts-card__img"
-          />
-          <figcaption class="caption">Crew at work during a night shoot</figcaption>
-        </figure>
-        <figure class="bts-card reveal">
-          <img
-            src="https://picsum.photos/seed/bts-set-3/800/600"
-            alt="Director reviewing footage"
-            width="800"
-            height="600"
-            loading="lazy"
-            class="bts-card__img"
-          />
-          <figcaption class="caption">Reviewing dailies in post-production</figcaption>
-        </figure>
-      </div>
     </div>
   </section>
 
@@ -296,6 +222,26 @@ const aboutPageSchema = {
     color: var(--text-dark-body);
     margin-bottom: var(--space-3);
   }
+  .origin-body__slogan {
+    color: var(--sienna);
+    margin-bottom: var(--space-3);
+  }
+
+  /* ── Mission ── */
+  .mission-section {
+    background: #ffffff;
+  }
+  .mission-body {
+    max-width: 820px;
+  }
+  .mission-body__lead {
+    color: var(--text-dark);
+    margin-bottom: var(--space-4);
+  }
+  .mission-body .body {
+    color: var(--text-dark-body);
+    margin-bottom: var(--space-3);
+  }
 
   /* ── Philosophy ── */
   .philosophy-grid {
@@ -358,6 +304,12 @@ const aboutPageSchema = {
     font-size: clamp(1.8rem, 3.5vw, 3rem);
     line-height: 1.15;
     color: var(--text-primary);
+  }
+  .pullquote__cite {
+    display: block;
+    margin-top: var(--space-5);
+    color: var(--sienna);
+    font-style: normal;
   }
 
   /* ── Behind the Scenes ── */

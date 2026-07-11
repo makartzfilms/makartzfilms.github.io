@@ -8,6 +8,8 @@ const films = defineCollection({
     year: z.number(),
     genre: z.array(z.string()),
     eyebrow: z.string().optional(),
+    tagline: z.string().optional(),
+    releaseDate: z.string().optional(),      // human-readable, e.g. "March 16, 2024"
     heroImageLandscape: z.string().optional(),
     heroImagePortrait: z.string().optional(),
     logline: z.string(),
@@ -19,7 +21,10 @@ const films = defineCollection({
       url: z.string()
     })).optional(),
     festivalHistory: z.array(z.string()).optional(),
-    cast: z.array(z.string()).optional(),
+    cast: z.array(z.object({
+      name: z.string(),
+      character: z.string().optional()
+    })).optional(),
     crew: z.array(z.object({
       role: z.string(),
       name: z.string()
@@ -29,6 +34,7 @@ const films = defineCollection({
     heroImage: z.string().optional(),
     imdbUrl: z.string().optional(),
     featured: z.boolean().default(false),
+    comingSoon: z.boolean().default(false),
   }),
 });
 

@@ -1,16 +1,20 @@
 ---
+interface Props {
+  darkNav?: boolean;
+}
+const { darkNav = false } = Astro.props;
 const pathname = Astro.url.pathname;
 const isActive = (path: string) =>
   path === '/' ? pathname === '/' : pathname.startsWith(path);
 ---
 
 <header>
-  <nav class="site-nav" aria-label="Primary navigation" role="navigation" id="site-nav">
+  <nav class:list={['site-nav', { 'site-nav--dark': darkNav }]} aria-label="Primary navigation" role="navigation" id="site-nav">
     <a
       href="/"
       class="nav-logo"
-      aria-label="MakArtz Films — Home"
-    ><img src="/logo-black.png" alt="MakArtz Films" class="nav-logo-img" /></a>
+      aria-label="3J Pictures — Home"
+    ><img src="/logo-3j.png" alt="3J Pictures" class="nav-logo-img" /></a>
 
     <button
       class="nav-hamburger"
@@ -119,9 +123,18 @@ header {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  padding: 5px 9px;
+  border-radius: 9px;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.25s ease;
+}
+.nav-logo:hover {
+  background: rgba(10, 10, 10, 0.7);
 }
 .nav-logo-img {
-  height: 28px;
+  height: 40px;
   width: auto;
   display: block;
 }
@@ -149,6 +162,22 @@ header {
 .nav-link.active,
 .nav-link[aria-current="page"] {
   color: var(--sienna);
+}
+
+/* Dark-page nav: light text at top (over dark bg), dark text once scrolled (white bar) */
+.site-nav--dark .nav-link {
+  color: var(--cream);
+}
+.site-nav--dark.scrolled .nav-link {
+  color: var(--ink);
+}
+.site-nav--dark .nav-link:hover,
+.site-nav--dark .nav-link.active,
+.site-nav--dark .nav-link[aria-current="page"] {
+  color: var(--sienna);
+}
+.site-nav--dark:not(.scrolled) .hamburger-bar {
+  background: var(--cream);
 }
 
 .nav-cta {

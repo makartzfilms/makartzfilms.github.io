@@ -12,6 +12,7 @@ interface Props {
   canonicalURL?: string;
   schema?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
+  darkNav?: boolean;
 }
 
 const props = Astro.props;
@@ -25,7 +26,7 @@ const props = Astro.props;
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <GrainOverlay />
-    <Nav />
+    <Nav darkNav={props.darkNav} />
     <main id="main-content">
       <slot />
     </main>
