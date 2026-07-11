@@ -32,7 +32,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="submit-form-section">
     <form id="submit-form" action="https://api.web3forms.com/submit" method="POST" class="submit-form reveal">
       <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-      <input type="checkbox" name="botcheck" style="display:none" />
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" />
       <input type="hidden" name="subject" value="New Project Submission" />
 
       <div class="form-row">

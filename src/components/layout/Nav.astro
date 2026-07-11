@@ -14,7 +14,7 @@ const isActive = (path: string) =>
       href="/"
       class="nav-logo"
       aria-label="3J Pictures — Home"
-    ><img src="/logo-3j.png" alt="3J Pictures" class="nav-logo-img" /></a>
+    ><img src="/favicon.png" alt="3J Pictures" class="nav-logo-img" width="46" height="46" /></a>
 
     <button
       class="nav-hamburger"
@@ -123,20 +123,20 @@ header {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  padding: 5px 9px;
-  border-radius: 9px;
-  background: rgba(10, 10, 10, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: background 0.25s ease;
-}
-.nav-logo:hover {
-  background: rgba(10, 10, 10, 0.7);
 }
 .nav-logo-img {
-  height: 40px;
-  width: auto;
+  height: 46px;
+  width: 46px;
+  border-radius: 10px;
   display: block;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: transform var(--duration-fast) var(--ease-cinematic),
+    box-shadow var(--duration-fast) var(--ease-cinematic);
+}
+.nav-logo:hover .nav-logo-img {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 1px var(--sienna);
 }
 
 .nav-links {

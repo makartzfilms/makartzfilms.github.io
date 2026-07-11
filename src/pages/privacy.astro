@@ -5,8 +5,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Privacy Policy"
   description="Privacy Policy for 3J Pictures."
   noindex={true}
+  darkNav={true}
 >
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:var(--space-16);">
-    <p style="color:var(--muted);font-family:var(--font-sans);">— Privacy policy coming soon —</p>
+  <section class="legal-page">
+    <div class="legal-inner">
+      <p class="eyebrow legal-eyebrow">3J Pictures</p>
+      <h1 class="display legal-title">Privacy Policy</h1>
+      <p class="body-large legal-note">
+        Our full privacy policy is on the way. In the meantime, if you have any
+        questions about how we handle your information, email us at
+        <a href="mailto:hello@makartzfilms.com" class="legal-link">hello@makartzfilms.com</a>.
+      </p>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  .legal-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--space-16) + var(--space-8)) var(--space-6) var(--space-16);
+  }
+  .legal-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .legal-eyebrow {
+    color: var(--sienna);
+    margin-bottom: var(--space-3);
+  }
+  .legal-title {
+    color: var(--text-primary);
+    margin-bottom: var(--space-5);
+  }
+  .legal-note {
+    color: var(--text-body);
+  }
+  .legal-link {
+    color: var(--sienna);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal-link:hover {
+    color: var(--text-primary);
+  }
+</style>

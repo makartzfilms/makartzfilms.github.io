@@ -58,3 +58,24 @@
   border-color: var(--sienna);
   padding-left: var(--space-3);
 }
+
+/* Accessibility: honor reduced-motion — show all content immediately, no animation */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-grid > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .film-image {
+    filter: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

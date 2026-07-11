@@ -54,7 +54,7 @@ const contactPageSchema = {
     <div class="contact-form-wrap reveal">
       <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-        <input type="checkbox" name="botcheck" style="display:none" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" />
 
         <div class="form-group">
           <label for="name" class="caption">Name *</label>

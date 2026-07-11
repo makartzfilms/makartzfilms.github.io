@@ -16,13 +16,13 @@
 
   /* ─── Text on dark backgrounds ─── */
   --text-primary:    #ffffff;
-  --text-body:       rgba(255,255,255,0.65);
-  --text-muted:      rgba(255,255,255,0.38);
+  --text-body:       rgba(255,255,255,0.7);
+  --text-muted:      rgba(255,255,255,0.55);
 
   /* ─── Text on light backgrounds ─── */
   --text-dark:       #111111;
-  --text-dark-body:  rgba(17,17,17,0.72);
-  --text-dark-muted: rgba(17,17,17,0.42);
+  --text-dark-body:  rgba(17,17,17,0.75);
+  --text-dark-muted: rgba(17,17,17,0.58);
 
   /* ─── Borders ─── */
   --border-dark:  rgba(255,255,255,0.1);
@@ -35,8 +35,8 @@
   --cream:       #ffffff;
   --cream2:      #ffffff;
   --red:         #E03020;
-  --muted:         rgba(255,255,255,0.65);
-  --muted-faint:   rgba(255,255,255,0.38);
+  --muted:         rgba(255,255,255,0.7);
+  --muted-faint:   rgba(255,255,255,0.55);
   --border:        rgba(255,255,255,0.1);
 
   --font-serif: 'EB Garamond', Georgia, serif;
@@ -124,6 +124,30 @@ img {
   width: auto;
   height: auto;
   overflow: visible;
+}
+
+/* Accessibility: visually-hidden but available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Accessibility: visible keyboard focus for all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--sienna);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Mouse users don't see the outline; keyboard users do */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Button system */
