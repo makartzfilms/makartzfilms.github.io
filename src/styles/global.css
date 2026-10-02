@@ -1,9 +1,15 @@
 :root {
+  /* ─── Brand palette (3J Pictures Brand Book 2026) ─── */
+  --white:       #FFFFFF;
+  --rose:        #9B2727;  /* Rose Madder Lake: primary accent fill */
+  --wrath:       #7C0A0A;  /* Wrath: hover/pressed, full-bleed brand panels */
+  --blackboard:  #1C1C1C;  /* Blackboard: site canvas */
+
   /* ─── Dark tones ─── */
-  --ink:        #111111;
-  --ink2:       #1A1A1A;
-  --ink3:       #222222;
-  --ink4:       #333333;
+  --ink:        #1C1C1C;
+  --ink2:       #232323;
+  --ink3:       #2A2A2A;
+  --ink4:       #383838;
 
   /* ─── Light tones ─── */
   --parchment:  #ffffff;
@@ -11,37 +17,39 @@
   --parchment3: #f0f0f0;
 
   /* ─── Accent ─── */
-  --sienna:     #E03020;
-  --amber:      #E03020;
-  --red-dark:   #9E3222;  /* hover/pressed accent */
+  /* Brand reds are fills. On dark surfaces they are only ~2:1 as text, so red
+     text is reserved for white surfaces; on dark, accents are fills, rules or the star. */
+  --sienna:     #9B2727;
+  --amber:      #9B2727;
+  --red-dark:   #7C0A0A;  /* hover/pressed accent */
 
   /* ─── Text on dark backgrounds ─── */
   --text-primary:    #ffffff;
-  --text-body:       rgba(255,255,255,0.7);
-  --text-muted:      rgba(255,255,255,0.55);
+  --text-body:       rgba(255,255,255,0.72);
+  --text-muted:      rgba(255,255,255,0.58);
 
   /* ─── Text on light backgrounds ─── */
-  --text-dark:       #111111;
-  --text-dark-body:  rgba(17,17,17,0.75);
-  --text-dark-muted: rgba(17,17,17,0.58);
+  --text-dark:       #1C1C1C;
+  --text-dark-body:  rgba(28,28,28,0.78);
+  --text-dark-muted: rgba(28,28,28,0.62);
 
   /* ─── Borders ─── */
   --border-dark:  rgba(255,255,255,0.1);
-  --border-light: rgba(17,17,17,0.12);
+  --border-light: rgba(28,28,28,0.12);
 
   /* ─── Legacy aliases, keep so no existing code breaks ─── */
-  --black:       #111111;
-  --black2:      #1A1A1A;
-  --black3:      #222222;
+  --black:       #1C1C1C;
+  --black2:      #232323;
+  --black3:      #2A2A2A;
   --cream:       #ffffff;
   --cream2:      #ffffff;
-  --red:         #E03020;
-  --muted:         rgba(255,255,255,0.7);
-  --muted-faint:   rgba(255,255,255,0.55);
+  --red:         #9B2727;
+  --muted:         rgba(255,255,255,0.72);
+  --muted-faint:   rgba(255,255,255,0.58);
   --border:        rgba(255,255,255,0.1);
 
-  --font-serif: 'EB Garamond', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-sans: 'Poppins', system-ui, sans-serif;
 
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -143,8 +151,9 @@ img {
 }
 
 /* Accessibility: visible keyboard focus for all interactive elements */
+/* currentColor always contrasts with its own surface; brand red would not on dark */
 :focus-visible {
-  outline: 2px solid var(--sienna);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -203,26 +212,26 @@ img {
 .btn--ghost-dark {
   background-color: transparent;
   color: var(--ink);
-  border-color: rgba(17,17,17,0.3);
+  border-color: rgba(28,28,28,0.3);
 }
 .btn--ghost-dark:hover,
 .btn--ghost-dark:focus-visible {
-  background-color: rgba(17,17,17,0.06);
+  background-color: rgba(28,28,28,0.06);
   border-color: var(--ink);
   color: var(--ink);
 }
 
-/* CTA white, for use on red (sienna) section backgrounds */
+/* CTA white, for use on red (wrath) section backgrounds */
 .btn--cta-white {
   background-color: #ffffff;
-  color: var(--sienna);
+  color: var(--wrath);
   border-color: #ffffff;
 }
 .btn--cta-white:hover,
 .btn--cta-white:focus-visible {
   background-color: rgba(255,255,255,0.9);
   border-color: rgba(255,255,255,0.9);
-  color: var(--sienna);
+  color: var(--wrath);
 }
 
 /* CTA outline, for use on red (sienna) section backgrounds */

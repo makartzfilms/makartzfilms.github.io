@@ -35,33 +35,33 @@ const featuredTeam = allTeam
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
       <span>Domino</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Hey Bestie</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Love After Life</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Sanctuary</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Toy Chest</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Waiting</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>3J Pictures · Est. 2024 · Central Florida</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Domino</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Hey Bestie</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Love After Life</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Sanctuary</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Toy Chest</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>Waiting</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
       <span>3J Pictures · Est. 2024 · Central Florida</span>
-      <span class="marquee-dot">·</span>
+      <span class="marquee-dot"></span>
     </div>
   </div>
 
@@ -112,7 +112,6 @@ const featuredTeam = allTeam
   <section class="mission-section section-container section--light" style="background: var(--parchment2);">
     <div class="container mission-grid">
       <div class="mission-quote reveal">
-        <div style="width: 48px; height: 2px; background: var(--sienna); margin-bottom: var(--space-3);" aria-hidden="true"></div>
         <p class="eyebrow mission-eyebrow" style="color: var(--sienna); margin-bottom: var(--space-4);">Our Mission</p>
         <p class="display mission-blockquote__text">
           Stories that entertain first, and endure long after the credits roll.
@@ -184,8 +183,7 @@ const featuredTeam = allTeam
           We accept submissions year-round. If you have a project in development, production, or post, and you believe in what it is, we want to hear from you.
         </p>
         <div class="cta-buttons">
-          <a href="/submit" class="btn btn--cta-white">Submit a Project</a>
-          <a href="/contact" class="btn btn--cta-outline">Get in Touch</a>
+          <a href="/contact" class="btn btn--cta-white">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -212,7 +210,7 @@ const featuredTeam = allTeam
    SECTION 2: MARQUEE
 ───────────────────────────────────────── */
 .marquee-wrap {
-  background: var(--sienna);
+  background: var(--wrath);
   overflow: hidden;
   padding: 0.75rem 0;
   white-space: nowrap;
@@ -233,8 +231,15 @@ const featuredTeam = allTeam
   color: var(--parchment);
 }
 
-.marquee-dot {
-  opacity: 0.5;
+/* Brand star as the separator */
+.marquee-track .marquee-dot {
+  align-self: center;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--parchment);
+  opacity: 0.7;
+  -webkit-mask: url('/brand/star.svg') center / contain no-repeat;
+  mask: url('/brand/star.svg') center / contain no-repeat;
 }
 
 @keyframes marqueeScroll {
@@ -398,9 +403,21 @@ const featuredTeam = allTeam
 /* ─────────────────────────────────────────
    SECTION 8: CONTACT CTA
 ───────────────────────────────────────── */
+/* Wrath panel with the brand-book arch pattern, as on the brand book dividers */
 .cta-section {
-  background: var(--sienna);
+  position: relative;
+  isolation: isolate;
+  background: var(--wrath);
   text-align: center;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url('/brand/pattern-white.svg') center / 150px auto repeat;
+  opacity: 0.06;
 }
 
 .cta-inner {
@@ -408,16 +425,19 @@ const featuredTeam = allTeam
 }
 
 .cta-rule {
-  width: 48px;
-  height: 2px;
-  background: rgba(255,255,255,0.4);
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--parchment);
   margin: 0 auto var(--space-4);
+  -webkit-mask: url('/brand/star.svg') center / contain no-repeat;
+  mask: url('/brand/star.svg') center / contain no-repeat;
 }
 
 .cta-eyebrow {
   margin-bottom: var(--space-2);
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.78);
 }
+.cta-eyebrow::before { display: none; }
 
 .cta-heading {
   color: #ffffff;
@@ -694,7 +714,7 @@ const featuredTeam = allTeam
 
 /* Press pagination, now on light background */
 .carousel-hint.press-pagination span {
-  background: rgba(17,17,17,0.2);
+  background: rgba(28,28,28,0.2);
 }
 .carousel-hint.press-pagination span.active {
   background: var(--sienna);

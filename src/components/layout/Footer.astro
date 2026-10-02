@@ -1,4 +1,6 @@
 ---
+import Lockup from '../../assets/brand/lockup.svg';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -8,8 +10,7 @@ const currentYear = new Date().getFullYear();
       <!-- Col 1: Brand -->
       <div class="footer-brand">
         <a href="/" class="footer-wordmark" aria-label="3J Pictures, Home">
-          <img src="/logo-mark.png" alt="" class="footer-logo-img" width="28" height="40" />
-          <span class="footer-wordmark-text">Pictures</span>
+          <Lockup class="footer-logo-img" aria-hidden="true" focusable="false" />
         </a>
         <p class="footer-tagline">Stories That Stay With You.</p>
         <p class="footer-desc">An independent film studio based in Central Florida.</p>
@@ -30,7 +31,6 @@ const currentYear = new Date().getFullYear();
       <nav class="footer-col" aria-label="Work with us">
         <p class="footer-col-heading">Work With Us</p>
         <ul role="list">
-          <li><a href="/submit">Submit a Project</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/about">Services</a></li>
         </ul>
@@ -98,31 +98,21 @@ const currentYear = new Date().getFullYear();
 .footer-wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  color: var(--text-primary);
   text-decoration: none;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 .footer-logo-img {
-  height: 40px;
+  height: 30px;
   width: auto;
-  object-fit: contain;
-}
-.footer-wordmark-text {
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-}
-.footer-wordmark-accent {
-  color: var(--sienna);
+  display: block;
 }
 
 .footer-tagline {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-style: italic;
+  font-weight: 300;
   color: var(--text-primary);
   margin-bottom: var(--space-2);
 }
@@ -141,7 +131,7 @@ const currentYear = new Date().getFullYear();
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--sienna);
+  color: var(--text-primary);
   margin-bottom: var(--space-3);
 }
 

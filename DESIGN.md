@@ -12,39 +12,46 @@
 - **Memorable thing:** Cinematic and serious. A movie studio, not a template. Films come first, in full-bleed and in the dark.
 
 ## Aesthetic Direction
-- **Direction:** Cinematic editorial. Near-black canvas, full-bleed film imagery, one hot red accent, serif headlines.
-- **Decoration level:** Minimal. Typography, imagery, and the single accent do all the work. No gradients, no texture, no decorative shapes.
+- **Source:** *3J Pictures Brand Book 2026* (Júpiter × Volume Productions). Logo, font, palette and visual elements below come from it; do not deviate without explicit approval.
+- **Direction:** Cinematic editorial. Blackboard canvas, full-bleed film imagery, deep brand reds, clean geometric sans headlines.
+- **Decoration level:** Minimal. Typography, imagery and the brand star do the work. The arch-and-star pattern is used only as a faint texture on Wrath brand panels. No gradients.
 - **Mood:** Dark, premium, and moody. The site should feel like a theater going quiet before the lights drop.
 
+## Logo
+- **Files:** `src/assets/brand/lockup.svg` (horizontal, nav/footer), `mark.svg` (symbol only), `stacked.svg` (symbol over wordmark), `star.svg` (the four-point star). All use `fill="currentColor"`, so they take the text colour of their parent. Import them as components: `import Lockup from '../../assets/brand/lockup.svg'`.
+- **Public copies:** `public/brand/star.svg` (CSS masks), `public/brand/pattern-white.svg` (tile), `public/brand/logo-512.png` (schema.org logo).
+- **Approved colourways:** black on white, white on Wrath, white on Blackboard, white on dark photography, Wrath on white. Never another colour, never rotated, stretched, covered, or placed on a low-contrast background.
+- **Clear space:** at least the height of the symbol on every side of the horizontal lockup.
+
 ## Typography
-- **Display/Hero:** `EB Garamond` — serif, high-contrast, editorial. Tight tracking (`-0.02em`), scales to `clamp(2.2rem, 7vw, 6.5rem)`. Carries the studio's title-card feel.
-- **Body / UI / Labels:** `Inter` — sans-serif, weights 300–700.
-- **Data/Tables:** `Inter` (no dedicated tabular face at present).
-- **Eyebrows:** `Inter`, uppercase, letter-spacing `0.18em`, small (`clamp(0.65rem, 0.75vw, 0.8rem)`). Usually red on dark, red on light.
-- **Loading:** Google Fonts via `<link>` in `BaseHead.astro` (`EB+Garamond:ital,wght@0,400..700;1,400..500`, `Inter:wght@300..700`).
-- **CSS vars:** `--font-serif: 'EB Garamond', Georgia, serif;` · `--font-sans: 'Inter', system-ui, sans-serif;`
+- **Typeface:** `Poppins` for everything: titles, body, UI, labels. Brand-book italic is Poppins Light Italic (300); use `<em>` inside `.display`/`.heading-1`/`.heading-2` for it.
+- **Loading:** Google Fonts via `<link>` in `BaseHead.astro` (`Poppins:ital,wght@0,300..700;1,300;1,400`).
+- **CSS vars:** `--font-display` and `--font-sans` both resolve to `'Poppins', system-ui, sans-serif`.
 - **Scale (utility classes in `typography.css`):**
-  - `.display` — serif, `clamp(2.2rem, 7vw, 6.5rem)`, line-height ~1.06, `-0.02em`
-  - `.heading-1` — serif, `clamp(1.75rem, 3.5vw, 3rem)`
-  - `.heading-2` — serif, `clamp(1.5rem, 3vw, 2.5rem)`
-  - `.heading-3` — serif, `clamp(1.2rem, 2vw, 1.75rem)`
-  - `.body-large` — sans, `clamp(1rem, 1.1vw, 1.2rem)`
-  - `.body` — sans, `1rem`
-  - `.eyebrow` — sans, uppercase, `0.18em`, `clamp(0.65rem, 0.75vw, 0.8rem)`
-  - `.caption` — sans, `0.8rem`, `0.08em`
-  - `.prose` — serif body for long-form (film storylines, journal)
-- **Note:** `Inter` is a generic default. EB Garamond is the distinctive half of the pairing. If the brand is ever sharpened, replacing Inter with a more characterful grotesk is the first move — but only with explicit approval, since it touches every page.
+  - `.display`: 600, `clamp(2rem, 6vw, 5.5rem)`, line-height ~1.04, `-0.03em`
+  - `.heading-1`: 600, `clamp(1.6rem, 3.2vw, 2.75rem)`, `-0.02em`
+  - `.heading-2`: 600, `clamp(1.4rem, 2.7vw, 2.25rem)`, `-0.02em`
+  - `.heading-3`: 500, `clamp(1.1rem, 1.8vw, 1.5rem)`
+  - `.body-large`: `clamp(1rem, 1.1vw, 1.2rem)`
+  - `.body`: `1rem`
+  - `.eyebrow`: 600, uppercase, `0.18em`, led by a brand-red star. White on dark, Rose Madder on white (`.section--light` handles it).
+  - `.caption`: `0.8rem`, `0.08em`
+  - `.prose`: long-form body (film storylines, journal)
 
 ## Color
-- **Approach:** Restrained. One accent (red), everything else is ink/white/gray. Color is rare and always means something (action, active, emphasis).
-- **Accent — Red:** `#E03020` (`--red` / `--sienna` / `--amber` all alias this). Used for CTAs, eyebrows, active nav, `::selection`, scrollbar, hover fills. Hover/pressed darken: `#9E3222`.
-- **Dark canvas (default):** `--ink #111111`, with `--ink2 #1A1A1A`, `--ink3 #222222`, `--ink4 #333333` for layered surfaces. Site background is `--ink`.
-- **Light surfaces:** white `#ffffff` (`--parchment`/`--cream`), plus `--parchment3 #f0f0f0`. Used for alternating light sections (About mission, Team).
-- **Text on dark:** primary `#ffffff` · body `rgba(255,255,255,0.7)` · muted `rgba(255,255,255,0.55)`. (Tuned for WCAG AA; do not lower.)
-- **Text on light:** primary `#111111` · body `rgba(17,17,17,0.75)` · muted `rgba(17,17,17,0.58)`.
-- **Borders:** dark `rgba(255,255,255,0.1)` · light `rgba(17,17,17,0.12)`.
-- **Semantic:** none defined yet. If needed, keep them muted and subordinate to the red accent.
-- **Theme:** This is a dark-first site. "Light mode" is not a user toggle; it's per-section (white sections punctuate the dark). Nav is transparent over heroes; on dark pages it uses `darkNav` (light links + a frosted chip behind the logo).
+- **Palette (brand book):**
+  - White `#FFFFFF` (`--white`)
+  - Rose Madder Lake `#9B2727` (`--rose`, also `--red` / `--sienna` / `--amber`): primary accent **fill**. CTAs, active rules, stars, scrollbar, selection.
+  - Wrath `#7C0A0A` (`--wrath`, also `--red-dark`): hover/pressed, full-bleed brand panels (marquee, home CTA).
+  - Blackboard `#1C1C1C` (`--blackboard`, also `--ink`): site canvas.
+- **Contrast rule:** the brand reds are only ~2:1 against Blackboard, so **never set red text on dark surfaces.** On dark, red appears as fills, underlines, rules and the star; text stays white. Red text is fine on white (Rose Madder is ~7:1 on white). Form error text on charcoal uses `#FF8A80`.
+- **Dark surfaces:** `--ink #1C1C1C`, `--ink2 #232323`, `--ink3 #2A2A2A`, `--ink4 #383838`.
+- **Light surfaces:** white `#ffffff` (`--parchment`/`--cream`), plus `--parchment3 #f0f0f0`.
+- **Text on dark:** primary `#ffffff` · body `rgba(255,255,255,0.72)` · muted `rgba(255,255,255,0.58)`. (Tuned for WCAG AA; do not lower.)
+- **Text on light:** primary `#1C1C1C` · body `rgba(28,28,28,0.78)` · muted `rgba(28,28,28,0.62)`.
+- **Borders:** dark `rgba(255,255,255,0.1)` · light `rgba(28,28,28,0.12)`.
+- **Focus ring:** `2px solid currentColor`, so it always contrasts with its own surface.
+- **Theme:** This is a dark-first site. "Light mode" is not a user toggle; it's per-section (white sections punctuate the dark). Nav is transparent over heroes; on dark pages it uses `darkNav` (light links).
 
 ## Spacing
 - **Base unit:** 8px (`--space-1: 0.5rem`).
@@ -65,7 +72,7 @@
 - **Duration:** `--duration-fast 200ms` (hovers) · `--duration-base 400ms` (reveals) · `--duration-slow 700ms` (hero/large).
 
 ## Buttons
-- `.btn` base: Inter, `0.8rem`, `600`, uppercase, `0.12em`, square, `0.85rem 2rem`.
+- `.btn` base: Poppins, `0.8rem`, `600`, uppercase, `0.12em`, square, `0.85rem 2rem`.
 - `.btn--primary` — filled red, white text (works on any bg; hover → `#9E3222`).
 - `.btn--ghost` — transparent, white text/border (for dark sections).
 - `.btn--ghost-dark` — transparent, ink text/border (for white sections).
@@ -75,3 +82,4 @@
 | Date | Decision | Rationale |
 |------|----------|-----------|
 | 2026-07-10 | Documented existing design system as-is | Codified the mature cinematic black/white/red + EB Garamond/Inter system already in `global.css`/`typography.css` as the source of truth. Created by /design-consultation. |
+| 2026-09-30 | Rebranded to the 3J Pictures Brand Book 2026 | New arch-and-star logo (inline SVG), Poppins replaces EB Garamond/Inter, palette → White / Rose Madder Lake / Wrath / Blackboard, star used for eyebrows/bullets, arch pattern on Wrath panels. Red text removed from dark surfaces for contrast. |
