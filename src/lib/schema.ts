@@ -1,4 +1,4 @@
-const SITE_URL = 'https://makartzfilms.com';
+const SITE_URL = 'https://3jpictures.com';
 const ORG_NAME = '3J Pictures';
 
 export const organizationSchema = {
@@ -8,7 +8,7 @@ export const organizationSchema = {
   url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
-    url: `${SITE_URL}/og-default.jpg`,
+    url: `${SITE_URL}/brand/logo-512.png`,
   },
   description: 'An independent film studio based in Central Florida.',
   address: {
@@ -19,7 +19,7 @@ export const organizationSchema = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'hello@makartzfilms.com',
+    email: '3jpictures@gmail.com',
     contactType: 'customer service',
   },
   sameAs: [
@@ -64,6 +64,19 @@ export function movieSchema(film: {
         target: link.url,
       })),
     }),
+  };
+}
+
+export function breadcrumbSchema(crumbs: { name: string; path: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((crumb, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: crumb.name,
+      item: `${SITE_URL}${crumb.path}`,
+    })),
   };
 }
 

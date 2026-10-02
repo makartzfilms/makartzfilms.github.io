@@ -9,7 +9,7 @@ const teamPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Team · 3J Pictures',
-  url: 'https://makartzfilms.com/team',
+  url: 'https://3jpictures.com/team',
   description: 'Meet the people behind 3J Pictures, our team of film industry professionals based in Central Florida.',
 };
 ---
@@ -78,7 +78,6 @@ const teamPageSchema = {
         </p>
         <div class="cta-buttons">
           <a href="/contact" class="btn btn--primary">Get in Touch</a>
-          <a href="/submit" class="btn btn--ghost">Submit a Project</a>
         </div>
       </div>
     </div>
@@ -183,10 +182,12 @@ const teamPageSchema = {
     margin: 0 auto;
   }
   .cta-rule {
-    width: 48px;
-    height: 2px;
+    width: 1.5rem;
+    height: 1.5rem;
     background: var(--sienna);
     margin: 0 auto var(--space-4);
+    -webkit-mask: url('/brand/star.svg') center / contain no-repeat;
+    mask: url('/brand/star.svg') center / contain no-repeat;
   }
   .cta-eyebrow { margin-bottom: var(--space-2); }
   .cta-heading {
